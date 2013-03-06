@@ -16,7 +16,7 @@ private:
         Skeleton* m_skeleton;        
         // local joint poses, as many as num of skeleton's joints
         std::vector<math::Mat4x4f> m_localPoses;
-}
+};
 
 }; // namespace animation
 }; // namespace skeletor
