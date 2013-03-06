@@ -5,6 +5,9 @@
 
 #include <ostream>
 
+namespace skeletor {
+namespace math {
+
 /**
  * 4D column vector.
  */
@@ -264,5 +267,8 @@ inline std::ostream& operator<<(std::ostream &out, const Vec4<T> &v)
 typedef Vec4<float>  Vec4f;
 typedef Vec4<int>    Vec4i;
 typedef Vec4<double> Vec4d;
+
+}; // namespace math
+}; // namespace skeletor
 
 #endif // VEC4_HPP

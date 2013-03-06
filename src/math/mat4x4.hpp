@@ -8,6 +8,9 @@
 #include <string.h>
 #include <ostream>
 
+namespace skeletor {
+namespace math {
+
 template <typename T>
 struct Mat4x4
 {
@@ -468,5 +471,8 @@ inline std::ostream &operator<<(std::ostream &out, const Mat4x4<T> &m)
 
 typedef Mat4x4<float>  Mat4x4f;
 typedef Mat4x4<double> Mat4x4d;
+
+}; // namespace math
+}; // namespace skeletor
 
 #endif // MAT4X4_HPP
