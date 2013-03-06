@@ -7,6 +7,9 @@
 #include <string.h>
 #include <ostream>
 
+namespace skeletor {
+namespace math {
+
 template <typename T>
 struct Mat2x2
 {
@@ -265,5 +268,8 @@ inline std::ostream &operator<<(std::ostream &out, const Mat2x2<T> &m)
 
 typedef Mat2x2<float>  Mat2x2f;
 typedef Mat2x2<double> Mat2x2d;
+
+}; // namespace math
+}; // namespace skeletor
 
 #endif // MAT2X2_HPP

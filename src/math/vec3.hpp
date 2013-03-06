@@ -5,6 +5,9 @@
 
 #include <ostream>
 
+namespace skeletor {
+namespace math {
+
 /**
  * 3D column vector.
  */
@@ -256,5 +259,8 @@ inline std::ostream& operator<<(std::ostream &out, const Vec3<T> &v)
 typedef Vec3<float>  Vec3f;
 typedef Vec3<int>    Vec3i;
 typedef Vec3<double> Vec3d;
+
+}; // namespace math
+}; // namespace skeletor
 
 #endif // VEC3_HPP
