@@ -55,6 +55,13 @@ public:
         void loadIdentity();
 
         /**
+         * Use the camera and look at a specified point.
+         */
+        void lookAt(float camX, float camY, float camZ,
+                    float lookX, float lookY, float lookZ,
+                    float upX, float upY, float upZ);
+
+        /**
          * Clean up the OpenGL and SDL before exiting program.
          * Call this before destructor.
          */

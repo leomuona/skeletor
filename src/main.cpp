@@ -2,7 +2,9 @@
 
 #include "animation/parse.hpp"
 #include "animation/skeleton.hpp"
+#include "animation/skeleton_pose.hpp"
 #include "graphics/skeleton_renderer.hpp"
+#include "graphics/camera.hpp"
 #include "math/vec2.hpp"
 
 #include <SDL/SDL.h>
@@ -10,6 +12,7 @@
 bool mouseLeft = false;
 bool mouseRight = false;
 skeletor::graphics::SkeletonRenderer sr;
+skeletor::graphics::Camera camera;
 
 void onMouseButtonDown(int x, int y)
 {
@@ -85,7 +88,7 @@ int main()
 			running &= onEvent(event);
 		}
 
-		sr.drawFrame();
+		sr.drawFrame(camera);
 		sr.swapBuffers();
 	}
 

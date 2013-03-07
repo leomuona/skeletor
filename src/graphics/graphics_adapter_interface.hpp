@@ -16,6 +16,9 @@ public:
         virtual void swapBuffers() = 0;
         virtual void clearBuffer() = 0;
         virtual void loadIdentity() = 0;
+        virtual void lookAt(float camX, float camY, float camZ,
+                            float lookX, float lookY, float lookZ,
+                            float upX, float upY, float upZ) = 0;
         virtual void cleanUp() = 0;
 };
 
