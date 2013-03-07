@@ -3,7 +3,7 @@
 namespace skeletor {
 namespace animation {
 
-Joint::Joint(Joint *parent, math::Mat4x4f &invBindPose, const std::string &name)
+Joint::Joint(Joint *parent, const math::Mat4x4f &invBindPose, const std::string &name)
 	: m_parent(parent)
 	, m_invBindPose(invBindPose)
 	, m_name(name)

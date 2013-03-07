@@ -32,7 +32,7 @@ public:
 	 * @param invert bind pose matrix transormation
 	 * @param human readable name or something
 	 */
-	Joint(Joint *parent, math::Mat4x4f &invBindPose, const std::string &name);
+	Joint(Joint *parent, const math::Mat4x4f &invBindPose, const std::string &name);
 
 	/**
 	 * Adds the given node as a child node to this.
