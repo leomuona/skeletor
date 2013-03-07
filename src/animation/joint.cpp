@@ -15,5 +15,15 @@ void Joint::addChild(Joint *child)
 	m_children.push_back(child);
 }
 
+std::string Joint::getName() const
+{
+	return m_name;
+}
+
+const std::vector<Joint *> &Joint::getChildren() const
+{
+	return m_children;
+}
+
 }; // namespace animation
 }; // namespace skeletor

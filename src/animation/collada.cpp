@@ -17,6 +17,7 @@ namespace animation {
 Skeleton *Collada::loadSkeleton(const std::string &filename)
 {
 	using namespace rapidxml;
+	Skeleton *skeleton = NULL;
 
 	file<> xmlFile(filename.c_str());
 	xml_document<> doc;
@@ -54,11 +55,12 @@ Skeleton *Collada::loadSkeleton(const std::string &filename)
 		std::cout << "names: "  << joints_name << std::endl;
 
 		Joint *root_joint = loadJoints(root, joints_name);
+		skeleton = new Skeleton(root_joint);
 
 		ctrl = ctrl->next_sibling("controller");
 	}
 
-	return NULL;
+	return skeleton;
 }
 
 Joint *Collada::loadJoints(rapidxml::xml_node<> *root, const std::string &sid)
@@ -75,7 +77,7 @@ Joint *Collada::loadJoints(rapidxml::xml_node<> *root, const std::string &sid)
 		xml_node<> *node = vs->first_node("node");
 
 		while (node != NULL) {
-			std::string id = node->first_attribute("id")->value();
+			std::string id = node->first_attribute("name")->value();
 
 			if (id == "deformation_rig") {
 				xml_node<> *root_node = node->first_node("node");

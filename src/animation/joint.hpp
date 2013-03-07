@@ -41,6 +41,15 @@ public:
 	 */
 	void addChild(Joint *child);
 
+	std::string getName() const;
+
+	/**
+	 * Getter for children
+	 *
+	 * @return children of the current joint
+	 */
+	const std::vector<Joint *> &getChildren() const;
+
 };
 
 }; // namespace animation
