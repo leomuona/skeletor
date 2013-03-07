@@ -10,6 +10,9 @@ public:
         virtual void initWindow(
                 int width, int height, int bpp, bool fs, const char* title) = 0;
         virtual void initGraphics() = 0;
+        virtual void swapBuffers() = 0;
+        virtual void clearBuffer() = 0;
+        virtual void loadIdentity() = 0;
 };
 
 }; // namespace graphics

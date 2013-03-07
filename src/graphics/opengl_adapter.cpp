@@ -52,5 +52,20 @@ void OpenGLAdapter::initGraphics()
         }
 }
 
+void OpenGLAdapter::swapBuffers()
+{
+        SDL_GL_SwapBuffers();
+}
+
+void OpenGLAdapter::clearBuffer()
+{
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void OpenGLAdapter::loadIdentity()
+{
+        glLoadIdentity();
+}
+
 }; // namespace graphics
 }; // namespace skeletor
