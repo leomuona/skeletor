@@ -4,22 +4,22 @@
 namespace skeletor {
 namespace graphics {
 
-SkeletonRenderer::SkeletonRender()
+SkeletonRenderer::SkeletonRenderer()
 {
-        m_graphics_adapter = new OpenGLAdapter();
+        m_graphicsAdapter = new OpenGLAdapter();
 }
 
 SkeletonRenderer::~SkeletonRenderer()
 {
-        delete m_graphics_adapter;
+        delete m_graphicsAdapter;
 }
 
 void SkeletonRenderer::initRenderer(
-const math::vec2i &dimension, int bpp, bool fs, const std::string &title)
+const math::Vec2i &dimension, int bpp, bool fs, const std::string &title)
 {
-        m_graphics_adapter->initWindow(
-                dimension.x, dimension.y, bpp, fs, title.c_str);
-        m_graphics_adapter->initGraphics();
+        m_graphicsAdapter->initWindow(
+                dimension.x, dimension.y, bpp, fs, title.c_str());
+        m_graphicsAdapter->initGraphics();
 }
 
 }; // namespace graphics

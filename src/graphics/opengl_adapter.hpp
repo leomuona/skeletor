@@ -17,10 +17,13 @@ public:
          *
          * @throws RuntimeException if fails.
          */
-        void initWindow(int width, int height, int bpp, bool fs, char *title);
+        void initWindow(
+                int width, int height, int bpp, bool fs, const char *title);
 
         /**
          * Initializes OpenGL graphics. Call this after initWindow().
+         *
+         * @throws RuntimeException if fails.
          */
         void initGraphics();
 };

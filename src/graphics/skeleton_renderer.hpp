@@ -2,6 +2,7 @@
 #define SKELETON_RENDERER_HPP
 
 #include "math/vec2.hpp"
+#include "graphics/graphics_adapter_interface.hpp"
 
 #include <string>
 
@@ -22,7 +23,7 @@ public:
          * Call this before calling other function in this class.
          */
         void initRenderer(
-                const math::vec2i &dimension, int bpp, bool fs,
+                const math::Vec2i &dimension, int bpp, bool fs,
                 const std::string &title);
 
 };
