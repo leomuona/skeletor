@@ -21,6 +21,8 @@ int width, int height, int bpp, bool fs, const char *title)
                 throw new std::runtime_error("Window initialization failed.");
         }
 
+	m_resolution.set(width, height);
+
         // flags: opengl, doublebuffering and fullscreen if wanted
         int flags = (SDL_OPENGL | SDL_DOUBLEBUF);
         if (fs) {
@@ -52,6 +54,21 @@ void OpenGLAdapter::initGraphics()
         }
 }
 
+void OpenGLAdapter::onResize(const math::Vec2i &resolution)
+{
+	float aspect = (float) resolution.x / (float) resolution.y;
+	m_resolution = resolution;
+
+	glViewport(0, 0, resolution.x, resolution.y);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	setPerspectiveProjection(60.0f, 1.0f, 100.0f);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}
+
 void OpenGLAdapter::swapBuffers()
 {
         SDL_GL_SwapBuffers();
@@ -70,6 +87,22 @@ void OpenGLAdapter::loadIdentity()
 void OpenGLAdapter::cleanUp()
 {
         SDL_Quit();
+
+void OpenGLAdapter::setPerspectiveProjection(float fovy, float _near, float _far)
+{
+	float radians = 0.5f * fovy * DEGREES_2_RADIANS;
+	float d       = cosf(radians) / sinf(radians);
+	float aspect  = (float) m_resolution.x / (float) m_resolution.y;
+	float deltaZ  = _far - _near;
+
+	m_projectionMatrix.set(
+		d / aspect, .0f, .0f                 , .0f,
+		.0f       , d  , .0f                 , .0f,
+		.0f       , .0f, -(_far+_near)/deltaZ, (-2*_far*_near)/deltaZ,
+		.0f       , .0f, -1.0f               , .0f
+	);
+
+	glMultMatrixf(m_projectionMatrix.m);
 }
 
 }; // namespace graphics

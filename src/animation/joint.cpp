@@ -25,5 +25,15 @@ const std::vector<Joint *> &Joint::getChildren() const
 	return m_children;
 }
 
+const math::Mat4x4f &Joint::getMatrixLocalTransformation() const
+{
+	return m_invBindPose;
+}
+
+math::Mat4x4f &Joint::getMatrixLocalTransformation()
+{
+	return m_invBindPose;
+}
+
 }; // namespace animation
 }; // namespace skeletor

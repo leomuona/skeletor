@@ -23,6 +23,9 @@ public:
 	 */
 	Skeleton(Joint *root);
 
+	Joint &getRootJoint();
+	const Joint &getRootJoint() const;
+
 	/**
 	 * Overloaded << ostream operator.
 	 * Makes it possible to: std::cout << this.
@@ -47,6 +50,16 @@ private:
 	void preOrder(std::vector<std::pair<Joint *,int> > &v, Joint *joint, int depth) const;
 
 };
+
+inline Joint &Skeleton::getRootJoint()
+{
+	return *m_root;
+}
+
+inline const Joint &Skeleton::getRootJoint() const
+{
+	return *m_root;
+}
 
 inline std::ostream &operator<<(std::ostream &os, const Skeleton &s)
 {

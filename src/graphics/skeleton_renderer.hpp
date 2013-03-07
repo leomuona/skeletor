@@ -34,6 +34,8 @@ public:
                 const math::Vec2i &dimension, int bpp, bool fs,
                 const std::string &title);
 
+	void onResize(const math::Vec2i &resolution);
+
         void swapBuffers();
 
         /**

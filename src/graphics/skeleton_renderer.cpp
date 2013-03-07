@@ -1,5 +1,6 @@
 #include "graphics/skeleton_renderer.hpp"
 #include "graphics/opengl_adapter.hpp"
+#include "graphics/opengl_skeleton_renderer.hpp"
 
 namespace skeletor {
 namespace graphics {
@@ -22,6 +23,11 @@ const math::Vec2i &dimension, int bpp, bool fs, const std::string &title)
         m_graphicsAdapter->initGraphics();
 }
 
+void SkeletonRenderer::onResize(const math::Vec2i &resolution)
+{
+	m_graphicsAdapter->onResize(resolution);
+}
+
 void SkeletonRenderer::swapBuffers()
 {
         m_graphicsAdapter->swapBuffers();
@@ -34,7 +40,8 @@ void SkeletonRenderer::addSkeleton(animation::SkeletonPose &skeleton)
 
 void SkeletonRenderer::drawSkeleton(animation::SkeletonPose &skeleton)
 {
-       
+	OpenGLSkeletonRenderer osr;
+	osr.render(skeleton.getSkeleton());
 }
 
 void SkeletonRenderer::drawFrame()

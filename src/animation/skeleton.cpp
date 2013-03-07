@@ -25,6 +25,5 @@ void Skeleton::preOrder(std::vector<std::pair<Joint *, int> > &v, Joint *joint, 
 	}
 }
 
-
 }; // namespace animation
 }; // namespace skeletor

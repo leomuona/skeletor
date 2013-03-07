@@ -2,12 +2,20 @@
 #define OPENGL_ADAPTER_HPP
 
 #include "graphics/graphics_adapter_interface.hpp"
+#include "math/mat4x4.hpp"
 
 namespace skeletor {
 namespace graphics {
 
 class OpenGLAdapter : public GraphicsAdapterInterface
 {
+private:
+	/** \brief Opengl projection matrix. */
+	math::Mat4x4f m_projectionMatrix;
+
+	/** \brief Resoluation of the screen, e.g. 800x600 */
+	math::Vec2i m_resolution;
+
 public:
         OpenGLAdapter();
         ~OpenGLAdapter();
@@ -27,6 +35,13 @@ public:
          */
         void initGraphics();
 
+	/**
+	 * onResize event, this function will set up the projection matrix.
+	 *
+	 * @param window resolution
+	 */
+	void onResize(const math::Vec2i &resolution);
+
         void swapBuffers();
 
         /**
@@ -44,6 +59,15 @@ public:
          * Call this before destructor.
          */
         void cleanUp();
+private:
+	/**
+	 * Helper function to set the projection matrix (perspective).
+	 *
+	 * @param fovy - field of view
+	 * @param near value
+	 * @param far value
+	 */
+	void setPerspectiveProjection(float fovy, float near, float far);
 };
 
 }; // namespace graphics

@@ -50,6 +50,9 @@ public:
 	 */
 	const std::vector<Joint *> &getChildren() const;
 
+	const math::Mat4x4f &getMatrixLocalTransformation() const;
+	math::Mat4x4f &getMatrixLocalTransformation();
+
 };
 
 }; // namespace animation
