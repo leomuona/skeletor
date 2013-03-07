@@ -110,8 +110,8 @@ rapidxml::xml_node<> *Collada::findRootNode(rapidxml::xml_node<> *node, const st
 
 Joint *Collada::buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent)
 {
-	math::Mat4x4f m(buildNodeInvBindPose(node));
-	Joint *joint = new Joint(parent, m, node->first_attribute("name")->value());
+	math::Mat4x4f localMatrix(buildNodeLocalMatrix(node));
+	Joint *joint = new Joint(parent, localMatrix, node->first_attribute("name")->value());
 
 	rapidxml::xml_node<> *children = node->first_node("node");
 	while (children != NULL) {
@@ -122,7 +122,7 @@ Joint *Collada::buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent)
 	return joint;
 }
 
-math::Mat4x4f Collada::buildNodeInvBindPose(rapidxml::xml_node<> *node)
+math::Mat4x4f Collada::buildNodeLocalMatrix(rapidxml::xml_node<> *node)
 {
 	std::string translate("0 0 0");
 	std::string jointOrientZ("0 0 1 0");
@@ -135,40 +135,50 @@ math::Mat4x4f Collada::buildNodeInvBindPose(rapidxml::xml_node<> *node)
 	if (node->first_node("translate")) {
 		translate = node->first_node("translate")->value();
 	}
-	if (node->first_node("jointOrientZ")) {
-		jointOrientZ = node->first_node("jointOrientZ")->value();
-	}
-	if (node->first_node("jointOrientY")) {
-		jointOrientY = node->first_node("jointOrientY")->value();
-	}
-	if (node->first_node("jointOrientX")) {
-		jointOrientX = node->first_node("jointOrientX")->value();
-	}
-	if (node->first_node("rotateZ")) {
-		rotateZ = node->first_node("rotateZ")->value();
-	}
-	if (node->first_node("rotateY")) {
-		rotateY = node->first_node("rotateY")->value();
-	}
-	if (node->first_node("rotateX")) {
-		rotateX = node->first_node("rotateX")->value();
+
+	rapidxml::xml_node<> *rotate = node->first_node("rotate");
+	while (rotate != NULL) {
+		std::string sid = rotate->first_attribute("sid")->value();
+		std::string value = rotate->value();
+		if (sid == "jointOrientZ") {
+			jointOrientZ = value;
+		} else if (sid == "jointOrientY") {
+			jointOrientY = value;
+		} else if (sid == "jointOrientX") {
+			jointOrientX = value;
+		} else if (sid == "rotateZ") {
+			rotateZ = value;
+		} else if (sid == "rotateY") {
+			rotateY = value;
+		} else if (sid == "rotateX") {
+			rotateX = value;
+		}
+
+		rotate = rotate->next_sibling("rotate");
 	}
 
-	math::Mat4x4f x, y, z, t;
+	math::Mat4x4f x, y, z, t, g_x, g_y, g_z;
 
 	std::vector<std::string> rotX(util::stringSplit(jointOrientX));
 	std::vector<std::string> rotY(util::stringSplit(jointOrientY));
 	std::vector<std::string> rotZ(util::stringSplit(jointOrientZ));
 	std::vector<std::string> tran(util::stringSplit(translate));
+	std::vector<std::string> g_rotX(util::stringSplit(rotateX));
+	std::vector<std::string> g_rotY(util::stringSplit(rotateY));
+	std::vector<std::string> g_rotZ(util::stringSplit(rotateZ));
 
-	x.rotate(math::Vec3f(1, 0, 0), util::lexicalCast<std::string, float>(rotX[3]));
-	y.rotate(math::Vec3f(0, 1, 0), util::lexicalCast<std::string, float>(rotY[3]));
-	z.rotate(math::Vec3f(0, 0, 1), util::lexicalCast<std::string, float>(rotZ[3]));
+	x.rotate(math::Vec3f(1, 0, 0), DEGREES_2_RADIANS * util::lexicalCast<std::string, float>(rotX[3]));
+	y.rotate(math::Vec3f(0, 1, 0), DEGREES_2_RADIANS * util::lexicalCast<std::string, float>(rotY[3]));
+	z.rotate(math::Vec3f(0, 0, 1), DEGREES_2_RADIANS * util::lexicalCast<std::string, float>(rotZ[3]));
 	t.translate(math::Vec3f(util::lexicalCast<std::string, float>(tran[0]),
 	                        util::lexicalCast<std::string, float>(tran[1]),
 	                        util::lexicalCast<std::string, float>(tran[2])));
 
-	return (t * x * y * z);
+	g_x.rotate(math::Vec3f(1, 0, 0), DEGREES_2_RADIANS * util::lexicalCast<std::string, float>(g_rotX[3]));
+	g_y.rotate(math::Vec3f(0, 1, 0), DEGREES_2_RADIANS * util::lexicalCast<std::string, float>(g_rotY[3]));
+	g_z.rotate(math::Vec3f(0, 0, 1), DEGREES_2_RADIANS * util::lexicalCast<std::string, float>(g_rotZ[3]));
+
+	return t * z * y * x * g_z * g_y * g_x;
 }
 
 }; // namespace animation

@@ -66,20 +66,15 @@ private:
 	static Joint *buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent);
 
 	/**
-	 * Constructs the inverse bind pose transformation matrix from the
-	 * node information.
+	 * Constructs the node local matrix from node information.
 	 *
-	 * The final rotation = pre * rotate
-	 *
-	 * pre rotation is on <jointOrient[XYZ]>
-	 * rotate is <rotate[XYZ]>
-	 *
-	 * translation is found on <translate>
+	 * The local matrix is constructed from all node transformations
+	 * (rotate, transform, scale) in the order they are.
 	 *
 	 * @param xml_node to parse
-	 * @return transformation matrix.
+	 * @return local transformation matrix.
 	 */
-	static math::Mat4x4f buildNodeInvBindPose(rapidxml::xml_node<> *node);
+	static math::Mat4x4f buildNodeLocalMatrix(rapidxml::xml_node<> *node);
 
 };
 

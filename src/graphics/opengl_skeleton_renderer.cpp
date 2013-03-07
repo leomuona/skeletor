@@ -10,18 +10,32 @@ namespace graphics {
 
 void OpenGLSkeletonRenderer::render(const animation::Skeleton &skeleton) const
 {
-	glBegin(GL_LINES);
+	float psize = 0;
+	glGetFloatv(GL_POINT_SIZE, &psize);
+	glPointSize(5.0f);
+	glColor3f(0.0f, 0.0f, 0.0f);
 	render(skeleton.getRootJoint());
-	glEnd();
+	glPointSize(psize);
 }
 
 void OpenGLSkeletonRenderer::render(const animation::Joint &joint) const
 {
 	const std::vector<animation::Joint *> &children = joint.getChildren();
+
 	for (int i=0; i<children.size(); ++i) {
-		glVertex3f(0, 0, 0);
+		math::Mat4x4f &t(children[i]->getLocalMatrix());
+		glBegin(GL_LINES);
+			glVertex3f(0, 0, 0);
+			glVertex3f(t.m[12], t.m[13], t.m[14]);
+		glEnd();
+	}
+
+	for (int i=0; i<children.size(); ++i) {
+		glBegin(GL_POINTS);
+			glVertex3f(0, 0, 0);
+		glEnd();
 		glPushMatrix();
-		glMultMatrixf(children[i]->getMatrixLocalTransformation().m);
+		glMultMatrixf(children[i]->getLocalMatrix().m);
 		render(children[i]);
 		glPopMatrix();
 	}

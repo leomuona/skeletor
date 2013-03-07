@@ -12,8 +12,9 @@ namespace animation {
 class Joint
 {
 private:
-	// inverse bind pose transform.
-	math::Mat4x4f m_invBindPose;
+	math::Mat4x4f m_localMatrix;
+	math::Mat4x4f m_bindPoseMatrix;
+	math::Mat4x4f m_invBindPoseMatrix;
 
 	// human readable joint name.
 	std::string m_name;
@@ -29,10 +30,10 @@ public:
 	 * Constructor.
 	 *
 	 * @param parent joint, NULL if root.
-	 * @param invert bind pose matrix transormation
+	 * @param joints local matrix
 	 * @param human readable name or something
 	 */
-	Joint(Joint *parent, const math::Mat4x4f &invBindPose, const std::string &name);
+	Joint(Joint *parent, const math::Mat4x4f &localMatrix, const std::string &name);
 
 	/**
 	 * Adds the given node as a child node to this.
@@ -50,8 +51,12 @@ public:
 	 */
 	const std::vector<Joint *> &getChildren() const;
 
-	const math::Mat4x4f &getMatrixLocalTransformation() const;
-	math::Mat4x4f &getMatrixLocalTransformation();
+	const math::Mat4x4f &getLocalMatrix() const;
+	math::Mat4x4f &getLocalMatrix();
+	const math::Mat4x4f &getBindPoseMatrix() const;
+	math::Mat4x4f &getBindPoseMatrix();
+	const math::Mat4x4f &getInvBindPoseMatrix() const;
+	math::Mat4x4f &getInvBindPoseMatrix();
 
 };
 
