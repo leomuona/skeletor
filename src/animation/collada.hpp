@@ -1,11 +1,16 @@
 #ifndef COLLADA_HPP
 #define COLLADA_HPP
 
+#include "math/mat4x4.hpp"
+#include "rapidxml.hpp"
+
 #include <string>
+#include <vector>
 
 namespace skeletor {
 namespace animation {
 
+class Joint;
 class Skeleton;
 
 class Collada
@@ -19,6 +24,52 @@ public:
 	 * @return skeleton constructed from collada file.
 	 */
 	static Skeleton *loadSkeleton(const std::string &file);
+
+private:
+	/**
+	 * Parses the joints information from COLLADA file.
+	 *
+	 * Joints are found from:
+	 *   <library_visual_scenes>
+	 *     <visual_scene>
+	 *       <node ... PARAM="JOINT">
+	 *         ...
+	 *
+	 * in structural manner.
+	 *
+	 * @param root node of the xml
+	 * @param sid string, containing all string IDs of the joints.
+	 *
+	 * @return root node of the joints
+	 */
+	static Joint *loadJoints(rapidxml::xml_node<> *root, const std::string &sid);
+
+	/**
+	 * Builds the joint hierarchy from the COLLADA file.
+	 *
+	 * @param xml_node
+	 * @param node parent
+	 *
+	 * @return joint.
+	 */
+	static Joint *buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent);
+
+	/**
+	 * Constructs the inverse bind pose transformation matrix from the
+	 * node information.
+	 *
+	 * The final rotation = pre * rotate
+	 *
+	 * pre rotation is on <jointOrient[XYZ]>
+	 * rotate is <rotate[XYZ]>
+	 *
+	 * translation is found on <translate>
+	 *
+	 * @param xml_node to parse
+	 * @return transformation matrix.
+	 */
+	static math::Mat4x4f buildNodeInvBindPose(rapidxml::xml_node<> *node);
+
 };
 
 }; // namespace animation

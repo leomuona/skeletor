@@ -1,7 +1,6 @@
 #include "util/string.hpp"
 
 #include <iterator>
-#include <sstream>
 
 namespace skeletor {
 namespace util {
