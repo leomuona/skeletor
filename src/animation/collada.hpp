@@ -45,6 +45,17 @@ private:
 	static Joint *loadJoints(rapidxml::xml_node<> *root, const std::string &sid);
 
 	/**
+	 * Searches through the dom tree recursively for skeleton root node.
+	 *
+	 * @param node to start searching from
+	 * @param name of the root node.
+	 *
+	 * @return root node in the dom tree.
+	 */
+	static rapidxml::xml_node<> *findRootNode(rapidxml::xml_node<> *node,
+	                                          const std::string &name);
+
+	/**
 	 * Builds the joint hierarchy from the COLLADA file.
 	 *
 	 * @param xml_node

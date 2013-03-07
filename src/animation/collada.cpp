@@ -75,32 +75,37 @@ Joint *Collada::loadJoints(rapidxml::xml_node<> *root, const std::string &sid)
 
 	while (vs != NULL) {
 		xml_node<> *node = vs->first_node("node");
-
-		while (node != NULL) {
-			std::string id = node->first_attribute("name")->value();
-
-			if (id == "deformation_rig") {
-				xml_node<> *root_node = node->first_node("node");
-
-				while (root_node != NULL) {
-					std::string name = root_node->first_attribute("name")->value();
-
-					if (name == "root") {
-						root_joint = buildJointHierarchy(root_node, NULL);
-						break;
-					}
-				}
-
-				root_node = root_node->next_sibling("node");
-			}
-
-			node = node->next_sibling("node");
-		}
+		xml_node<> *root_node = findRootNode(node, "root");
+		root_joint = buildJointHierarchy(root_node, NULL);
 
 		vs = vs->next_sibling("visual_scene");
 	}
 
 	return root_joint;
+}
+
+rapidxml::xml_node<> *Collada::findRootNode(rapidxml::xml_node<> *node, const std::string &name)
+{
+	while (node != NULL) {
+		std::string node_name = node->first_attribute("name")->value();
+		if (node_name == name) {
+			return node;
+		}
+
+		rapidxml::xml_node<> *child = node->first_node("node");
+		while (child != NULL) {
+			rapidxml::xml_node<> *root = findRootNode(child, name);
+			if (root) {
+				return root;
+			}
+
+			child = child->next_sibling("node");
+		}
+
+		node = node->next_sibling("node");
+	}
+
+	return NULL;
 }
 
 Joint *Collada::buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent)
