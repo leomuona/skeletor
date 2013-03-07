@@ -26,6 +26,18 @@ public:
          * @throws RuntimeException if fails.
          */
         void initGraphics();
+
+        void swapBuffers();
+
+        /**
+         * Clears color and depth buffer.
+         */
+        void clearBuffer();
+
+        /**
+         * Load Identity Matrix
+         */
+        void loadIdentity();
 };
 
 }; // namespace graphics

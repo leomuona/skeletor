@@ -3,8 +3,10 @@
 
 #include "math/vec2.hpp"
 #include "graphics/graphics_adapter_interface.hpp"
+#include "animation/skeleton_pose.hpp"
 
 #include <string>
+#include <vector>
 
 namespace skeletor {
 namespace graphics {
@@ -13,6 +15,12 @@ class SkeletonRenderer
 {
 private:
         GraphicsAdapterInterface *m_graphicsAdapter;
+        std::vector<animation::SkeletonPose> m_skeletons;
+
+        /**
+         * Draw a skeleton -helper function.
+         */
+        void drawSkeleton(animation::SkeletonPose &skeleton);
 
 public:
         SkeletonRenderer();
@@ -26,6 +34,17 @@ public:
                 const math::Vec2i &dimension, int bpp, bool fs,
                 const std::string &title);
 
+        void swapBuffers();
+
+        /**
+         * Add a skeleton to skeleton-vector, that is rendered.
+         */
+        void addSkeleton(animation::SkeletonPose &skeleton);
+
+        /**
+         * Draw a frame.
+         */
+        void drawFrame();
 };
 
 }; // namespace graphics
