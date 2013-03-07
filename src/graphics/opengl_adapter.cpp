@@ -84,6 +84,18 @@ void OpenGLAdapter::loadIdentity()
         glLoadIdentity();
 }
 
+void OpenGLAdapter::lookAt(float camX, float camY, float camZ,
+                           float lookX, float lookY, float lookZ,
+                           float upX, float upY, float upZ)
+{
+        gluLookAt(camX, camY, camZ, lookX, lookY, lookZ, upX, upY, upZ);
+}
+
+void OpenGLAdapter::cleanUp()
+{
+        SDL_Quit();
+}
+
 void OpenGLAdapter::setPerspectiveProjection(float fovy, float _near, float _far)
 {
 	float radians = 0.5f * fovy * DEGREES_2_RADIANS;
