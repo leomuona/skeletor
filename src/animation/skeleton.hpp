@@ -23,9 +23,27 @@ public:
 	 */
 	Skeleton(Joint *root);
 
+	/**
+	 * Overloaded << ostream operator.
+	 * Makes it possible to: std::cout << this.
+	 */
 	friend std::ostream &operator<<(std::ostream &os, const Skeleton &s);
 
+	/**
+	 * Forms a preorder traverse into v vector.
+	 *
+	 * Calls private preorder method: liek: preorder(v, m_root, 0).
+	 *
+	 * @param vector v to save the traverse order.
+	 */
 	void preOrder(std::vector<std::pair<Joint *,int> > &v) const;
+
+private:
+	/**
+	 * @param vector v to save the traverse order.
+	 * @param current joint
+	 * @param current depth
+	 */
 	void preOrder(std::vector<std::pair<Joint *,int> > &v, Joint *joint, int depth) const;
 
 };
