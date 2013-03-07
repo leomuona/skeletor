@@ -31,9 +31,12 @@ Skeleton *Collada::loadSkeleton(const std::string &filename)
 		std::string joints_count;
 
 		while (srcs != NULL) {
-			std::string id = srcs->first_attribute("id")->value();
+			xml_node<> *thq = srcs->first_node("technique_common");
+			xml_node<> *acs = thq->first_node("accessor");
+			xml_node<> *param = acs->first_node("param");
+			std::string param_s = param->first_attribute("name")->value();
 
-			if (id.find("joints") != std::string::npos) {
+			if (param_s == "JOINT") {
 				xml_node<> *name = srcs->first_node("Name_array");
 
 				joints_count = name->first_attribute("count")->value();
