@@ -45,6 +45,11 @@ public:
          * Draw a frame.
          */
         void drawFrame();
+
+        /**
+         * Clean up before exiting program.
+         */
+        void cleanUp();
 };
 
 }; // namespace graphics

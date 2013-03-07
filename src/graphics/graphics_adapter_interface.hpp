@@ -13,6 +13,7 @@ public:
         virtual void swapBuffers() = 0;
         virtual void clearBuffer() = 0;
         virtual void loadIdentity() = 0;
+        virtual void cleanUp() = 0;
 };
 
 }; // namespace graphics

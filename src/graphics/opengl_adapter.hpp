@@ -38,6 +38,12 @@ public:
          * Load Identity Matrix
          */
         void loadIdentity();
+
+        /**
+         * Clean up the OpenGL and SDL before exiting program.
+         * Call this before destructor.
+         */
+        void cleanUp();
 };
 
 }; // namespace graphics

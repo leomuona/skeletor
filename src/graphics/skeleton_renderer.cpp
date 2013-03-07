@@ -48,5 +48,10 @@ void SkeletonRenderer::drawFrame()
         }
 }
 
+void SkeletonRenderer::cleanUp()
+{
+        m_graphicsAdapter->cleanUp();
+}
+
 }; // namespace graphics
 }; // namespace skeletor

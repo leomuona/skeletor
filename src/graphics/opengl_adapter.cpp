@@ -67,5 +67,10 @@ void OpenGLAdapter::loadIdentity()
         glLoadIdentity();
 }
 
+void OpenGLAdapter::cleanUp()
+{
+        SDL_Quit();
+}
+
 }; // namespace graphics
 }; // namespace skeletor
