@@ -32,6 +32,12 @@ int width, int height, int bpp, bool fs, const char *title)
                 throw new std::runtime_error("Setting video mode failed.");
         }
 
+	SDL_Event resizeEvent;
+	resizeEvent.type = SDL_VIDEORESIZE;
+	resizeEvent.resize.w = m_resolution.x;
+	resizeEvent.resize.h = m_resolution.y;
+	SDL_PushEvent(&resizeEvent);
+
         SDL_WM_SetCaption(title, NULL);
 }
 
@@ -44,7 +50,7 @@ void OpenGLAdapter::initGraphics()
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         // init clear color
-        glClearColor(0.f, 0.f, 0.f, 1.f);
+        glClearColor(1.f, 1.f, 1.f, 1.f);
 
         GLenum error = glGetError();
         if (error != GL_NO_ERROR) {
