@@ -132,26 +132,26 @@ math::Mat4x4f Collada::buildNodeInvBindPose(rapidxml::xml_node<> *node)
 	std::string rotateY("0 1 0 0");
 	std::string rotateX("1 0 0 0");
 
-	if (node->first_attribute("translate")) {
-		translate = node->first_attribute("translate")->value();
+	if (node->first_node("translate")) {
+		translate = node->first_node("translate")->value();
 	}
-	if (node->first_attribute("jointOrientZ")) {
-		jointOrientZ = node->first_attribute("jointOrientZ")->value();
+	if (node->first_node("jointOrientZ")) {
+		jointOrientZ = node->first_node("jointOrientZ")->value();
 	}
-	if (node->first_attribute("jointOrientY")) {
-		jointOrientY = node->first_attribute("jointOrientY")->value();
+	if (node->first_node("jointOrientY")) {
+		jointOrientY = node->first_node("jointOrientY")->value();
 	}
-	if (node->first_attribute("jointOrientX")) {
-		jointOrientX = node->first_attribute("jointOrientX")->value();
+	if (node->first_node("jointOrientX")) {
+		jointOrientX = node->first_node("jointOrientX")->value();
 	}
-	if (node->first_attribute("rotateZ")) {
-		rotateZ = node->first_attribute("rotateZ")->value();
+	if (node->first_node("rotateZ")) {
+		rotateZ = node->first_node("rotateZ")->value();
 	}
-	if (node->first_attribute("rotateY")) {
-		rotateY = node->first_attribute("rotateY")->value();
+	if (node->first_node("rotateY")) {
+		rotateY = node->first_node("rotateY")->value();
 	}
-	if (node->first_attribute("rotateX")) {
-		rotateX = node->first_attribute("rotateX")->value();
+	if (node->first_node("rotateX")) {
+		rotateX = node->first_node("rotateX")->value();
 	}
 
 	math::Mat4x4f x, y, z, t;
