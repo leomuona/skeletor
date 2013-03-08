@@ -82,11 +82,19 @@ int main()
 	sr.addSkeleton(pose);
 
 	bool running = true;
+	float dt;
+	unsigned int last_step = 0;
 	while (running) {
+		unsigned int duration = SDL_GetTicks() - last_step;
+		dt = duration / 1000.f;
+		last_step = SDL_GetTicks();
+
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
 			running &= onEvent(event);
 		}
+
+		camera.rotatePositionAroundYAxis(dt, M_PI/4);
 
 		sr.drawFrame(camera);
 		sr.swapBuffers();

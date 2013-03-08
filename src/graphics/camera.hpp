@@ -12,6 +12,8 @@ private:
 public:
         Camera();
 
+	void rotatePositionAroundYAxis(float d, float speed);
+
         void setPosition(const math::Vec3f &m_position);
         void setLookAt(const math::Vec3f &lookAt);
         void setUp(const math::Vec3f &up);

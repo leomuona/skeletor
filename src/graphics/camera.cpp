@@ -1,13 +1,27 @@
 #include "graphics/camera.hpp"
 
+#include "math/vec4.hpp"
+#include "math/mat4x4.hpp"
+
 namespace skeletor {
 namespace graphics {
 
 Camera::Camera()
 {
-        m_position = math::Vec3f(10.f, 0.f, 10.f);
+        m_position = math::Vec3f(15.f, 0.f, 15.f);
         m_up = math::Vec3f(0.f, 1.f ,0.f);
         m_lookAt = math::Vec3f(0.f, 0.f, 0.f);
+}
+
+void Camera::rotatePositionAroundYAxis(float d, float speed)
+{
+	math::Mat4x4f rot;
+	rot.rotate(math::Vec3f(0, 1, 0), d * speed);
+	math::Vec4f tmp(m_position.x, m_position.y, m_position.z, 0);
+
+	tmp = tmp * rot;
+
+	m_position = math::Vec3f(tmp.x, tmp.y, tmp.z);
 }
 
 void Camera::setPosition(const math::Vec3f &position)
