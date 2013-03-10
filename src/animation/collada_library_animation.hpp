@@ -32,7 +32,18 @@ typedef struct
 {
 	std::string id;
 
-	// INPUT, OUTPUT, INTERPOLATION, IN_TANGENT, OUT_TANGENT
+	/**
+	 * INPUT, OUTPUT, INTERPOLATION, IN_TANGENT, OUT_TANGENT
+	 *
+	 * INPUT = keypoints of the TIME domain, seconds.
+	 * OUTPUT = keypoints of the animated values.
+	 * INTERPOLATION = tells how to interpolate between INPUT and OUTPUT
+	 *                 keypoints.
+	 *
+	 * if INTERPOLATION == BEZIER
+	 *   IN_TANGENT  = control point 1
+	 *   OUT_TANGENT = control point 2
+	 */
 	std::vector<std::string> semantic;
 
 	// refers to Source id.
