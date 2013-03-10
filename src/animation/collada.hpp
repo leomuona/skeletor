@@ -42,7 +42,8 @@ private:
 	 *
 	 * @return root node of the joints
 	 */
-	static Joint *loadJoints(rapidxml::xml_node<> *root, const std::string &sid);
+	static Joint *load_library_visual_scenes(
+		rapidxml::xml_node<> *root, const std::string &sid);
 
 	/**
 	 * Searches through the dom tree recursively for skeleton root node.

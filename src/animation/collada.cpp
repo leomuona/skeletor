@@ -54,7 +54,7 @@ Skeleton *Collada::loadSkeleton(const std::string &filename)
 		std::cout << "amount: " << joints_count << std::endl;
 		std::cout << "names: "  << joints_name << std::endl;
 
-		Joint *root_joint = loadJoints(root, joints_name);
+		Joint *root_joint = load_library_visual_scenes(root, joints_name);
 		skeleton = new Skeleton(root_joint);
 
 		ctrl = ctrl->next_sibling("controller");
@@ -63,7 +63,8 @@ Skeleton *Collada::loadSkeleton(const std::string &filename)
 	return skeleton;
 }
 
-Joint *Collada::loadJoints(rapidxml::xml_node<> *root, const std::string &sid)
+Joint *Collada::load_library_visual_scenes(
+rapidxml::xml_node<> *root, const std::string &sid)
 {
 	using namespace rapidxml;
 	Joint *root_joint = NULL;
