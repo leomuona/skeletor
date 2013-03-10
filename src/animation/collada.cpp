@@ -1,4 +1,5 @@
 #include "animation/collada.hpp"
+#include "animation/collada_library_animation.hpp"
 #include "animation/joint.hpp"
 #include "animation/skeleton.hpp"
 #include "math/vec3.hpp"
@@ -112,7 +113,17 @@ rapidxml::xml_node<> *Collada::findRootNode(rapidxml::xml_node<> *node, const st
 Joint *Collada::buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent)
 {
 	math::Mat4x4f localMatrix(buildNodeLocalMatrix(node));
-	Joint *joint = new Joint(parent, localMatrix, node->first_attribute("name")->value());
+	Joint *joint = new Joint(parent, localMatrix);
+
+	if (node->first_attribute("name")) {
+		joint->setName(node->first_attribute("name")->value());
+	}
+	if (node->first_attribute("sid")) {
+		joint->setSID(node->first_attribute("sid")->value());
+	}
+	if (node->first_attribute("id")) {
+		joint->setID(node->first_attribute("id")->value());
+	}
 
 	rapidxml::xml_node<> *children = node->first_node("node");
 	while (children != NULL) {

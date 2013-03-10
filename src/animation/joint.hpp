@@ -16,6 +16,9 @@ private:
 	math::Mat4x4f m_bindPoseMatrix;
 	math::Mat4x4f m_invBindPoseMatrix;
 
+	std::string m_id;
+	std::string m_sid;
+
 	// human readable joint name.
 	std::string m_name;
 
@@ -31,9 +34,8 @@ public:
 	 *
 	 * @param parent joint, NULL if root.
 	 * @param joints local matrix
-	 * @param human readable name or something
 	 */
-	Joint(Joint *parent, const math::Mat4x4f &localMatrix, const std::string &name);
+	Joint(Joint *parent, const math::Mat4x4f &localMatrix);
 
 	/**
 	 * Adds the given node as a child node to this.
@@ -42,7 +44,14 @@ public:
 	 */
 	void addChild(Joint *child);
 
+	void setName(const std::string &name);
 	std::string getName() const;
+
+	void setSID(const std::string &sid);
+	std::string getSID() const;
+
+	void setID(const std::string &id);
+	std::string getID() const;
 
 	/**
 	 * Getter for children
