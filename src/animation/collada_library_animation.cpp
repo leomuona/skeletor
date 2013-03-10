@@ -90,21 +90,31 @@ std::vector<Sample> load_animation_samples(rapidxml::xml_node<> *node)
 {
 	std::vector<Sample> samples;
 
-	xml_node<> *sample = node->first_node("sampler");
-	xml_node<> *input  = sample->first_node("input");
-
-	while (input != NULL) {
+	xml_node<> *sampler = node->first_node("sampler");
+	while (sampler != NULL) {
 		Sample sample;
 
-		if (input->first_attribute("semantic")) {
-			sample.semantic = input->first_attribute("semantic")->value();
+		if (sampler->first_attribute("id")) {
+			sample.id = sampler->first_attribute("id")->value();
 		}
-		if (input->first_attribute("source")) {
-			sample.source = input->first_attribute("source")->value();
+
+		xml_node<> *input  = sampler->first_node("input");
+
+		while (input != NULL) {
+			if (input->first_attribute("semantic")) {
+				sample.semantic.push_back(
+					input->first_attribute("semantic")->value());
+			}
+			if (input->first_attribute("source")) {
+				sample.source.push_back(
+					input->first_attribute("source")->value());
+			}
+
+			input = input->next_sibling("input");
 		}
 
 		samples.push_back(sample);
-		input = input->next_sibling("input");
+		sampler = sampler->next_sibling("sampler");
 	}
 
 	return samples;

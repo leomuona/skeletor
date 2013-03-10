@@ -30,11 +30,13 @@ typedef struct
 
 typedef struct
 {
+	std::string id;
+
 	// INPUT, OUTPUT, INTERPOLATION, IN_TANGENT, OUT_TANGENT
-	std::string semantic;
+	std::vector<std::string> semantic;
 
 	// refers to Source id.
-	std::string source;
+	std::vector<std::string> source;
 } Sample;
 
 typedef struct
