@@ -9,12 +9,26 @@ namespace skeletor {
 namespace util {
 
 /**
- * Splits the given string into substrings by ' '.
+ * Splits the given string into substrings by given delim.
  *
  * @param string to split
+ * @param delim to use for splitting
+ * @param vector to save the elements.
+ *
+ * @return reference to given vector
+ */
+std::vector<std::string> &split(
+const std::string &s, char delim, std::vector<std::string> &elems);
+
+/**
+ * Splits the given string into substrings by given delim.
+ *
+ * @param string to split
+ * @param delim to use for splitting.
+ *
  * @return splitted string in vector
  */
-std::vector<std::string> stringSplit(const std::string &s);
+std::vector<std::string> split(const std::string &s, char delim);
 
 /**
  * Lexical cast.

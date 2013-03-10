@@ -61,6 +61,8 @@ Skeleton *Collada::loadSkeleton(const std::string &filename)
 		ctrl = ctrl->next_sibling("controller");
 	}
 
+	AnimationLibrary *lib = load_library_animations(root);
+
 	return skeleton;
 }
 
@@ -72,8 +74,6 @@ rapidxml::xml_node<> *root, const std::string &sid)
 
 	xml_node<> *lib_vs = root->first_node("library_visual_scenes");
 	xml_node<> *vs = lib_vs->first_node("visual_scene");
-
-	std::vector<std::string> s_ids(util::stringSplit(sid));
 
 	while (vs != NULL) {
 		xml_node<> *node = vs->first_node("node");
@@ -171,13 +171,13 @@ math::Mat4x4f Collada::buildNodeLocalMatrix(rapidxml::xml_node<> *node)
 
 	math::Mat4x4f x, y, z, t, g_x, g_y, g_z;
 
-	std::vector<std::string> rotX(util::stringSplit(jointOrientX));
-	std::vector<std::string> rotY(util::stringSplit(jointOrientY));
-	std::vector<std::string> rotZ(util::stringSplit(jointOrientZ));
-	std::vector<std::string> tran(util::stringSplit(translate));
-	std::vector<std::string> g_rotX(util::stringSplit(rotateX));
-	std::vector<std::string> g_rotY(util::stringSplit(rotateY));
-	std::vector<std::string> g_rotZ(util::stringSplit(rotateZ));
+	std::vector<std::string> rotX(util::split(jointOrientX, ' '));
+	std::vector<std::string> rotY(util::split(jointOrientY, ' '));
+	std::vector<std::string> rotZ(util::split(jointOrientZ, ' '));
+	std::vector<std::string> tran(util::split(translate, ' '));
+	std::vector<std::string> g_rotX(util::split(rotateX, ' '));
+	std::vector<std::string> g_rotY(util::split(rotateY, ' '));
+	std::vector<std::string> g_rotZ(util::split(rotateZ, ' '));
 
 	x.rotate(math::Vec3f(1, 0, 0), DEGREES_2_RADIANS * util::lexicalCast<std::string, float>(rotX[3]));
 	y.rotate(math::Vec3f(0, 1, 0), DEGREES_2_RADIANS * util::lexicalCast<std::string, float>(rotY[3]));

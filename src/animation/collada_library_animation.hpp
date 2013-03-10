@@ -26,6 +26,8 @@ typedef struct
 
 typedef struct
 {
+	std::string source;
+	std::string target;
 } Channel;
 
 typedef struct
@@ -62,6 +64,8 @@ typedef struct
 {
 	std::vector<Animation> animations;
 } AnimationLibrary;
+
+class Skeleton;
 
 /**
  * Parses the <library_animations> node from COLLADA file.
@@ -116,6 +120,14 @@ std::vector<Sample> load_animation_samples(rapidxml::xml_node<> *node);
  * @return parsed information in vector.
  */
 std::vector<Channel> load_animation_channels(rapidxml::xml_node<> *node);
+
+/**
+ * Transforms the AnimationLibrary structure into KeyFrame animation.
+ *
+ * @param AnimationLibrary
+ * @param Animated Skeleton, keyframes are saved here.
+ */
+void animationLibraryToKeyFrameAnimation(AnimationLibrary &anim, Skeleton &skeleton);
 
 }; // namespace animation
 }; // namespace skeletor

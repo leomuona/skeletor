@@ -1,17 +1,23 @@
 #include "util/string.hpp"
 
-#include <iterator>
-
 namespace skeletor {
 namespace util {
 
-std::vector<std::string> stringSplit(const std::string &s)
+std::vector<std::string> &split(
+const std::string &s, char delim, std::vector<std::string> &elems)
 {
 	std::stringstream ss(s);
-	std::istream_iterator<std::string> begin(ss);
-	std::istream_iterator<std::string> end;
-	std::vector<std::string> vstrings(begin, end);
-	return vstrings;
+	std::string item;
+	while(std::getline(ss, item, delim)) {
+		elems.push_back(item);
+	}
+	return elems;
+}
+
+std::vector<std::string> split(const std::string &s, char delim)
+{
+	std::vector<std::string> elems;
+	return split(s, delim, elems);
 }
 
 }; // namespace util

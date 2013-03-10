@@ -1,4 +1,5 @@
 #include "animation/collada_library_animation.hpp"
+#include "animation/skeleton.hpp"
 #include "util/string.hpp"
 
 namespace skeletor {
@@ -58,7 +59,7 @@ std::vector<Source> load_animation_sources(rapidxml::xml_node<> *node)
 			array = xml_source->first_node("float_array")->value();
 		}
 
-		source.array = util::stringSplit(array);
+		source.array = util::split(array, ' ');
 		sources.push_back(source);
 
 		while (param != NULL) {
@@ -122,7 +123,36 @@ std::vector<Sample> load_animation_samples(rapidxml::xml_node<> *node)
 
 std::vector<Channel> load_animation_channels(rapidxml::xml_node<> *node)
 {
-	return std::vector<Channel>();
+	std::vector<Channel> channels;
+	xml_node<> *channel = node->first_node("channel");
+
+	while (channel != NULL) {
+		Channel ch;
+
+		if (channel->first_attribute("source")) {
+			ch.source = channel->first_attribute("source")->value();
+		}
+		if (channel->first_attribute("target")) {
+			ch.target = channel->first_attribute("target")->value();
+		}
+
+		channels.push_back(ch);
+		channel = channel->next_sibling("channel");
+	}
+
+	return channels;
+}
+
+void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skeleton)
+{
+	for (int i=0; i<anims.animations.size(); ++i) {
+		Animation &anim = anims.animations[i];
+
+		for (int c=0; c<anim.channels.size(); ++c) {
+			
+		}
+
+	}
 }
 
 }; // namespace animation
