@@ -3,7 +3,7 @@
 #include "animation/parse.hpp"
 #include "animation/skeleton.hpp"
 #include "animation/skeleton_pose.hpp"
-#include "graphics/skeleton_renderer.hpp"
+#include "graphics/opengl_skeleton_renderer.hpp"
 #include "graphics/camera.hpp"
 #include "math/vec2.hpp"
 
@@ -11,7 +11,7 @@
 
 bool mouseLeft = false;
 bool mouseRight = false;
-skeletor::graphics::SkeletonRenderer sr;
+skeletor::graphics::OpenGLSkeletonRenderer sr;
 skeletor::graphics::Camera camera;
 
 void onMouseButtonDown(int x, int y)
@@ -78,7 +78,7 @@ int main()
 	animation::SkeletonPose pose;
 	pose.setSkeleton(skel);
 
-	sr.initRenderer(math::Vec2i(800, 600), 32, false, "skeletor");
+        sr.initRenderer(math::Vec2i(800, 600), 32, false, "skeletor");
 	sr.addSkeleton(pose);
 
 	bool running = true;
