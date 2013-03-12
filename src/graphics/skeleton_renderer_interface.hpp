@@ -4,7 +4,6 @@
 #include "math/vec2.hpp"
 
 #include <string>
-#include <vector>
 
 namespace skeletor {
 
@@ -13,50 +12,38 @@ class SkeletonPose;
 }; // namespace animation
 
 namespace graphics {
-class GraphicsAdapterInterface;
 class Camera;
 
-class SkeletonRenderer
+class SkeletonRendererInterface
 {
-private:
-        GraphicsAdapterInterface *m_graphicsAdapter;
-        std::vector<animation::SkeletonPose> m_skeletons;
-        
-        /**
-         * Draw a skeleton -helper function.
-         */
-        void drawSkeleton(animation::SkeletonPose &skeleton);
-
 public:
-        SkeletonRenderer();
-        ~SkeletonRenderer();
 
         /**
          * Initializes window and graphics.
          * Call this before calling other function in this class.
          */
-        void initRenderer(
+        virtual void initRenderer(
                 const math::Vec2i &dimension, int bpp, bool fs,
-                const std::string &title);
+                const std::string &title) = 0;
 
-	void onResize(const math::Vec2i &resolution);
+	virtual void onResize(const math::Vec2i &resolution) = 0;
 
-        void swapBuffers();
+        virtual void swapBuffers() = 0;
 
         /**
          * Add a skeleton to skeleton-vector, that is rendered.
          */
-        void addSkeleton(animation::SkeletonPose &skeleton);
+        virtual void addSkeleton(const animation::SkeletonPose &skeleton) = 0;
 
         /**
          * Draw a frame.
          */
-        void drawFrame(Camera &camera);
+        virtual void drawFrame(Camera &camera) = 0;
 
         /**
          * Clean up before exiting program.
          */
-        void cleanUp();
+        virtual void cleanUp() = 0;
 };
 
 }; // namespace graphics
