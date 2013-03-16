@@ -103,12 +103,16 @@ std::vector<Sample> load_animation_samples(rapidxml::xml_node<> *node)
 
 		while (input != NULL) {
 			if (input->first_attribute("semantic")) {
-				sample.semantic.push_back(
-					input->first_attribute("semantic")->value());
+				std::string sem =
+					input->first_attribute("semantic")->value();
+				util::removeIfFirst(sem, '#');
+				sample.semantic.push_back(sem);
 			}
 			if (input->first_attribute("source")) {
-				sample.source.push_back(
-					input->first_attribute("source")->value());
+				std::string src =
+					input->first_attribute("source")->value();
+				util::removeIfFirst(src, '#');
+				sample.source.push_back(src);
 			}
 
 			input = input->next_sibling("input");
@@ -131,9 +135,11 @@ std::vector<Channel> load_animation_channels(rapidxml::xml_node<> *node)
 
 		if (channel->first_attribute("source")) {
 			ch.source = channel->first_attribute("source")->value();
+			util::removeIfFirst(ch.source, '#');
 		}
 		if (channel->first_attribute("target")) {
 			ch.target = channel->first_attribute("target")->value();
+			util::removeIfFirst(ch.target, '#');
 		}
 
 		channels.push_back(ch);
@@ -148,8 +154,13 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 	for (int i=0; i<anims.animations.size(); ++i) {
 		Animation &anim = anims.animations[i];
 
+		// first, let's sort the sources and sample vectors.
+		std::sort(anim.sources.begin(), anim.sources.end());
+		std::sort(anim.samples.begin(), anim.samples.end());
+
 		for (int c=0; c<anim.channels.size(); ++c) {
-			
+			Channel &ch = anim.channels[c];
+			Sample &sample = anim.getSample(ch.source);
 		}
 
 	}

@@ -1,15 +1,17 @@
 #ifndef COLLADA_LIBRARY_ANIMATION
 #define COLLADA_LIBRARY_ANIMATION
 
+#include "util/search.hpp"
 #include "rapidxml.hpp"
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 namespace skeletor {
 namespace animation {
 
-typedef struct
+typedef struct Source
 {
 	std::string id;
 
@@ -22,15 +24,29 @@ typedef struct
 	// stride == size of (type/name) arrays.
 
 	std::vector<std::string> array;
+
+	bool operator<(const Source &other) const
+	{
+		return id < other.id;
+	}
+
+	bool operator>(const Source &other) const
+	{
+		return id > other.id;
+	}
+
 } Source;
 
-typedef struct
+typedef struct Channel
 {
+	// this points to sample
 	std::string source;
+
+	// this tells the joint id, and applied transformation.
 	std::string target;
 } Channel;
 
-typedef struct
+typedef struct Sample
 {
 	std::string id;
 
@@ -50,6 +66,17 @@ typedef struct
 
 	// refers to Source id.
 	std::vector<std::string> source;
+
+	bool operator<(const Sample &other) const
+	{
+		return id < other.id;
+	}
+
+	bool operator>(const Sample &other) const
+	{
+		return id > other.id;
+	}
+
 } Sample;
 
 typedef struct
@@ -58,6 +85,28 @@ typedef struct
 	std::vector<Source> sources;
 	std::vector<Channel> channels;
 	std::vector<Sample> samples;
+
+	/**
+	 * Find the Source with corresponding id.
+	 *
+	 * This function expects that sources has been sorted.
+	 * So yesh, this uses binary search, so O(log n).
+	 *
+	 * @param source id
+	 * @return Source object
+	 */
+	Source &getSource(const std::string &id)
+	{
+		int idx = util::binarySearch<Source, std::string>(sources, id);
+		return sources[idx];
+	}
+
+	Sample &getSample(const std::string &id)
+	{
+		int idx = util::binarySearch<Sample, std::string>(samples, id);
+		return samples[idx];
+	}
+
 } Animation;
 
 typedef struct

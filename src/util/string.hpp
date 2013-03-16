@@ -31,6 +31,14 @@ const std::string &s, char delim, std::vector<std::string> &elems);
 std::vector<std::string> split(const std::string &s, char delim);
 
 /**
+ * Removes the first character from string if it equals given char.
+ *
+ * @param string
+ * @param char to remove
+ */
+void removeIfFirst(std::string &s, char c);
+
+/**
  * Lexical cast.
  *
  * example use:

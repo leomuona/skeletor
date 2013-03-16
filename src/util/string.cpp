@@ -20,5 +20,12 @@ std::vector<std::string> split(const std::string &s, char delim)
 	return split(s, delim, elems);
 }
 
+void removeIfFirst(std::string &s, char c)
+{
+	if (s.size() > 0 && s[0] == c) {
+		s.erase(s.begin());
+	}
+}
+
 }; // namespace util
 }; // namespace skeletor
