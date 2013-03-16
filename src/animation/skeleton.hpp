@@ -3,6 +3,7 @@
 
 #include "animation/joint.hpp"
 
+#include <map>
 #include <ostream>
 #include <utility>
 #include <vector>
@@ -15,6 +16,9 @@ class Skeleton
 private:
 	Joint *m_root;
 
+	// access to each joint presumably in O(1) by joints id.
+	std::map<std::string, Joint *> m_joints;
+
 public:
 	/**
 	 * Contructor.
@@ -25,6 +29,16 @@ public:
 
 	Joint &getRootJoint();
 	const Joint &getRootJoint() const;
+
+	/**
+	 * Get the joint by their id.
+	 *
+	 * @param joint string unique id
+	 *
+	 * @return joint
+	 */
+	Joint &getJoint(const std::string &id);
+	const Joint &getJoint(const std::string &id) const;
 
 	/**
 	 * Overloaded << ostream operator.
@@ -59,6 +73,18 @@ inline Joint &Skeleton::getRootJoint()
 inline const Joint &Skeleton::getRootJoint() const
 {
 	return *m_root;
+}
+
+inline Joint &Skeleton::getJoint(const std::string &id)
+{
+	return *m_joints[id];
+}
+
+inline const Joint &Skeleton::getJoint(const std::string &id) const
+{
+	std::map<std::string, Joint *>::const_iterator it;
+	it = m_joints.find(id);
+	return *it->second;
 }
 
 inline std::ostream &operator<<(std::ostream &os, const Skeleton &s)

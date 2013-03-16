@@ -7,6 +7,13 @@ namespace animation {
 Skeleton::Skeleton(Joint *root)
 	: m_root(root)
 {
+	std::vector<std::pair<Joint *, int> > joints;
+	preOrder(joints);
+
+	for (int i=0; i<joints.size(); ++i) {
+		Joint *j = joints[i].first;
+		m_joints.insert(std::pair<std::string, Joint *>(j->getID(), j));
+	}
 }
 
 void Skeleton::preOrder(std::vector<std::pair<Joint *, int> > &v) const
