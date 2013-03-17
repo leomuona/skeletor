@@ -32,9 +32,9 @@ int binarySearch(const std::vector<T> &v, const E &id)
 	while (imax >= imin) {
 		int imid = midpoint(imin, imax);
 
-		if (v[imid].id < id) {
+		if (v[imid]->id < id) {
 			imin = imid + 1;
-		} else if (v[imid].id > id) {
+		} else if (v[imid]->id > id) {
 			imax = imid - 1;
 		} else {
 			return imid;

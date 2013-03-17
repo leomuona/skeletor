@@ -1,12 +1,16 @@
 #ifndef COLLADA_LIBRARY_ANIMATION
 #define COLLADA_LIBRARY_ANIMATION
 
+#include "animation/keyframe.hpp"
+#include "math/mat4x4.hpp"
+#include "math/vec3.hpp"
 #include "util/search.hpp"
 #include "rapidxml.hpp"
 
+#include <iostream>
+#include <map>
 #include <string>
 #include <vector>
-#include <iostream>
 
 namespace skeletor {
 namespace animation {
@@ -61,11 +65,19 @@ typedef struct Sample
 	 * if INTERPOLATION == BEZIER
 	 *   IN_TANGENT  = control point 1
 	 *   OUT_TANGENT = control point 2
+	 *
 	 */
 	std::vector<std::string> semantic;
 
 	// refers to Source id.
 	std::vector<std::string> source;
+
+	/**
+	 * key - value mapping.
+	 * key is the semantic name
+	 * value is the source that key refers to.
+	 */
+	std::map<std::string, Source *> inputs;
 
 	bool operator<(const Sample &other) const
 	{
@@ -82,9 +94,9 @@ typedef struct Sample
 typedef struct
 {
 	std::string id;
-	std::vector<Source> sources;
-	std::vector<Channel> channels;
-	std::vector<Sample> samples;
+	std::vector<Source *> sources;
+	std::vector<Channel *> channels;
+	std::vector<Sample *> samples;
 
 	/**
 	 * Find the Source with corresponding id.
@@ -95,15 +107,15 @@ typedef struct
 	 * @param source id
 	 * @return Source object
 	 */
-	Source &getSource(const std::string &id)
+	Source *getSource(const std::string &id)
 	{
-		int idx = util::binarySearch<Source, std::string>(sources, id);
+		int idx = util::binarySearch<Source*, std::string>(sources, id);
 		return sources[idx];
 	}
 
-	Sample &getSample(const std::string &id)
+	Sample *getSample(const std::string &id)
 	{
-		int idx = util::binarySearch<Sample, std::string>(samples, id);
+		int idx = util::binarySearch<Sample*, std::string>(samples, id);
 		return samples[idx];
 	}
 
@@ -111,7 +123,7 @@ typedef struct
 
 typedef struct
 {
-	std::vector<Animation> animations;
+	std::vector<Animation *> animations;
 } AnimationLibrary;
 
 class Skeleton;
@@ -138,7 +150,7 @@ AnimationLibrary *load_library_animations(rapidxml::xml_node<> *root);
  *
  * @return parsed information in vector.
  */
-std::vector<Source> load_animation_sources(rapidxml::xml_node<> *node);
+std::vector<Source *> load_animation_sources(rapidxml::xml_node<> *node);
 
 /**
  * Parses the:
@@ -153,7 +165,7 @@ std::vector<Source> load_animation_sources(rapidxml::xml_node<> *node);
  *
  * @return parsed information in vector.
  */
-std::vector<Sample> load_animation_samples(rapidxml::xml_node<> *node);
+std::vector<Sample *> load_animation_samples(rapidxml::xml_node<> *node);
 
 /**
  * Parses the:
@@ -168,7 +180,7 @@ std::vector<Sample> load_animation_samples(rapidxml::xml_node<> *node);
  *
  * @return parsed information in vector.
  */
-std::vector<Channel> load_animation_channels(rapidxml::xml_node<> *node);
+std::vector<Channel *> load_animation_channels(rapidxml::xml_node<> *node);
 
 /**
  * Transforms the AnimationLibrary structure into KeyFrame animation.
@@ -177,6 +189,49 @@ std::vector<Channel> load_animation_channels(rapidxml::xml_node<> *node);
  * @param Animated Skeleton, keyframes are saved here.
  */
 void animationLibraryToKeyFrameAnimation(AnimationLibrary &anim, Skeleton &skeleton);
+
+/**
+ * Trasforms the samples and sources mapping into keyframe animation of joint.
+ *
+ * @param animation
+ * @param sample
+ * @param channel
+ *
+ * @return keyframe list
+ */
+std::vector<KeyFrame> samplesToKeyFrames(
+Animation &anim, Sample &sample, Channel &channel);
+
+/**
+ * Parses a COLLADA rotate sequence/sample into transformation matrix.
+ *
+ * @param transformation name, e.g rotateX.ANGLE, translate, transform(0)(3)
+ * @param sample in question.
+ */
+std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &sample);
+std::vector<KeyFrame> transformTransformation(const std::string &name, Sample &sample);
+std::vector<KeyFrame> translateTransformation(const std::string &name, Sample &sample);
+
+/**
+ * Simple, just tells the keyframe timings.
+ *
+ * @param Source.
+ * @return frame times in vector
+ */
+std::vector<float> parseINPUTSource(Source &source);
+
+/**
+ * Parse the output source.
+ *
+ * Not necessarily all values from math::Vec3f are used.
+ * Usually only x is used, but at most x, y, z are used.
+ *
+ * OUTPUT tells the amount of transformation between transformations.
+ *
+ * @param Source.
+ * @return transformation in Vec3f container.
+ */
+std::vector<math::Vec3f> parseOUTPUTSource(Source &source);
 
 }; // namespace animation
 }; // namespace skeletor

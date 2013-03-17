@@ -7,6 +7,11 @@ namespace animation {
 
 using namespace rapidxml;
 
+template <typename T> bool PComp(const T * const &a, const T * const &b)
+{
+	return *a < *b;
+}
+
 AnimationLibrary *load_library_animations(rapidxml::xml_node<> *root)
 {
 	AnimationLibrary *lib = new AnimationLibrary();
@@ -15,15 +20,30 @@ AnimationLibrary *load_library_animations(rapidxml::xml_node<> *root)
 	xml_node<> *animations = lib_anim->first_node("animation");
 
 	while (animations != NULL) {
-		Animation animation;
+		Animation *animation = new Animation;
 
 		if (animations->first_attribute("id")) {
-			animation.id = animations->first_attribute("id")->value();
+			animation->id = animations->first_attribute("id")->value();
 		}
 
-		animation.sources = load_animation_sources(animations);
-		animation.channels = load_animation_channels(animations);
-		animation.samples = load_animation_samples(animations);
+		animation->sources = load_animation_sources(animations);
+		animation->channels = load_animation_channels(animations);
+		animation->samples = load_animation_samples(animations);
+
+		// first, let's sort the sources and sample vectors.
+		std::sort(animation->sources.begin(), animation->sources.end(), PComp<Source>);
+		std::sort(animation->samples.begin(), animation->samples.end(), PComp<Sample>);
+
+		// do the sample -> source mapping
+		for (int i=0; i<animation->samples.size(); ++i) {
+			Sample *s = animation->samples[i];
+			for (int j=0; j<s->source.size(); ++j) {
+				std::string src_str = s->source[j];
+				Source *src = animation->getSource(src_str);
+				s->inputs.insert(
+					std::pair<std::string, Source*>(s->semantic[j], src));
+			}
+		}
 
 		lib->animations.push_back(animation);
 
@@ -33,17 +53,17 @@ AnimationLibrary *load_library_animations(rapidxml::xml_node<> *root)
 	return lib;
 }
 
-std::vector<Source> load_animation_sources(rapidxml::xml_node<> *node)
+std::vector<Source *> load_animation_sources(rapidxml::xml_node<> *node)
 {
-	std::vector<Source> sources;
+	std::vector<Source *> sources;
 
 	xml_node<> *xml_source = node->first_node("source");
 
 	while (xml_source != NULL) {
-		Source source;
+		Source *source = new Source;
 
 		if (xml_source->first_attribute("id")) {
-			source.id = xml_source->first_attribute("id")->value();
+			source->id = xml_source->first_attribute("id")->value();
 		}
 
 		xml_node<> *thq = xml_source->first_node("technique_common");
@@ -59,7 +79,7 @@ std::vector<Source> load_animation_sources(rapidxml::xml_node<> *node)
 			array = xml_source->first_node("float_array")->value();
 		}
 
-		source.array = util::split(array, ' ');
+		source->array = util::split(array, ' ');
 		sources.push_back(source);
 
 		while (param != NULL) {
@@ -75,8 +95,8 @@ std::vector<Source> load_animation_sources(rapidxml::xml_node<> *node)
 				type = "<notset>";
 			}
 
-			source.names.push_back(name);
-			source.types.push_back(type);
+			source->names.push_back(name);
+			source->types.push_back(type);
 
 			param = param->next_sibling("param");
 		}
@@ -87,16 +107,16 @@ std::vector<Source> load_animation_sources(rapidxml::xml_node<> *node)
 	return sources;
 }
 
-std::vector<Sample> load_animation_samples(rapidxml::xml_node<> *node)
+std::vector<Sample *> load_animation_samples(rapidxml::xml_node<> *node)
 {
-	std::vector<Sample> samples;
+	std::vector<Sample *> samples;
 
 	xml_node<> *sampler = node->first_node("sampler");
 	while (sampler != NULL) {
-		Sample sample;
+		Sample *sample = new Sample;
 
 		if (sampler->first_attribute("id")) {
-			sample.id = sampler->first_attribute("id")->value();
+			sample->id = sampler->first_attribute("id")->value();
 		}
 
 		xml_node<> *input  = sampler->first_node("input");
@@ -106,13 +126,13 @@ std::vector<Sample> load_animation_samples(rapidxml::xml_node<> *node)
 				std::string sem =
 					input->first_attribute("semantic")->value();
 				util::removeIfFirst(sem, '#');
-				sample.semantic.push_back(sem);
+				sample->semantic.push_back(sem);
 			}
 			if (input->first_attribute("source")) {
 				std::string src =
 					input->first_attribute("source")->value();
 				util::removeIfFirst(src, '#');
-				sample.source.push_back(src);
+				sample->source.push_back(src);
 			}
 
 			input = input->next_sibling("input");
@@ -125,21 +145,21 @@ std::vector<Sample> load_animation_samples(rapidxml::xml_node<> *node)
 	return samples;
 }
 
-std::vector<Channel> load_animation_channels(rapidxml::xml_node<> *node)
+std::vector<Channel *> load_animation_channels(rapidxml::xml_node<> *node)
 {
-	std::vector<Channel> channels;
+	std::vector<Channel *> channels;
 	xml_node<> *channel = node->first_node("channel");
 
 	while (channel != NULL) {
-		Channel ch;
+		Channel *ch = new Channel;
 
 		if (channel->first_attribute("source")) {
-			ch.source = channel->first_attribute("source")->value();
-			util::removeIfFirst(ch.source, '#');
+			ch->source = channel->first_attribute("source")->value();
+			util::removeIfFirst(ch->source, '#');
 		}
 		if (channel->first_attribute("target")) {
-			ch.target = channel->first_attribute("target")->value();
-			util::removeIfFirst(ch.target, '#');
+			ch->target = channel->first_attribute("target")->value();
+			util::removeIfFirst(ch->target, '#');
 		}
 
 		channels.push_back(ch);
@@ -152,18 +172,92 @@ std::vector<Channel> load_animation_channels(rapidxml::xml_node<> *node)
 void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skeleton)
 {
 	for (int i=0; i<anims.animations.size(); ++i) {
-		Animation &anim = anims.animations[i];
+		Animation *anim = anims.animations[i];
 
-		// first, let's sort the sources and sample vectors.
-		std::sort(anim.sources.begin(), anim.sources.end());
-		std::sort(anim.samples.begin(), anim.samples.end());
+		for (int c=0; c<anim->channels.size(); ++c) {
+			Channel *ch = anim->channels[c];
+			Sample *sample = anim->getSample(ch->source);
 
-		for (int c=0; c<anim.channels.size(); ++c) {
-			Channel &ch = anim.channels[c];
-			Sample &sample = anim.getSample(ch.source);
+			std::vector<KeyFrame> kf(
+				samplesToKeyFrames(*anim, *sample, *ch));
+		}
+	}
+}
+
+std::vector<KeyFrame> samplesToKeyFrames(
+Animation &anim, Sample &sample, Channel &channel)
+{
+	// parse the channel target information.
+	std::vector<std::string> target(util::split(channel.target, '/'));
+	std::string &joint     = target[0];
+	std::string &transform = target[1];
+
+	if (util::beginsWith(transform, "rotate")) {
+		return rotateTransformation(transform, sample);
+	} else if (util::beginsWith(transform, "transform")) {
+		return transformTransformation(transform, sample);
+	} else if (util::beginsWith(transform, "translate")) {
+		return translateTransformation(transform, sample);
+	} else {
+		std::cout << "unknown transform " << transform << std::endl;
+		return std::vector<KeyFrame>();
+	}
+}
+
+std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &sample)
+{
+	std::vector<float> times = parseINPUTSource(*sample.inputs.at("INPUT"));
+	std::vector<math::Vec3f> output = parseOUTPUTSource(*sample.inputs.at("OUTPUT"));
+	std::vector<std::string> interpolation = sample.inputs.at("INTERPOLATION")->array;
+
+	return std::vector<KeyFrame>();
+}
+
+std::vector<KeyFrame> transformTransformation(const std::string &name, Sample &sample)
+{
+	// TODO: Max saves COLLADA in these kinds of transformations.
+	return std::vector<KeyFrame>();
+}
+
+std::vector<KeyFrame> translateTransformation(const std::string &name, Sample &sample)
+{
+	std::vector<float> times = parseINPUTSource(*sample.inputs.at("INPUT"));
+	std::vector<math::Vec3f> output = parseOUTPUTSource(*sample.inputs.at("OUTPUT"));
+	std::vector<std::string> interpolation = sample.inputs.at("INTERPOLATION")->array;
+
+	return std::vector<KeyFrame>();
+}
+
+std::vector<float> parseINPUTSource(Source &source)
+{
+	std::vector<float> times;
+	for (int i=0; i<source.array.size(); ++i) {
+		float f = util::lexicalCast<std::string, float>(source.array[i]);
+		times.push_back(f);
+	}
+	return times;
+}
+
+std::vector<math::Vec3f> parseOUTPUTSource(Source &source)
+{
+	std::vector<math::Vec3f> output;
+	int stride = std::min(source.types.size(), source.names.size());
+	for (int i=0; i<source.array.size(); i+=stride) {
+		float x, y, z;
+		x = y = z = 0;
+		x = util::lexicalCast<std::string, float>(source.array[i]);
+
+		if (stride > 1) {
+			y = util::lexicalCast<std::string, float>(source.array[i+1]);
+		}
+		if (stride > 2) {
+			z = util::lexicalCast<std::string, float>(source.array[i+2]);
 		}
 
+		output.push_back(math::Vec3f(x, y, z));
 	}
+
+	return output;
 }
 
 }; // namespace animation

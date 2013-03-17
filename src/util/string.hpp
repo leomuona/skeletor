@@ -59,6 +59,16 @@ static to lexicalCast(from value)
 	return ret;
 }
 
+/**
+ * Test if string begins with given string
+ *
+ * @param string to test
+ * @param string to begin with
+ *
+ * @return true/false
+ */
+bool beginsWith(const std::string &s, const std::string &begins);
+
 }; // namespace util
 }; // namespace skeletor
 

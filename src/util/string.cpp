@@ -27,5 +27,10 @@ void removeIfFirst(std::string &s, char c)
 	}
 }
 
+bool beginsWith(const std::string &s, const std::string &begins)
+{
+	return (s.compare(0, begins.length(), begins) == 0);
+}
+
 }; // namespace util
 }; // namespace skeletor
