@@ -5,10 +5,15 @@ project(skeletor)
 find_package(OpenGL REQUIRED)
 find_package(SDL REQUIRED)
 set(libraries ${SDL_LIBRARY} ${OPENGL_LIBRARY})
+set(bullet_libraries BulletDynamics BulletCollision BulletSoftBody LinearMath)
 
 file(GLOB_RECURSE sources src/*cpp src/*c)
 
 include_directories(src)
 include_directories(inc/rapidxml-1.13)
+subdirs(inc/bullet-2.81)
+include_directories(inc/bullet-2.81/src)
 add_executable(skeletor ${sources})
 target_link_libraries(skeletor ${libraries})
+target_link_libraries(skeletor ${bullet_libraries})
+
