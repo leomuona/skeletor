@@ -2,6 +2,8 @@
 #include "animation/skeleton.hpp"
 #include "util/string.hpp"
 
+#include <assert.h>
+
 namespace skeletor {
 namespace animation {
 
@@ -218,6 +220,11 @@ std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &samp
 	intan = parseTANGENTSource(*sample.inputs.at("IN_TANGENT"));
 	outan = parseTANGENTSource(*sample.inputs.at("OUT_TANGENT"));
 
+	assert(times.size() == output.size() &&
+	       output.size() == interpolation.size() &&
+	       interpolation.size() == intan.size() &&
+	       intan.size() == outan.size());
+
 	return std::vector<KeyFrame>();
 }
 
@@ -245,6 +252,15 @@ std::vector<KeyFrame> translateTransformation(const std::string &name, Sample &s
 	outan_x = parseTANGENTSource(*sample.inputs.at("OUT_TANGENT"), 6, 0);
 	outan_y = parseTANGENTSource(*sample.inputs.at("OUT_TANGENT"), 6, 2);
 	outan_z = parseTANGENTSource(*sample.inputs.at("OUT_TANGENT"), 6, 4);
+
+	assert(times.size() == output.size() &&
+	       output.size() == interpolation.size() &&
+	       interpolation.size() == intan_x.size() &&
+	       intan_x.size() == intan_y.size() &&
+	       intan_y.size() == intan_z.size() &&
+	       intan_z.size() == outan_x.size() &&
+	       outan_x.size() == outan_y.size() &&
+	       outan_y.size() == outan_z.size());
 
 	return std::vector<KeyFrame>();
 }
