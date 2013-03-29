@@ -216,6 +216,8 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 				it->second.rotateZ = kf;
 			} else if (util::beginsWith(transform, "translate")) {
 				it->second.translate = kf;
+			} else {
+				std::cout << "wat: " << transform << std::endl;
 			}
 
 			it->second.size = std::max(it->second.size, kf.size());
@@ -255,7 +257,7 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 				time = jf.rotateZ[i].getTime();
 			}
 
-			transformation = translate * rotateX * rotateY * rotateZ;
+			transformation =  translate * rotateZ * rotateY * rotateX;
 			j_keyframes.push_back(KeyFrame(time, transformation));
 		}
 
@@ -310,6 +312,8 @@ std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &samp
 
 		std::string n(name);
 		util::toLower(n);
+
+		output[i].x *= DEGREES_2_RADIANS;
 
 		if (util::beginsWith(n, "rotatex")) {
 			transformation.rotate(math::Vec3f(1, 0, 0), output[i].x);
@@ -386,7 +390,7 @@ std::vector<float> parseINPUTSource(Source &source)
 std::vector<math::Vec3f> parseOUTPUTSource(Source &source)
 {
 	std::vector<math::Vec3f> output;
-	int stride = std::min(source.types.size(), source.names.size());
+	int stride = std::max(source.types.size(), source.names.size());
 	for (int i=0; i<source.array.size(); i+=stride) {
 		float x, y, z;
 		x = y = z = 0;

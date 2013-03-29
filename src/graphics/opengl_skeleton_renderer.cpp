@@ -14,6 +14,9 @@
 namespace skeletor {
 namespace graphics {
 
+static unsigned int j = 0;
+static unsigned int m = 10;
+
 void OpenGLSkeletonRenderer::initRenderer(
 const math::Vec2i &dimension, int bpp, bool fs, const std::string &title)
 {
@@ -92,6 +95,8 @@ void OpenGLSkeletonRenderer::drawFrame(Camera &camera)
                                   camLook.x, camLook.y, camLook.z,
                                   camUp.x, camUp.y, camUp.z);
 
+	j = (j+1)%(26*m);
+
         for (std::vector<animation::SkeletonPose>::iterator it = 
                         m_skeletons.begin(); it != m_skeletons.end(); ++it) {
                 render((it)->getSkeleton());
@@ -115,10 +120,25 @@ void OpenGLSkeletonRenderer::render(const animation::Skeleton &skeleton) const
 
 void OpenGLSkeletonRenderer::render(const animation::Joint &joint) const
 {
+	glPushMatrix();
+
+	math::Mat4x4f bindPose = joint.getLocalMatrix();
+	math::Mat4x4f localPose;
+
+	if (!joint.getKeyFrames().empty()) {
+		bindPose *= joint.getKeyFrames()[0].getTransform().getInverse();
+		localPose = joint.getKeyFrames()[j/m].getTransform();
+	}
+
+	glMultMatrixf((bindPose * localPose).m);
+	glBegin(GL_POINTS);
+		glVertex3f(0, 0, 0);
+	glEnd();
+
 	const std::vector<animation::Joint *> &children = joint.getChildren();
 
 	for (int i=0; i<children.size(); ++i) {
-		math::Mat4x4f &t(children[i]->getLocalMatrix());
+		math::Mat4x4f t = children[i]->getLocalMatrix();
 		glBegin(GL_LINES);
 			glVertex3f(0, 0, 0);
 			glVertex3f(t.m[12], t.m[13], t.m[14]);
@@ -126,14 +146,10 @@ void OpenGLSkeletonRenderer::render(const animation::Joint &joint) const
 	}
 
 	for (int i=0; i<children.size(); ++i) {
-		glBegin(GL_POINTS);
-			glVertex3f(0, 0, 0);
-		glEnd();
-		glPushMatrix();
-		glMultMatrixf(children[i]->getLocalMatrix().m);
 		render(children[i]);
-		glPopMatrix();
 	}
+
+	glPopMatrix();
 }
 
 void OpenGLSkeletonRenderer::setPerspectiveProjection(float fovy, float _near, float _far)

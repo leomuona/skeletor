@@ -10,7 +10,7 @@ Camera::Camera()
 {
         m_position = math::Vec3f(15.f, 0.f, 15.f);
         m_up = math::Vec3f(0.f, 1.f ,0.f);
-        m_lookAt = math::Vec3f(0.f, 0.f, 0.f);
+        m_lookAt = math::Vec3f(0.f, 5.f, 0.f);
 }
 
 void Camera::rotatePositionAroundYAxis(float d, float speed)
