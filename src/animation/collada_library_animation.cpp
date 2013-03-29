@@ -208,6 +208,8 @@ Animation &anim, Sample &sample, Channel &channel)
 
 std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &sample)
 {
+	std::vector<KeyFrame> keyframes;
+
 	std::vector<float> times;
 	std::vector<math::Vec3f> output;
 	std::vector<Interpolations> interpolation;
@@ -225,7 +227,27 @@ std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &samp
 	       interpolation.size() == intan.size() &&
 	       intan.size() == outan.size());
 
-	return std::vector<KeyFrame>();
+	unsigned int size = times.size();
+	for (unsigned int i=0; i<size; ++i) {
+		math::Mat4x4f transformation;
+
+		std::string n(name);
+		util::toLower(n);
+
+		if (util::beginsWith(n, "rotatex")) {
+			transformation.rotate(math::Vec3f(1, 0, 0), output[i].x);
+		} else if (util::beginsWith(n, "rotatey")) {
+			transformation.rotate(math::Vec3f(0, 1, 0), output[i].x);
+		} else if (util::beginsWith(n, "rotatez")) {
+			transformation.rotate(math::Vec3f(0, 0, 1), output[i].x);
+		} else {
+			std::cout << "unknown rotate: " << n << std::endl;
+		}
+
+		keyframes.push_back(KeyFrame(times[i], transformation));
+	}
+
+	return keyframes;
 }
 
 std::vector<KeyFrame> transformTransformation(const std::string &name, Sample &sample)
@@ -236,6 +258,8 @@ std::vector<KeyFrame> transformTransformation(const std::string &name, Sample &s
 
 std::vector<KeyFrame> translateTransformation(const std::string &name, Sample &sample)
 {
+	std::vector<KeyFrame> keyframes;
+
 	std::vector<float> times;
 	std::vector<math::Vec3f> output;
 	std::vector<Interpolations> interpolation;
@@ -262,7 +286,14 @@ std::vector<KeyFrame> translateTransformation(const std::string &name, Sample &s
 	       outan_x.size() == outan_y.size() &&
 	       outan_y.size() == outan_z.size());
 
-	return std::vector<KeyFrame>();
+	unsigned int size = times.size();
+	for (unsigned int i=0; i<size; ++i) {
+		math::Mat4x4f transformation;
+		transformation.translate(output[i]);
+		keyframes.push_back(KeyFrame(times[i], transformation));
+	}
+
+	return keyframes;
 }
 
 std::vector<float> parseINPUTSource(Source &source)
