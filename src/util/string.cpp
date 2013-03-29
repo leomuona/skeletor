@@ -1,5 +1,7 @@
 #include "util/string.hpp"
 
+#include <algorithm>
+
 namespace skeletor {
 namespace util {
 
@@ -30,6 +32,11 @@ void removeIfFirst(std::string &s, char c)
 bool beginsWith(const std::string &s, const std::string &begins)
 {
 	return (s.compare(0, begins.length(), begins) == 0);
+}
+
+void toLower(std::string &s)
+{
+	std::transform(s.begin(), s.end(), s.begin(), ::tolower);
 }
 
 }; // namespace util

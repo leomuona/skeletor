@@ -3,6 +3,7 @@
 
 #include "animation/keyframe.hpp"
 #include "math/mat4x4.hpp"
+#include "math/vec2.hpp"
 #include "math/vec3.hpp"
 #include "util/search.hpp"
 #include "rapidxml.hpp"
@@ -14,6 +15,12 @@
 
 namespace skeletor {
 namespace animation {
+
+enum Interpolations {
+	kLinear,
+	kBezier,
+	kUnknown,
+};
 
 typedef struct Source
 {
@@ -232,6 +239,28 @@ std::vector<float> parseINPUTSource(Source &source);
  * @return transformation in Vec3f container.
  */
 std::vector<math::Vec3f> parseOUTPUTSource(Source &source);
+
+/**
+ * Parses the interpolation source.
+ *
+ * @param Source
+ * @return interpolations vector.
+ */
+std::vector<Interpolations> parseINTERPOLATIONSource(Source &source);
+
+/**
+ * Parses the tangents sources (IN_TANGENT / OUT_TANGENT)
+ *
+ * Always reads just two values from single sample
+ * Translation target holds 6 values on each 'sample', so stride and offset needed.
+ *
+ * @param Source
+ * @param stride how many elements per sample. defaults to 2.
+ * @param offset of values read. defaults to 0
+ * @return tangents.
+ */
+std::vector<math::Vec2f> parseTANGENTSource(Source &source, int stride = 2, int offset = 0);
+
 
 }; // namespace animation
 }; // namespace skeletor

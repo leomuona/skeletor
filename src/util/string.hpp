@@ -69,6 +69,11 @@ static to lexicalCast(from value)
  */
 bool beginsWith(const std::string &s, const std::string &begins);
 
+/**
+ * Transforms the string to lowercase
+ */
+void toLower(std::string &s);
+
 }; // namespace util
 }; // namespace skeletor
 

@@ -206,9 +206,17 @@ Animation &anim, Sample &sample, Channel &channel)
 
 std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &sample)
 {
-	std::vector<float> times = parseINPUTSource(*sample.inputs.at("INPUT"));
-	std::vector<math::Vec3f> output = parseOUTPUTSource(*sample.inputs.at("OUTPUT"));
-	std::vector<std::string> interpolation = sample.inputs.at("INTERPOLATION")->array;
+	std::vector<float> times;
+	std::vector<math::Vec3f> output;
+	std::vector<Interpolations> interpolation;
+	std::vector<math::Vec2f> intan;
+	std::vector<math::Vec2f> outan;
+
+	times = parseINPUTSource(*sample.inputs.at("INPUT"));
+	output = parseOUTPUTSource(*sample.inputs.at("OUTPUT"));
+	interpolation = parseINTERPOLATIONSource(*sample.inputs.at("INTERPOLATION"));
+	intan = parseTANGENTSource(*sample.inputs.at("IN_TANGENT"));
+	outan = parseTANGENTSource(*sample.inputs.at("OUT_TANGENT"));
 
 	return std::vector<KeyFrame>();
 }
@@ -221,9 +229,22 @@ std::vector<KeyFrame> transformTransformation(const std::string &name, Sample &s
 
 std::vector<KeyFrame> translateTransformation(const std::string &name, Sample &sample)
 {
-	std::vector<float> times = parseINPUTSource(*sample.inputs.at("INPUT"));
-	std::vector<math::Vec3f> output = parseOUTPUTSource(*sample.inputs.at("OUTPUT"));
-	std::vector<std::string> interpolation = sample.inputs.at("INTERPOLATION")->array;
+	std::vector<float> times;
+	std::vector<math::Vec3f> output;
+	std::vector<Interpolations> interpolation;
+	std::vector<math::Vec2f> intan_x, intan_y, intan_z;
+	std::vector<math::Vec2f> outan_x, outan_y, outan_z;
+
+	// translation has x, y, z, so intan and outtan holds all of these.
+	times = parseINPUTSource(*sample.inputs.at("INPUT"));
+	output = parseOUTPUTSource(*sample.inputs.at("OUTPUT"));
+	interpolation = parseINTERPOLATIONSource(*sample.inputs.at("INTERPOLATION"));
+	intan_x = parseTANGENTSource(*sample.inputs.at("IN_TANGENT"), 6, 0);
+	intan_y = parseTANGENTSource(*sample.inputs.at("IN_TANGENT"), 6, 2);
+	intan_z = parseTANGENTSource(*sample.inputs.at("IN_TANGENT"), 6, 4);
+	outan_x = parseTANGENTSource(*sample.inputs.at("OUT_TANGENT"), 6, 0);
+	outan_y = parseTANGENTSource(*sample.inputs.at("OUT_TANGENT"), 6, 2);
+	outan_z = parseTANGENTSource(*sample.inputs.at("OUT_TANGENT"), 6, 4);
 
 	return std::vector<KeyFrame>();
 }
@@ -258,6 +279,37 @@ std::vector<math::Vec3f> parseOUTPUTSource(Source &source)
 	}
 
 	return output;
+}
+
+std::vector<Interpolations> parseINTERPOLATIONSource(Source &source)
+{
+	std::vector<Interpolations> output;
+	for (int i=0; i<source.array.size(); ++i) {
+		std::string str = source.array[i];
+		util::toLower(str);
+
+		if (str == "bezier") {
+			output.push_back(kBezier);
+		} else if (str == "linear") {
+			output.push_back(kLinear);
+		} else {
+			std::cout << "Unkown Interpolation: " << str << std::endl;
+			output.push_back(kUnknown);
+		}
+	}
+	return output;
+}
+
+std::vector<math::Vec2f> parseTANGENTSource(Source &source, int stride, int offset)
+{
+	std::vector<math::Vec2f> tangents;
+	for (int i=0; i<source.array.size(); i+=stride) {
+		int j = offset + i;
+		tangents.push_back(math::Vec2f(
+			util::lexicalCast<std::string, float>(source.array[j]),
+			util::lexicalCast<std::string, float>(source.array[j+1])));
+	}
+	return tangents;
 }
 
 }; // namespace animation
