@@ -51,6 +51,16 @@ std::string Joint::getID() const
 	return m_id;
 }
 
+std::vector<KeyFrame> &Joint::getKeyFrames()
+{
+	return m_keyframes;
+}
+
+const std::vector<KeyFrame> &Joint::getKeyFrames() const
+{
+	return m_keyframes;
+}
+
 const std::vector<Joint *> &Joint::getChildren() const
 {
 	return m_children;

@@ -9,5 +9,15 @@ KeyFrame::KeyFrame(float time, const math::Mat4x4f &transform)
 {
 }
 
+float KeyFrame::getTime() const
+{
+	return m_time;
+}
+
+math::Mat4x4f KeyFrame::getTransform() const
+{
+	return m_transform;
+}
+
 }; // namespace animation
 }; // namespace skeletor

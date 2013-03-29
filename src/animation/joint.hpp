@@ -1,6 +1,7 @@
 #ifndef JOINT_HPP
 #define JOINT_HPP
 
+#include "animation/keyframe.hpp"
 #include "math/mat4x4.hpp"
 
 #include <string>
@@ -28,6 +29,9 @@ private:
 	// child nodes of this node.
 	std::vector<Joint *> m_children;
 
+	// keyframes of this joint.
+	std::vector<KeyFrame> m_keyframes;
+
 public:
 	/**
 	 * Constructor.
@@ -52,6 +56,19 @@ public:
 
 	void setID(const std::string &id);
 	std::string getID() const;
+
+	/**
+	 * Gives references to this joints keyframe container.
+	 *
+	 * @return reference to keyframe container.
+	 */
+	std::vector<KeyFrame> &getKeyFrames();
+	/**
+	 * Gives const references to this joints keyframe container.
+	 *
+	 * @return const reference to keyframe container.
+	 */
+	const std::vector<KeyFrame> &getKeyFrames() const;
 
 	/**
 	 * Getter for children

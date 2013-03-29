@@ -3,6 +3,7 @@
 #include "util/string.hpp"
 
 #include <assert.h>
+#include <map>
 
 namespace skeletor {
 namespace animation {
@@ -171,8 +172,21 @@ std::vector<Channel *> load_animation_channels(rapidxml::xml_node<> *node)
 	return channels;
 }
 
+typedef struct JointFrame
+{
+	std::vector<KeyFrame> rotateX;
+	std::vector<KeyFrame> rotateY;
+	std::vector<KeyFrame> rotateZ;
+	std::vector<KeyFrame> translate;
+
+	size_t size;
+	JointFrame() : size(0) {}
+} JointFrame;
+
 void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skeleton)
 {
+	std::map<std::string, JointFrame> keyframes;
+
 	for (int i=0; i<anims.animations.size(); ++i) {
 		Animation *anim = anims.animations[i];
 
@@ -182,7 +196,70 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 
 			std::vector<KeyFrame> kf(
 				samplesToKeyFrames(*anim, *sample, *ch));
+
+			std::vector<std::string> target(util::split(ch->target, '/'));
+			std::string &joint     = target[0];
+			std::string &transform = target[1];
+			util::toLower(transform);
+
+			if (keyframes.find(joint) == keyframes.end()) {
+				keyframes.insert(std::pair<std::string, JointFrame>(joint, JointFrame()));
+			}
+			std::map<std::string, JointFrame>::iterator it;
+			it = keyframes.find(joint);
+
+			if (util::beginsWith(transform, "rotatex")) {
+				it->second.rotateX = kf;
+			} else if (util::beginsWith(transform, "rotatey")) {
+				it->second.rotateY = kf;
+			} else if (util::beginsWith(transform, "rotatez")) {
+				it->second.rotateZ = kf;
+			} else if (util::beginsWith(transform, "translate")) {
+				it->second.translate = kf;
+			}
+
+			it->second.size = std::max(it->second.size, kf.size());
 		}
+	}
+
+	// now we can merge the map into single transformation.
+	std::map<std::string, JointFrame>::iterator it = keyframes.begin();
+	while (it != keyframes.end()) {
+		Joint &joint = skeleton.getJoint(it->first);
+		std::vector<KeyFrame> &j_keyframes = joint.getKeyFrames();
+
+		for (unsigned int i=0; i<it->second.size; ++i) {
+			math::Mat4x4f transformation;
+			math::Mat4x4f translate;
+			math::Mat4x4f rotateX;
+			math::Mat4x4f rotateY;
+			math::Mat4x4f rotateZ;
+			float time = 0;
+
+			JointFrame &jf = it->second;
+
+			if (!jf.translate.empty()) {
+				translate = jf.translate[i].getTransform();
+				time = jf.translate[i].getTime();
+			}
+			if (!jf.rotateX.empty()) {
+				rotateX = jf.rotateX[i].getTransform();
+				time = jf.rotateX[i].getTime();
+			}
+			if (!jf.rotateY.empty()) {
+				rotateY = jf.rotateY[i].getTransform();
+				time = jf.rotateY[i].getTime();
+			}
+			if (!jf.rotateZ.empty()) {
+				rotateZ = jf.rotateZ[i].getTransform();
+				time = jf.rotateZ[i].getTime();
+			}
+
+			transformation = translate * rotateX * rotateY * rotateZ;
+			j_keyframes.push_back(KeyFrame(time, transformation));
+		}
+
+		++it;
 	}
 }
 

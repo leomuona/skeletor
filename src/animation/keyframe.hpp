@@ -17,6 +17,9 @@ private:
 
 public:
 	KeyFrame(float time, const math::Mat4x4f &transform);
+
+	float getTime() const;
+	math::Mat4x4f getTransform() const;
 };
 
 }; // namespace animation
