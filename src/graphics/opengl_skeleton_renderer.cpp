@@ -122,11 +122,10 @@ void OpenGLSkeletonRenderer::render(const animation::Joint &joint) const
 {
 	glPushMatrix();
 
-	math::Mat4x4f bindPose = joint.getLocalMatrix();
+	const math::Mat4x4f &bindPose = joint.getBindPoseMatrix();
 	math::Mat4x4f localPose;
 
 	if (!joint.getKeyFrames().empty()) {
-		bindPose *= joint.getKeyFrames()[0].getTransform().getInverse();
 		localPose = joint.getKeyFrames()[j/m].getTransform();
 	}
 

@@ -84,6 +84,13 @@ public:
 	const math::Mat4x4f &getInvBindPoseMatrix() const;
 	math::Mat4x4f &getInvBindPoseMatrix();
 
+	/**
+	 * Sets the bind pose matrix.
+	 *
+	 * @param bind pose matrix
+	 */
+	void setBindPoseMatrix(const math::Mat4x4f &bindPoseMatrix);
+
 };
 
 }; // namespace animation

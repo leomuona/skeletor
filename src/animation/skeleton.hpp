@@ -47,6 +47,11 @@ public:
 	friend std::ostream &operator<<(std::ostream &os, const Skeleton &s);
 
 	/**
+	 * Sets up the bind pose matrices for the joints.
+	 */
+	void setupBindPoseMatrices();
+
+	/**
 	 * Forms a preorder traverse into v vector.
 	 *
 	 * Calls private preorder method: liek: preorder(v, m_root, 0).

@@ -64,6 +64,8 @@ Skeleton *Collada::loadSkeleton(const std::string &filename)
 	AnimationLibrary *lib = load_library_animations(root);
 	animationLibraryToKeyFrameAnimation(*lib, *skeleton);
 
+	skeleton->setupBindPoseMatrices();
+
 	return skeleton;
 }
 

@@ -16,6 +16,22 @@ Skeleton::Skeleton(Joint *root)
 	}
 }
 
+void Skeleton::setupBindPoseMatrices()
+{
+	std::map<std::string, Joint *>::iterator it = m_joints.begin();
+	while (it != m_joints.end()) {
+		Joint *joint = it->second;
+
+		math::Mat4x4f bindPose = joint->getLocalMatrix();
+		if (!joint->getKeyFrames().empty()) {
+			bindPose *= joint->getKeyFrames()[0].getTransform().getInverse();
+		}
+		joint->setBindPoseMatrix(bindPose);
+
+		++it;
+	}
+}
+
 void Skeleton::preOrder(std::vector<std::pair<Joint *, int> > &v) const
 {
 	preOrder(v, m_root, 0);

@@ -7,13 +7,6 @@ Joint::Joint(Joint *parent, const math::Mat4x4f &localMatrix)
 	: m_parent(parent)
 	, m_localMatrix(localMatrix)
 {
-	if (parent != NULL) {
-		m_bindPoseMatrix = m_localMatrix * parent->getLocalMatrix();
-	} else {
-		m_bindPoseMatrix = m_localMatrix;
-	}
-
-	m_invBindPoseMatrix = m_bindPoseMatrix.getInverse();
 }
 
 void Joint::addChild(Joint *child)
@@ -94,6 +87,12 @@ const math::Mat4x4f &Joint::getInvBindPoseMatrix() const
 math::Mat4x4f &Joint::getInvBindPoseMatrix()
 {
 	return m_invBindPoseMatrix;
+}
+
+void Joint::setBindPoseMatrix(const math::Mat4x4f &bindPoseMatrix)
+{
+	m_bindPoseMatrix = bindPoseMatrix;
+	m_invBindPoseMatrix = bindPoseMatrix.getInverse();
 }
 
 }; // namespace animation
