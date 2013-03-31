@@ -243,6 +243,22 @@ struct Vec4
 		return a.x*b.x + a.y*b.y + a.z*b.z + a.w*b.w;
 	}
 
+	/**
+	 * Linear interpolation between vectors.
+	 *
+	 * @param other
+	 * @param t [0, 1]
+	 *
+	 * @return linear interpolation between vectors.
+	 */
+	Vec4<T> lerp(const Vec4<T> &rhs, float t) const {
+		return Vec4<T>(
+			x + (rhs.x - x)*t,
+			y + (rhs.y - y)*t,
+			z + (rhs.z - z)*t,
+			w + (rhs.w - w)*t);
+	}
+
 };
 
 template <typename T>

@@ -236,6 +236,20 @@ struct Vec2
 		y = tmp_x * std::sin(radians) + y * std::cos(radians);
 	}
 
+	/**
+	 * Linear interpolation between vectors.
+	 *
+	 * @param other
+	 * @param t [0, 1]
+	 *
+	 * @return linear interpolation between vectors.
+	 */
+	Vec2<T> lerp(const Vec2<T> &rhs, float t) const {
+		return Vec2<T>(
+			x + (rhs.x - x)*t,
+			y + (rhs.y - y)*t);
+	}
+
 };
 
 template <typename T>

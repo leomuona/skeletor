@@ -235,6 +235,21 @@ struct Vec3
 			x*rhs.y - y*rhs.x);
 	}
 
+	/**
+	 * Linear interpolation between vectors.
+	 *
+	 * @param other
+	 * @param t [0, 1]
+	 *
+	 * @return linear interpolation between vectors.
+	 */
+	Vec3<T> lerp(const Vec3<T> &rhs, float t) const {
+		return Vec3<T>(
+			x + (rhs.x - x)*t,
+			y + (rhs.y - y)*t,
+			z + (rhs.z - z)*t);
+	}
+
 };
 
 template <typename T>
