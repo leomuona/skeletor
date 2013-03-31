@@ -122,15 +122,6 @@ void OpenGLSkeletonRenderer::render(
 const animation::Joint &joint, const animation::SkeletonPose &skeletonPose) const
 {
 	glPushMatrix();
-
-	//const math::Mat4x4f &bindPose = joint.getBindPoseMatrix();
-	/*math::Mat4x4f localPose;
-
-	if (!joint.getKeyFrames().empty()) {
-		localPose = joint.getKeyFrames()[j/m].getTransform();
-	}*/
-
-
 	glMultMatrixf((joint.getBindPoseMatrix() * skeletonPose.getTransform(&joint)).m);
 	glBegin(GL_POINTS);
 		glVertex3f(0, 0, 0);
