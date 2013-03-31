@@ -30,6 +30,7 @@ private:
 	std::vector<Joint *> m_children;
 
 	// keyframes of this joint.
+	// this structure can be expected to be ordered by KeyFrames time.
 	std::vector<KeyFrame> m_keyframes;
 
 public:
@@ -71,6 +72,14 @@ public:
 	const std::vector<KeyFrame> &getKeyFrames() const;
 
 	/**
+	 * Finds two closest keyframes to given time.
+	 *
+	 * @param time.
+	 * @return std::pair<> of two closest KeyFrames;
+	 */
+	std::pair<KeyFrame, KeyFrame> find(float time) const;
+
+	/**
 	 * Getter for children
 	 *
 	 * @return children of the current joint
@@ -83,6 +92,13 @@ public:
 	math::Mat4x4f &getBindPoseMatrix();
 	const math::Mat4x4f &getInvBindPoseMatrix() const;
 	math::Mat4x4f &getInvBindPoseMatrix();
+
+	/**
+	 * Gets the max time of keyframes
+	 *
+	 * @return max time.
+	 */
+	float getMaxTime() const;
 
 	/**
 	 * Sets the bind pose matrix.
