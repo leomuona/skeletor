@@ -38,9 +38,9 @@ KeyFrame KeyFrame::lerp(const KeyFrame &other, float time) const
 	// which is smaller?
 	const KeyFrame &first  = (this->m_time < other.getTime()) ? *this : other;
 	const KeyFrame &second = (this->m_time > other.getTime()) ? *this : other;
-	float d_time           = std::abs(this->m_time - other.getTime());
+	float d_time           = second.getTime() - first.getTime();
 	float factor           = 1.0f / d_time;
-	float t                = factor * time;
+	float t                = factor * (time - first.getTime());
 
 	math::Vec3f lerp_rot   = first.getRotate().lerp(second.getRotate(), t);
 	math::Vec3f lerp_trans = first.getTranslate().lerp(second.getTranslate(), t);

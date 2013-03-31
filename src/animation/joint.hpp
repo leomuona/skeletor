@@ -101,6 +101,13 @@ public:
 	float getMaxTime() const;
 
 	/**
+	 * Gets the min time of keyframes
+	 *
+	 * @return min time.
+	 */
+	float getMinTime() const;
+
+	/**
 	 * Sets the bind pose matrix.
 	 *
 	 * @param bind pose matrix

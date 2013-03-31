@@ -83,11 +83,15 @@ int main()
 
 	bool running = true;
 	float dt;
+	float total_time = 0;
 	unsigned int last_step = 0;
 	while (running) {
 		unsigned int duration = SDL_GetTicks() - last_step;
 		dt = duration / 1000.f;
+		total_time += dt;
 		last_step = SDL_GetTicks();
+
+		pose.apply(total_time);
 
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {

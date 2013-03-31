@@ -4,10 +4,12 @@
 #include "math/mat4x4.hpp"
 #include "animation/skeleton.hpp"
 
-#include <vector>
+#include <map>
 
 namespace skeletor {
 namespace animation {
+
+class Joint;
 
 /**
  * Reflects a single pose (current pose) of the skeleton.
@@ -23,14 +25,22 @@ private:
 	Skeleton* m_skeleton;
 
 	// local joint poses, as many as num of skeleton's joints
-	// order of m_localPoses is preorder of skeleton joints.
-	std::vector<math::Mat4x4f> m_localPoses;
+	std::map<const Joint *, math::Mat4x4f> m_localPoses;
 
 public:
 	Skeleton &getSkeleton();
 	const Skeleton &getSkeleton() const;
 
 	void setSkeleton(Skeleton *skeleton);
+
+	/**
+	 * Gets the transformation for the given joint.
+	 *
+	 * @param joint
+	 *
+	 * @return transformation.
+	 */
+	math::Mat4x4f getTransform(const Joint *joint) const;
 
 	/**
 	 * Applies the Pose to skeleton by transforming m_localPoses.

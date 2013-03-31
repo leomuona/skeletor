@@ -41,7 +41,7 @@ public:
 
 private:
         /** \brief Vector of skeletons that are drawn */
-        std::vector<animation::SkeletonPose> m_skeletons;
+        std::vector<const animation::SkeletonPose *> m_skeletons;
 
         /** \brief OpenGL projection matrix. */
         math::Mat4x4f m_projectionMatrix;
@@ -52,12 +52,15 @@ private:
         /**
          * Render a single joint of skeleton.
          */
-        void render(const animation::Joint &joint) const; 
+        void render(const animation::Joint &joint,
+	            const animation::SkeletonPose &skeletonPose) const; 
 
         /**
-         * Render a skeleton.
+         * Renders the skeleton pose.
+	 *
+	 * @param skeleton pose.
          */
-        void render(const animation::Skeleton &skeleton) const;
+        void render(const animation::SkeletonPose &skeletonPose) const;
 
         /**
 	 * Helper function to set the projection matrix (perspective).

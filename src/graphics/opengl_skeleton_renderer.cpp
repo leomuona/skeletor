@@ -64,7 +64,7 @@ const math::Vec2i &dimension, int bpp, bool fs, const std::string &title)
 
 void OpenGLSkeletonRenderer::addSkeleton(const animation::SkeletonPose &skeleton)
 {
-        m_skeletons.push_back(skeleton);
+        m_skeletons.push_back(&skeleton);
 }
 
 void OpenGLSkeletonRenderer::onResize(const math::Vec2i &resolution)
@@ -97,9 +97,9 @@ void OpenGLSkeletonRenderer::drawFrame(Camera &camera)
 
 	j = (j+1)%(26*m);
 
-        for (std::vector<animation::SkeletonPose>::iterator it = 
+        for (std::vector<const animation::SkeletonPose *>::iterator it = 
                         m_skeletons.begin(); it != m_skeletons.end(); ++it) {
-                render((it)->getSkeleton());
+                render(*(*it));
         } 
 }
 
@@ -108,28 +108,30 @@ void OpenGLSkeletonRenderer::swapBuffers()
         SDL_GL_SwapBuffers();
 }
 
-void OpenGLSkeletonRenderer::render(const animation::Skeleton &skeleton) const
+void OpenGLSkeletonRenderer::render(const animation::SkeletonPose &skeletonPose) const
 {
 	float psize = 0;
 	glGetFloatv(GL_POINT_SIZE, &psize);
 	glPointSize(5.0f);
 	glColor3f(0.0f, 0.0f, 0.0f);
-	render(skeleton.getRootJoint());
+	render(skeletonPose.getSkeleton().getRootJoint(), skeletonPose);
 	glPointSize(psize);
 }
 
-void OpenGLSkeletonRenderer::render(const animation::Joint &joint) const
+void OpenGLSkeletonRenderer::render(
+const animation::Joint &joint, const animation::SkeletonPose &skeletonPose) const
 {
 	glPushMatrix();
 
-	const math::Mat4x4f &bindPose = joint.getBindPoseMatrix();
-	math::Mat4x4f localPose;
+	//const math::Mat4x4f &bindPose = joint.getBindPoseMatrix();
+	/*math::Mat4x4f localPose;
 
 	if (!joint.getKeyFrames().empty()) {
 		localPose = joint.getKeyFrames()[j/m].getTransform();
-	}
+	}*/
 
-	glMultMatrixf((bindPose * localPose).m);
+
+	glMultMatrixf((joint.getBindPoseMatrix() * skeletonPose.getTransform(&joint)).m);
 	glBegin(GL_POINTS);
 		glVertex3f(0, 0, 0);
 	glEnd();
@@ -145,7 +147,7 @@ void OpenGLSkeletonRenderer::render(const animation::Joint &joint) const
 	}
 
 	for (int i=0; i<children.size(); ++i) {
-		render(children[i]);
+		render(*children[i], skeletonPose);
 	}
 
 	glPopMatrix();
