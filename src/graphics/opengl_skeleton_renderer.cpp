@@ -14,9 +14,6 @@
 namespace skeletor {
 namespace graphics {
 
-static unsigned int j = 0;
-static unsigned int m = 10;
-
 void OpenGLSkeletonRenderer::initRenderer(
 const math::Vec2i &dimension, int bpp, bool fs, const std::string &title)
 {
@@ -94,8 +91,6 @@ void OpenGLSkeletonRenderer::drawFrame(Camera &camera)
         gluLookAt(camPos.x, camPos.y, camPos.z,
                                   camLook.x, camLook.y, camLook.z,
                                   camUp.x, camUp.y, camUp.z);
-
-	j = (j+1)%(26*m);
 
         for (std::vector<const animation::SkeletonPose *>::iterator it = 
                         m_skeletons.begin(); it != m_skeletons.end(); ++it) {
