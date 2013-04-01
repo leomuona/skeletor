@@ -2,9 +2,15 @@
 #define BULLET_PHYSICS_HPP
 
 #include "physics/physics_interface.hpp"
+#include "math/vec3.hpp"
+
+#include <vector>
+#include <map>
 
 class btBroadphaseInterface;
 class btCollisionDispatcher;
+class btCollisionObject;
+class btCollisionShape;
 class btDefaultCollisionConfiguration;
 class btDiscreteDynamicsWorld;
 class btSequentialImpulseConstraintSolver;
@@ -26,6 +32,16 @@ public:
          * Clean up physics engine. (deletes objectives)
          */
         void exitPhysics();
+
+        /**
+         * Create unique box with given values.
+         * Use this only if there is only one box like this to be created.
+         * @param location - where is the center of box
+         * @param edge - edge length of box
+         * @param mass - mass of box, with zero object is static.
+         */
+        void createUniqueBox(unsigned int id, const math::Vec3f &location,
+                             float edge, float mass);
 
 private:
         /**
@@ -54,6 +70,15 @@ private:
          */
         btDiscreteDynamicsWorld *m_dynamicsWorld;
 
+        /**
+         * Collision shapes, kept pointers for deletion.
+         */
+        std::vector<btCollisionShape*> m_collisionShapes;
+
+        /**
+         * We need a body map, to keep track of body objects.
+         */
+        std::map<unsigned int, btCollisionObject*> m_bodyMap;
 };
 
 }; // namespace physics
