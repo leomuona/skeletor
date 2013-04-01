@@ -11,6 +11,7 @@
 
 bool mouseLeft = false;
 bool mouseRight = false;
+skeletor::math::Vec2f mousemotion;
 skeletor::graphics::OpenGLSkeletonRenderer sr;
 skeletor::graphics::Camera camera;
 
@@ -20,6 +21,13 @@ void onMouseButtonDown(int x, int y)
 
 void onMouseButtonUp(int x, int y)
 {
+}
+
+void onMouseMotion(int x, int y)
+{
+	if (mouseLeft) {
+		mousemotion += skeletor::math::Vec2f(-x, y);
+	}
 }
 
 void onResize(int w, int h)
@@ -59,6 +67,10 @@ bool onEvent(const SDL_Event &event)
 		}
 		break;
 
+	case SDL_MOUSEMOTION:
+		onMouseMotion(event.motion.xrel, event.motion.yrel);
+		break;
+
 	case SDL_VIDEORESIZE:
 		onResize(event.resize.w, event.resize.h);
 		break;
@@ -93,12 +105,17 @@ int main()
 
 		pose.apply(total_time);
 
+		// set camera motion to zero.
+		mousemotion.setZero();
+
 		SDL_Event event;
 		while (SDL_PollEvent(&event)) {
 			running &= onEvent(event);
 		}
 
-		camera.rotatePositionAroundYAxis(dt, M_PI/4);
+		// handle camera motion.
+		mousemotion *= DEGREES_2_RADIANS;
+		camera.onCameraMotion(mousemotion);
 
 		sr.drawFrame(camera);
 		sr.swapBuffers();

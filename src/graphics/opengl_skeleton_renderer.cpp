@@ -84,13 +84,7 @@ void OpenGLSkeletonRenderer::drawFrame(Camera &camera)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glLoadIdentity();
-
-        math::Vec3f camPos = camera.getPosition();
-        math::Vec3f camLook = camera.getLookAt();
-        math::Vec3f camUp = camera.getUp();
-        gluLookAt(camPos.x, camPos.y, camPos.z,
-                                  camLook.x, camLook.y, camLook.z,
-                                  camUp.x, camUp.y, camUp.z);
+	glMultMatrixf(camera.getModelViewMatrix().m);
 
         for (std::vector<const animation::SkeletonPose *>::iterator it = 
                         m_skeletons.begin(); it != m_skeletons.end(); ++it) {
