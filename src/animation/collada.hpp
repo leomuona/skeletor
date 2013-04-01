@@ -67,6 +67,15 @@ private:
 	static Joint *buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent);
 
 	/**
+	 * Read the matrix transformation from file, or build it
+	 *
+	 * @param node
+	 *
+	 * @return local matrix tranformation.
+	 */
+	static math::Mat4x4f getNodeLocalMatrix(rapidxml::xml_node<> *node);
+
+	/**
 	 * Constructs the node local matrix from node information.
 	 *
 	 * The local matrix is constructed from all node transformations

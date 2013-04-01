@@ -115,7 +115,7 @@ rapidxml::xml_node<> *Collada::findRootNode(rapidxml::xml_node<> *node, const st
 
 Joint *Collada::buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent)
 {
-	math::Mat4x4f localMatrix(buildNodeLocalMatrix(node));
+	math::Mat4x4f localMatrix(getNodeLocalMatrix(node));
 	Joint *joint = new Joint(parent, localMatrix);
 
 	if (node->first_attribute("name")) {
@@ -135,6 +135,22 @@ Joint *Collada::buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent)
 	}
 
 	return joint;
+}
+
+math::Mat4x4f Collada::getNodeLocalMatrix(rapidxml::xml_node<> *node)
+{
+	if (node->first_node("matrix")) {
+		math::Mat4x4f matrix;
+		rapidxml::xml_node<> *matrix_node = node->first_node("matrix");
+		std::vector<std::string> arr(util::split(matrix_node->value(), ' '));
+		for (int i=0; i<16; ++i) {
+			matrix.m[i] = util::lexicalCast<std::string, float>(arr[i]);
+		}
+		matrix.transpose();
+		return matrix;
+	} else {
+		return buildNodeLocalMatrix(node);
+	}
 }
 
 math::Mat4x4f Collada::buildNodeLocalMatrix(rapidxml::xml_node<> *node)
