@@ -43,6 +43,7 @@ public:
         void createUniqueBox(unsigned int id, const math::Vec3f &location,
                              float edge, float mass);
 
+        btCollisionObject* getCollisionObject(unsigned int id);
 private:
         /**
          * Holds default collision configuration setup for memory and

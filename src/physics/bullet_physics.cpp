@@ -56,6 +56,11 @@ void BulletPhysics::exitPhysics()
         delete m_collisionConf;
 }
 
+btCollisionObject* BulletPhysics::getCollisionObject(unsigned int id)
+{
+        return m_bodyMap[id];
+}
+
 void BulletPhysics::createUniqueBox(unsigned int id,
                                     const math::Vec3f &location,
                                     float edge, float mass)

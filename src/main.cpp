@@ -1,12 +1,16 @@
 #include <iostream>
 
+#include "animation/box.hpp"
 #include "animation/parse.hpp"
 #include "animation/skeleton.hpp"
 #include "animation/skeleton_pose.hpp"
 #include "graphics/opengl_skeleton_renderer.hpp"
 #include "graphics/camera.hpp"
 #include "math/vec2.hpp"
+#include "physics/bullet_physics.hpp"
+#include "physics/bullet_objects_converter.hpp"
 
+#include "btBulletDynamicsCommon.h"
 #include <SDL/SDL.h>
 
 bool mouseLeft = false;
@@ -14,6 +18,7 @@ bool mouseRight = false;
 skeletor::math::Vec2f mousemotion;
 skeletor::graphics::OpenGLSkeletonRenderer sr;
 skeletor::graphics::Camera camera;
+skeletor::physics::BulletPhysics bp;
 
 void onMouseButtonDown(int x, int y)
 {
@@ -93,6 +98,11 @@ int main()
         sr.initRenderer(math::Vec2i(800, 600), 32, false, "skeletor");
 	sr.addSkeleton(pose);
 
+        bp.initPhysics();
+        bp.createUniqueBox(1, math::Vec3f(0, -25, 0), 50, 0);
+        btCollisionObject *btBox = bp.getCollisionObject(1);
+        animation::Box *box = physics::BulletObjectsConverter::convertBox(btBox);
+
 	bool running = true;
 	float dt;
 	float total_time = 0;
@@ -120,6 +130,8 @@ int main()
 		sr.drawFrame(camera);
 		sr.swapBuffers();
 	}
+
+        delete box;
 
         return 0;
 }
