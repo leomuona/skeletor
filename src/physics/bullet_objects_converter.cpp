@@ -7,14 +7,13 @@
 namespace skeletor {
 namespace physics {
 
-animation::Box* BulletObjectsConverter::convertBox(btCollisionObject *obj)
+void BulletObjectsConverter::convertBox(btCollisionObject *obj, animation::Box *target)
 {
-        float mass = 0;
         btRigidBody *body = btRigidBody::upcast(obj);
         if (body) {
-                mass = body->getInvMass();
+                float mass = body->getInvMass();
+                target->setMass(mass);
         } 
-        animation::Box *box = new animation::Box(0, mass);
 
         // set edges
         btBoxShape *shape = static_cast<btBoxShape*>(obj->getCollisionShape());
@@ -29,11 +28,9 @@ animation::Box* BulletObjectsConverter::convertBox(btCollisionObject *obj)
                         mpb.x = pb.getX();
                         mpb.y = pb.getY();
                         mpb.z = pb.getZ();
-                        box->setEdge(i, mpa, mpb);
+                        target->setEdge(i, mpa, mpb);
                 }
         }
-
-        return box;
 }
 
 }; // namespace physics

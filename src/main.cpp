@@ -101,7 +101,8 @@ int main()
         bp.initPhysics();
         bp.createUniqueBox(1, math::Vec3f(0, -25, 0), 50, 0);
         btCollisionObject *btBox = bp.getCollisionObject(1);
-        animation::Box *box = physics::BulletObjectsConverter::convertBox(btBox);
+        animation::Box *box = new animation::Box(1, 0);
+        physics::BulletObjectsConverter::convertBox(btBox, box);
 
 	bool running = true;
 	float dt;

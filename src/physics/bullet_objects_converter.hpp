@@ -13,7 +13,7 @@ namespace physics {
 
 class BulletObjectsConverter {
 public:
-        static animation::Box* convertBox(btCollisionObject *obj);
+        static void convertBox(btCollisionObject *obj, animation::Box* target);
 };
 
 }; // namespace physics
