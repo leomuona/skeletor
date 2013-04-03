@@ -441,6 +441,94 @@ struct Mat4x4
 		                   0, 0, 0, 1);
 	}
 
+	/**
+	 * Decompose transformation matrix into separate transformations.
+	 *
+	 * Expects that rotation is done around axes and the order is ZYX.
+	 * values are saved into parameters.
+	 *
+	 * @param rotation
+	 * @param translation
+	 * @param scale
+	 */
+	void decomposeZYX(Vec3<T> &rotation, Vec3<T> &translation, Vec3<T> &scale) const
+	{
+		Mat4x4<T> copy(*this);
+
+		translation.x = copy.m[12];
+		translation.y = copy.m[13];
+		translation.z = copy.m[14];
+
+		scale.x = Vec3<T>(copy.m[0], copy.m[4], copy.m[ 8]).length();
+		scale.y = Vec3<T>(copy.m[1], copy.m[5], copy.m[ 9]).length();
+		scale.z = Vec3<T>(copy.m[2], copy.m[6], copy.m[10]).length();
+
+		T d = copy.getDeterminant();
+		if (d < 0) {
+			scale.x *= -1;
+		}
+
+		// undo the scale.
+		Mat4x4<T> s;
+		s.scale(scale);
+		copy = s.getInverse() * copy;
+
+		/*
+		 * ZYX rotation matrix is following, where
+		 * A = amount of rotation around X axis
+		 * B = ditto                     Y axis
+		 * C = ditto                     Z axis
+		 *
+		 * |  cos(C) * cos(B)       ....              ....      |
+		 * | -sin(C) * cos(B)       ....              ....      |
+		 * |  sin(B)            cos(B)*-sin(A)    cos(B)*cos(A) |
+		 */
+		rotation.x = std::atan2(-copy.m[6], copy.m[10]);
+		rotation.y = std::asin(  copy.m[2]);
+		rotation.z = std::atan2(-copy.m[1], copy.m[0]);
+		rotation *= -1;
+	}
+
+	/**
+	 * Decompose transformation matrix into separate transformations.
+	 *
+	 * Expects that rotation is done around axes and the order is XYZ.
+	 * values are saved into parameters.
+	 *
+	 * http://www.robertblum.com/articles/2005/02/14/decomposing-matrices
+	 *
+	 * @param rotation
+	 * @param translation
+	 * @param scale
+	 */
+	void decomposeXYZ(Vec3<T> &rotation, Vec3<T> &translation, Vec3<T> &scale) const
+	{
+		Mat4x4<T> copy(*this);
+
+		translation.x = copy.m[12];
+		translation.y = copy.m[13];
+		translation.z = copy.m[14];
+
+		scale.x = Vec3<T>(copy.m[0], copy.m[4], copy.m[ 8]).length();
+		scale.y = Vec3<T>(copy.m[1], copy.m[5], copy.m[ 9]).length();
+		scale.z = Vec3<T>(copy.m[2], copy.m[6], copy.m[10]).length();
+
+		T d = copy.getDeterminant();
+		if (d < 0) {
+			scale.x *= -1;
+		}
+
+		// undo the scale.
+		Mat4x4<T> s;
+		s.scale(scale);
+		copy = s.getInverse() * copy;
+
+		rotation.x = std::atan2(copy.m[9], copy.m[10]);
+		rotation.y = std::asin(-copy.m[8]);
+		rotation.z = std::atan2(copy.m[4], copy.m[0]);
+		rotation *= -1;
+	}
+
 };
 
 template <typename T>
