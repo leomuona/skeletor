@@ -236,8 +236,6 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 			math::Mat4x4f rotateX;
 			math::Mat4x4f rotateY;
 			math::Mat4x4f rotateZ;
-			math::Vec3f trans;
-			math::Vec3f rot;
 			float time = 0;
 
 			JointFrame &jf = it->second;
@@ -245,26 +243,22 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 			if (!jf.translate.empty()) {
 				translate = jf.translate[i].getTransform();
 				time = jf.translate[i].getTime();
-				trans = jf.translate[i].getTranslate();
 			}
 			if (!jf.rotateX.empty()) {
 				rotateX = jf.rotateX[i].getTransform();
 				time = jf.rotateX[i].getTime();
-				rot.x = jf.rotateX[i].getRotate().x;
 			}
 			if (!jf.rotateY.empty()) {
 				rotateY = jf.rotateY[i].getTransform();
 				time = jf.rotateY[i].getTime();
-				rot.y = jf.rotateY[i].getRotate().y;
 			}
 			if (!jf.rotateZ.empty()) {
 				rotateZ = jf.rotateZ[i].getTransform();
 				time = jf.rotateZ[i].getTime();
-				rot.z = jf.rotateZ[i].getRotate().z;
 			}
 
 			transformation =  translate * rotateZ * rotateY * rotateX;
-			j_keyframes.push_back(KeyFrame(time, transformation, rot, trans));
+			j_keyframes.push_back(KeyFrame(time, transformation));
 		}
 
 		++it;
@@ -315,7 +309,6 @@ std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &samp
 	unsigned int size = times.size();
 	for (unsigned int i=0; i<size; ++i) {
 		math::Mat4x4f transformation;
-		math::Vec3f rot;
 
 		std::string n(name);
 		util::toLower(n);
@@ -324,18 +317,15 @@ std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &samp
 
 		if (util::beginsWith(n, "rotatex")) {
 			transformation.rotate(math::Vec3f(1, 0, 0), output[i].x);
-			rot.x = output[i].x;
 		} else if (util::beginsWith(n, "rotatey")) {
 			transformation.rotate(math::Vec3f(0, 1, 0), output[i].x);
-			rot.y = output[i].x;
 		} else if (util::beginsWith(n, "rotatez")) {
 			transformation.rotate(math::Vec3f(0, 0, 1), output[i].x);
-			rot.z = output[i].x;
 		} else {
 			std::cout << "unknown rotate: " << n << std::endl;
 		}
 
-		keyframes.push_back(KeyFrame(times[i], transformation, rot, math::Vec3f()));
+		keyframes.push_back(KeyFrame(times[i], transformation));
 	}
 
 	return keyframes;
@@ -381,7 +371,7 @@ std::vector<KeyFrame> translateTransformation(const std::string &name, Sample &s
 	for (unsigned int i=0; i<size; ++i) {
 		math::Mat4x4f transformation;
 		transformation.translate(output[i]);
-		keyframes.push_back(KeyFrame(times[i], transformation, math::Vec3f(), output[i]));
+		keyframes.push_back(KeyFrame(times[i], transformation));
 	}
 
 	return keyframes;

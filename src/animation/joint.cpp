@@ -59,16 +59,14 @@ std::pair<KeyFrame, KeyFrame> Joint::find(float time) const
 	float maxtime = getMaxTime();
 	if (maxtime == 0) {
 		return std::pair<KeyFrame, KeyFrame>(
-			KeyFrame(0, math::Mat4x4f(), math::Vec3f(), math::Vec3f()),
-			KeyFrame(0, math::Mat4x4f(), math::Vec3f(), math::Vec3f()));
+			KeyFrame(0, math::Mat4x4f()), KeyFrame(0, math::Mat4x4f()));
 	}
 
 	time = fmod(time, maxtime);
 	if (time < getMinTime()) {
 		KeyFrame last = m_keyframes[m_keyframes.size()-1];
 		return std::pair<KeyFrame, KeyFrame>(
-			KeyFrame(0, last.getTransform(), last.getRotate(), last.getTranslate()),
-			m_keyframes[0]);
+			KeyFrame(0, last.getTransform()), m_keyframes[0]);
 	}
 
 	int x = -1;

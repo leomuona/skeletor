@@ -3,14 +3,11 @@
 namespace skeletor {
 namespace animation {
 
-KeyFrame::KeyFrame(
-float time, const math::Mat4x4f &transform,
-const math::Vec3f &rotate, const math::Vec3f &translate)
+KeyFrame::KeyFrame(float time, const math::Mat4x4f &transform)
 	: m_time(time)
 	, m_transform(transform)
-	, m_rotate(rotate)
-	, m_translate(translate)
 {
+	m_transform.decomposeZYX(m_rotate, m_translate, m_scale);
 }
 
 float KeyFrame::getTime() const
@@ -51,7 +48,7 @@ KeyFrame KeyFrame::lerp(const KeyFrame &other, float time) const
 	rotateY.rotate(math::Vec3f(0, 1, 0), lerp_rot.y);
 	rotateZ.rotate(math::Vec3f(0, 0, 1), lerp_rot.z);
 
-	return KeyFrame(time, translate * rotateZ * rotateY * rotateX, lerp_rot, lerp_trans);
+	return KeyFrame(time, translate * rotateZ * rotateY * rotateX);
 }
 
 }; // namespace animation

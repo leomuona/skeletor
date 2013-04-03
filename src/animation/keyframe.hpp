@@ -18,6 +18,9 @@ private:
 	// translation of the KeyFrame.
 	math::Vec3f m_translate;
 
+	// scaling on x, y, z axes
+	math::Vec3f m_scale;
+
 	// transformation of the keyframe
 	// matrix representation of the transformation, t * rotZ * rotY * rotX
 	math::Mat4x4f m_transform;
@@ -28,11 +31,8 @@ public:
 	 *
 	 * @param time
 	 * @param matrix transformation.
-	 * @param rotation values of axes (in radians)
-	 * @param translate
 	 */
-	KeyFrame(float time, const math::Mat4x4f &transform,
-	         const math::Vec3f &rotate, const math::Vec3f &translate);
+	KeyFrame(float time, const math::Mat4x4f &transform);
 
 	float getTime() const;
 	math::Mat4x4f getTransform() const;
