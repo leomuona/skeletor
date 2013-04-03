@@ -198,18 +198,6 @@ std::vector<Channel *> load_animation_channels(rapidxml::xml_node<> *node);
 void animationLibraryToKeyFrameAnimation(AnimationLibrary &anim, Skeleton &skeleton);
 
 /**
- * Trasforms the samples and sources mapping into keyframe animation of joint.
- *
- * @param animation
- * @param sample
- * @param channel
- *
- * @return keyframe list
- */
-std::vector<KeyFrame> samplesToKeyFrames(
-Animation &anim, Sample &sample, Channel &channel);
-
-/**
  * Parses a COLLADA rotate sequence/sample into transformation matrix.
  *
  * @param transformation name, e.g rotateX.ANGLE, translate, transform(0)(3)
@@ -239,6 +227,17 @@ std::vector<float> parseINPUTSource(Source &source);
  * @return transformation in Vec3f container.
  */
 std::vector<math::Vec3f> parseOUTPUTSource(Source &source);
+
+/**
+ * Parse the output source as 4x4 Matrix.
+ *
+ * Blender and Max saves the transformation values like dis.
+ * Or when transform sequence is given.
+ *
+ * @param Source
+ * @return transformations in 4x4 float matrix.
+ */
+std::vector<math::Mat4x4f> parseOUTPUTMatrixSource(Source &source);
 
 /**
  * Parses the interpolation source.

@@ -174,13 +174,26 @@ std::vector<Channel *> load_animation_channels(rapidxml::xml_node<> *node)
 
 typedef struct JointFrame
 {
+	// case with separate transformations, e.g. how MAYA saves
 	std::vector<KeyFrame> rotateX;
 	std::vector<KeyFrame> rotateY;
 	std::vector<KeyFrame> rotateZ;
 	std::vector<KeyFrame> translate;
 
-	size_t size;
-	JointFrame() : size(0) {}
+	// and single transformation, how Blender saves
+	std::vector<KeyFrame> transform;
+
+	size_t getSize()
+	{
+		size_t size = 0;
+		size = std::max(size, rotateX.size());
+		size = std::max(size, rotateY.size());
+		size = std::max(size, rotateZ.size());
+		size = std::max(size, translate.size());
+		size = std::max(size, transform.size());
+		return size;
+	}
+
 } JointFrame;
 
 void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skeleton)
@@ -194,9 +207,6 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 			Channel *ch = anim->channels[c];
 			Sample *sample = anim->getSample(ch->source);
 
-			std::vector<KeyFrame> kf(
-				samplesToKeyFrames(*anim, *sample, *ch));
-
 			std::vector<std::string> target(util::split(ch->target, '/'));
 			std::string &joint     = target[0];
 			std::string &transform = target[1];
@@ -209,18 +219,18 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 			it = keyframes.find(joint);
 
 			if (util::beginsWith(transform, "rotatex")) {
-				it->second.rotateX = kf;
+				it->second.rotateX = rotateTransformation(transform, *sample);
 			} else if (util::beginsWith(transform, "rotatey")) {
-				it->second.rotateY = kf;
+				it->second.rotateY = rotateTransformation(transform, *sample);
 			} else if (util::beginsWith(transform, "rotatez")) {
-				it->second.rotateZ = kf;
+				it->second.rotateZ = rotateTransformation(transform, *sample);
 			} else if (util::beginsWith(transform, "translate")) {
-				it->second.translate = kf;
+				it->second.translate = translateTransformation(transform, *sample);
+			} else if (util::beginsWith(transform, "transform")) {
+				it->second.transform = transformTransformation(transform, *sample);
 			} else {
 				std::cout << "wat: " << transform << std::endl;
 			}
-
-			it->second.size = std::max(it->second.size, kf.size());
 		}
 	}
 
@@ -230,7 +240,8 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 		Joint &joint = skeleton.getJoint(it->first);
 		std::vector<KeyFrame> &j_keyframes = joint.getKeyFrames();
 
-		for (unsigned int i=0; i<it->second.size; ++i) {
+		size_t size = it->second.getSize();
+		for (unsigned int i=0; i<size; ++i) {
 			math::Mat4x4f transformation;
 			math::Mat4x4f translate;
 			math::Mat4x4f rotateX;
@@ -240,48 +251,34 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 
 			JointFrame &jf = it->second;
 
-			if (!jf.translate.empty()) {
-				translate = jf.translate[i].getTransform();
-				time = jf.translate[i].getTime();
-			}
-			if (!jf.rotateX.empty()) {
-				rotateX = jf.rotateX[i].getTransform();
-				time = jf.rotateX[i].getTime();
-			}
-			if (!jf.rotateY.empty()) {
-				rotateY = jf.rotateY[i].getTransform();
-				time = jf.rotateY[i].getTime();
-			}
-			if (!jf.rotateZ.empty()) {
-				rotateZ = jf.rotateZ[i].getTransform();
-				time = jf.rotateZ[i].getTime();
+			if (!jf.transform.empty()) {
+				transformation = jf.transform[i].getTransform();
+				time = jf.transform[i].getTime();
+			} else {
+				if (!jf.translate.empty()) {
+					translate = jf.translate[i].getTransform();
+					time = jf.translate[i].getTime();
+				}
+				if (!jf.rotateX.empty()) {
+					rotateX = jf.rotateX[i].getTransform();
+					time = jf.rotateX[i].getTime();
+				}
+				if (!jf.rotateY.empty()) {
+					rotateY = jf.rotateY[i].getTransform();
+					time = jf.rotateY[i].getTime();
+				}
+				if (!jf.rotateZ.empty()) {
+					rotateZ = jf.rotateZ[i].getTransform();
+					time = jf.rotateZ[i].getTime();
+				}
+				transformation =  translate * rotateZ * rotateY * rotateX;
+
 			}
 
-			transformation =  translate * rotateZ * rotateY * rotateX;
 			j_keyframes.push_back(KeyFrame(time, transformation));
 		}
 
 		++it;
-	}
-}
-
-std::vector<KeyFrame> samplesToKeyFrames(
-Animation &anim, Sample &sample, Channel &channel)
-{
-	// parse the channel target information.
-	std::vector<std::string> target(util::split(channel.target, '/'));
-	std::string &joint     = target[0];
-	std::string &transform = target[1];
-
-	if (util::beginsWith(transform, "rotate")) {
-		return rotateTransformation(transform, sample);
-	} else if (util::beginsWith(transform, "transform")) {
-		return transformTransformation(transform, sample);
-	} else if (util::beginsWith(transform, "translate")) {
-		return translateTransformation(transform, sample);
-	} else {
-		std::cout << "unknown transform " << transform << std::endl;
-		return std::vector<KeyFrame>();
 	}
 }
 
@@ -333,8 +330,26 @@ std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &samp
 
 std::vector<KeyFrame> transformTransformation(const std::string &name, Sample &sample)
 {
-	// TODO: Max saves COLLADA in these kinds of transformations.
-	return std::vector<KeyFrame>();
+	std::vector<KeyFrame> keyframes;
+
+	std::vector<float> times;
+	std::vector<math::Mat4x4f> output;
+	std::vector<Interpolations> interpolation;
+
+	times = parseINPUTSource(*sample.inputs.at("INPUT"));
+	output = parseOUTPUTMatrixSource(*sample.inputs.at("OUTPUT"));
+	interpolation = parseINTERPOLATIONSource(*sample.inputs.at("INTERPOLATION"));
+
+	assert(times.size() == output.size() &&
+	       output.size() == interpolation.size());
+
+	unsigned int size = times.size();
+	for (unsigned int i=0; i<size; ++i) {
+		output[i].transpose();
+		keyframes.push_back(KeyFrame(times[i], output[i]));
+	}
+
+	return keyframes;
 }
 
 std::vector<KeyFrame> translateTransformation(const std::string &name, Sample &sample)
@@ -406,6 +421,19 @@ std::vector<math::Vec3f> parseOUTPUTSource(Source &source)
 		output.push_back(math::Vec3f(x, y, z));
 	}
 
+	return output;
+}
+
+std::vector<math::Mat4x4f> parseOUTPUTMatrixSource(Source &source)
+{
+	std::vector<math::Mat4x4f> output;
+	for (int i=0; i<source.array.size()/16; ++i) {
+		math::Mat4x4f matrix;
+		for (int j=0; j<16; ++j) {
+			matrix.m[j] = util::lexicalCast<std::string, float>(source.array[i*16+j]);
+		}
+		output.push_back(matrix);
+	}
 	return output;
 }
 
