@@ -194,6 +194,23 @@ typedef struct JointFrame
 		return size;
 	}
 
+	float getTime(int idx)
+	{
+		if (rotateX.size() > idx) {
+			return rotateX[idx].getTime();
+		} else if (rotateY.size() > idx) {
+			return rotateY[idx].getTime();
+		} else if (rotateZ.size() > idx) {
+			return rotateZ[idx].getTime();
+		} else if (translate.size() > idx) {
+			return translate[idx].getTime();
+		} else if (transform.size() > idx) {
+			return transform[idx].getTime();
+		} else {
+			assert(!"JointFrame should always have time");
+		}
+	}
+
 } JointFrame;
 
 void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skeleton)
@@ -247,35 +264,28 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 			math::Mat4x4f rotateX;
 			math::Mat4x4f rotateY;
 			math::Mat4x4f rotateZ;
-			float time = 0;
 
 			JointFrame &jf = it->second;
 
 			if (!jf.transform.empty()) {
 				transformation = jf.transform[i].getTransform();
-				time = jf.transform[i].getTime();
 			} else {
 				if (!jf.translate.empty()) {
 					translate = jf.translate[i].getTransform();
-					time = jf.translate[i].getTime();
 				}
 				if (!jf.rotateX.empty()) {
 					rotateX = jf.rotateX[i].getTransform();
-					time = jf.rotateX[i].getTime();
 				}
 				if (!jf.rotateY.empty()) {
 					rotateY = jf.rotateY[i].getTransform();
-					time = jf.rotateY[i].getTime();
 				}
 				if (!jf.rotateZ.empty()) {
 					rotateZ = jf.rotateZ[i].getTransform();
-					time = jf.rotateZ[i].getTime();
 				}
 				transformation =  translate * rotateZ * rotateY * rotateX;
-
 			}
 
-			j_keyframes.push_back(KeyFrame(time, transformation));
+			j_keyframes.push_back(KeyFrame(jf.getTime(i), transformation));
 		}
 
 		++it;
