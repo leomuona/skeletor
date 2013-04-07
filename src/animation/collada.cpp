@@ -28,38 +28,8 @@ Skeleton *Collada::loadSkeleton(const std::string &filename)
 	xml_node<> *libc = root->first_node("library_controllers");
 	xml_node<> *ctrl = libc->first_node("controller");
 
-	while (ctrl != NULL) {
-		xml_node<> *skin = ctrl->first_node("skin");
-		xml_node<> *srcs = skin->first_node("source");
-
-		std::string joints_name;
-		std::string joints_count;
-
-		while (srcs != NULL) {
-			xml_node<> *thq = srcs->first_node("technique_common");
-			xml_node<> *acs = thq->first_node("accessor");
-			xml_node<> *param = acs->first_node("param");
-			std::string param_s = param->first_attribute("name")->value();
-
-			if (param_s == "JOINT") {
-				xml_node<> *name = srcs->first_node("Name_array");
-
-				joints_count = name->first_attribute("count")->value();
-				joints_name  = name->value();
-				break;
-			}
-
-			srcs = srcs->next_sibling("source");
-		}
-
-		std::cout << "amount: " << joints_count << std::endl;
-		std::cout << "names: "  << joints_name << std::endl;
-
-		Joint *root_joint = load_library_visual_scenes(root, joints_name);
-		skeleton = new Skeleton(root_joint);
-
-		ctrl = ctrl->next_sibling("controller");
-	}
+	Joint *root_joint = load_library_visual_scenes(root);
+	skeleton = new Skeleton(root_joint);
 
 	AnimationLibrary *lib = load_library_animations(root);
 	animationLibraryToKeyFrameAnimation(*lib, *skeleton);
@@ -69,8 +39,7 @@ Skeleton *Collada::loadSkeleton(const std::string &filename)
 	return skeleton;
 }
 
-Joint *Collada::load_library_visual_scenes(
-rapidxml::xml_node<> *root, const std::string &sid)
+Joint *Collada::load_library_visual_scenes(rapidxml::xml_node<> *root)
 {
 	using namespace rapidxml;
 	Joint *root_joint = NULL;
@@ -93,6 +62,7 @@ rapidxml::xml_node<> *Collada::findRootNode(rapidxml::xml_node<> *node, const st
 {
 	while (node != NULL) {
 		std::string node_name = node->first_attribute("name")->value();
+		util::toLower(node_name);
 		if (node_name == name) {
 			return node;
 		}
