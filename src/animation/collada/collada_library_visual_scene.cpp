@@ -1,12 +1,9 @@
-#include "animation/collada.hpp"
-#include "animation/collada_library_animation.hpp"
+#include "animation/collada/collada_library_visual_scene.hpp"
 #include "animation/joint.hpp"
-#include "animation/skeleton.hpp"
 #include "math/vec3.hpp"
 #include "util/string.hpp"
 
 #include "rapidxml.hpp"
-#include "rapidxml_utils.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -14,32 +11,9 @@
 
 namespace skeletor {
 namespace animation {
+namespace collada {
 
-Skeleton *Collada::loadSkeleton(const std::string &filename)
-{
-	using namespace rapidxml;
-	Skeleton *skeleton = NULL;
-
-	file<> xmlFile(filename.c_str());
-	xml_document<> doc;
-	doc.parse<0>(xmlFile.data());
-
-	xml_node<> *root = doc.first_node("COLLADA");
-	xml_node<> *libc = root->first_node("library_controllers");
-	xml_node<> *ctrl = libc->first_node("controller");
-
-	Joint *root_joint = load_library_visual_scenes(root);
-	skeleton = new Skeleton(root_joint);
-
-	AnimationLibrary *lib = load_library_animations(root);
-	animationLibraryToKeyFrameAnimation(*lib, *skeleton);
-
-	skeleton->setupBindPoseMatrices();
-
-	return skeleton;
-}
-
-Joint *Collada::load_library_visual_scenes(rapidxml::xml_node<> *root)
+Joint *load_library_visual_scenes(rapidxml::xml_node<> *root)
 {
 	using namespace rapidxml;
 	Joint *root_joint = NULL;
@@ -58,7 +32,7 @@ Joint *Collada::load_library_visual_scenes(rapidxml::xml_node<> *root)
 	return root_joint;
 }
 
-rapidxml::xml_node<> *Collada::findRootNode(rapidxml::xml_node<> *node, const std::string &name)
+rapidxml::xml_node<> *findRootNode(rapidxml::xml_node<> *node, const std::string &name)
 {
 	while (node != NULL) {
 		std::string node_name = node->first_attribute("name")->value();
@@ -83,7 +57,7 @@ rapidxml::xml_node<> *Collada::findRootNode(rapidxml::xml_node<> *node, const st
 	return NULL;
 }
 
-Joint *Collada::buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent)
+Joint *buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent)
 {
 	math::Mat4x4f localMatrix(getNodeLocalMatrix(node));
 	Joint *joint = new Joint(parent, localMatrix);
@@ -107,7 +81,7 @@ Joint *Collada::buildJointHierarchy(rapidxml::xml_node<> *node, Joint *parent)
 	return joint;
 }
 
-math::Mat4x4f Collada::getNodeLocalMatrix(rapidxml::xml_node<> *node)
+math::Mat4x4f getNodeLocalMatrix(rapidxml::xml_node<> *node)
 {
 	if (node->first_node("matrix")) {
 		math::Mat4x4f matrix;
@@ -123,7 +97,7 @@ math::Mat4x4f Collada::getNodeLocalMatrix(rapidxml::xml_node<> *node)
 	}
 }
 
-math::Mat4x4f Collada::buildNodeLocalMatrix(rapidxml::xml_node<> *node)
+math::Mat4x4f buildNodeLocalMatrix(rapidxml::xml_node<> *node)
 {
 	std::string translate("0 0 0");
 	std::string jointOrientZ("0 0 1 0");
@@ -182,5 +156,6 @@ math::Mat4x4f Collada::buildNodeLocalMatrix(rapidxml::xml_node<> *node)
 	return t * z * y * x * g_z * g_y * g_x;
 }
 
+}; // namespace collada
 }; // namespace animation
 }; // namespace skeletor

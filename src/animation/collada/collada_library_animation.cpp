@@ -1,4 +1,4 @@
-#include "animation/collada_library_animation.hpp"
+#include "animation/collada/collada_library_animation.hpp"
 #include "animation/skeleton.hpp"
 #include "util/string.hpp"
 
@@ -7,6 +7,7 @@
 
 namespace skeletor {
 namespace animation {
+namespace collada {
 
 using namespace rapidxml;
 
@@ -478,5 +479,6 @@ std::vector<math::Vec2f> parseTANGENTSource(Source &source, int stride, int offs
 	return tangents;
 }
 
+}; // namespace collada
 }; // namespace animation
 }; // namespace skeletor

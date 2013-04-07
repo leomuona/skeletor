@@ -15,6 +15,8 @@
 
 namespace skeletor {
 namespace animation {
+class Skeleton;
+namespace collada {
 
 enum Interpolations {
 	kLinear,
@@ -133,7 +135,6 @@ typedef struct
 	std::vector<Animation *> animations;
 } AnimationLibrary;
 
-class Skeleton;
 
 /**
  * Parses the <library_animations> node from COLLADA file.
@@ -260,7 +261,7 @@ std::vector<Interpolations> parseINTERPOLATIONSource(Source &source);
  */
 std::vector<math::Vec2f> parseTANGENTSource(Source &source, int stride = 2, int offset = 0);
 
-
+}; // namespace collada
 }; // namespace animation
 }; // namespace skeletor
 
