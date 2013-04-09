@@ -13,8 +13,8 @@ void BulletObjectsConverter::convertBox(btCollisionObject *obj, animation::Box *
         if (body) {
                 float mass = body->getInvMass();
                 target->setMass(mass);
-                btTransform bodyTransform = body->getCenterOfMassTransform();
-                btVector3 btOrigin = bodyTransform.getOrigin();
+                btTransform bodyTransform;
+                body->getMotionState()->getWorldTransform(bodyTransform);                           btVector3 btOrigin = bodyTransform.getOrigin();
                 math::Vec3f loc;
                 loc.x = btOrigin.getX();
                 loc.y = btOrigin.getY();
