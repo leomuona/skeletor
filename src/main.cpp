@@ -99,10 +99,11 @@ int main()
 	sr.addSkeleton(pose);
 
         bp.initPhysics();
-        bp.createUniqueBox(1, math::Vec3f(0, -25, 0), 50, 0);
+        bp.createUniqueBox(1, math::Vec3f(5, -5, 5), 10, 0);
         btCollisionObject *btBox = bp.getCollisionObject(1);
         animation::Box *box = new animation::Box(1, 0);
         physics::BulletObjectsConverter::convertBox(btBox, box);
+        sr.addBox(*box);
 
 	bool running = true;
 	float dt;

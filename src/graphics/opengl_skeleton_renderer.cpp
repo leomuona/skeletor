@@ -1,6 +1,7 @@
 #include "graphics/opengl_skeleton_renderer.hpp"
 
 #include "graphics/camera.hpp"
+#include "animation/box.hpp"
 #include "animation/skeleton_pose.hpp"
 #include "animation/skeleton.hpp"
 #include "animation/joint.hpp"
@@ -64,6 +65,11 @@ void OpenGLSkeletonRenderer::addSkeleton(const animation::SkeletonPose &skeleton
         m_skeletons.push_back(&skeleton);
 }
 
+void OpenGLSkeletonRenderer::addBox(const animation::Box &box)
+{
+        m_boxes.push_back(&box);
+}
+
 void OpenGLSkeletonRenderer::onResize(const math::Vec2i &resolution)
 {
  	float aspect = (float) resolution.x / (float) resolution.y;
@@ -86,8 +92,15 @@ void OpenGLSkeletonRenderer::drawFrame(Camera &camera)
         glLoadIdentity();
 	glMultMatrixf(camera.getModelViewMatrix().m);
 
+        // enable depth test
+        glEnable(GL_DEPTH_TEST);
+
         for (std::vector<const animation::SkeletonPose *>::iterator it = 
                         m_skeletons.begin(); it != m_skeletons.end(); ++it) {
+                render(*(*it));
+        }
+        for (std::vector<const animation::Box *>::iterator it = 
+                        m_boxes.begin(); it != m_boxes.end(); ++it) {
                 render(*(*it));
         } 
 }
@@ -131,6 +144,59 @@ const animation::Joint &joint, const animation::SkeletonPose &skeletonPose) cons
 	}
 
 	glPopMatrix();
+}
+
+void OpenGLSkeletonRenderer::render(const animation::Box &box) const
+{
+        glPushMatrix();
+        
+        math::Vec3f loc = box.getLocation();
+        glTranslatef(loc.x, loc.y, loc.z);
+
+        math::Vec3f vs[8];
+        for (int i=0; i<8; ++i) {
+                vs[i] = box.getVertex(i);
+        }
+        glBegin(GL_QUADS);
+                // front: 0,1,3,2
+                glColor3f(0.0f, 0.0f, 1.0f); // color blue 
+                glVertex3f(vs[0].x, vs[0].y, vs[0].z);
+                glVertex3f(vs[1].x, vs[1].y, vs[1].z);
+                glVertex3f(vs[3].x, vs[3].y, vs[3].z); 
+                glVertex3f(vs[2].x, vs[2].y, vs[2].z);
+                // back: 4,5,7,6
+                glColor3f(0.0f, 0.0f, 1.0f); // color blue 
+                glVertex3f(vs[4].x, vs[4].y, vs[4].z);
+                glVertex3f(vs[5].x, vs[5].y, vs[5].z);
+                glVertex3f(vs[7].x, vs[7].y, vs[7].z); 
+                glVertex3f(vs[6].x, vs[6].y, vs[6].z); 
+                // right: 1,3,7,5
+                glColor3f(1.0f, 0.0f, 0.0f); // color red 
+                glVertex3f(vs[1].x, vs[1].y, vs[1].z);
+                glVertex3f(vs[3].x, vs[3].y, vs[3].z);
+                glVertex3f(vs[7].x, vs[7].y, vs[7].z); 
+                glVertex3f(vs[5].x, vs[5].y, vs[5].z); 
+                // left: 0,2,6,4
+                glColor3f(1.0f, 0.0f, 0.0f); // color red 
+                glVertex3f(vs[0].x, vs[0].y, vs[0].z);
+                glVertex3f(vs[2].x, vs[2].y, vs[2].z);
+                glVertex3f(vs[6].x, vs[6].y, vs[6].z); 
+                glVertex3f(vs[4].x, vs[4].y, vs[4].z); 
+                // top: 0,1,5,4
+                glColor3f(0.0f, 1.0f, 0.0f); // color green 
+                glVertex3f(vs[0].x, vs[0].y, vs[0].z);
+                glVertex3f(vs[1].x, vs[1].y, vs[1].z);
+                glVertex3f(vs[5].x, vs[5].y, vs[5].z); 
+                glVertex3f(vs[4].x, vs[4].y, vs[4].z); 
+                // bottom: 2,3,7,6
+                glColor3f(0.0f, 1.0f, 0.0f); // color green 
+                glVertex3f(vs[2].x, vs[2].y, vs[2].z);
+                glVertex3f(vs[3].x, vs[3].y, vs[3].z);
+                glVertex3f(vs[7].x, vs[7].y, vs[7].z); 
+                glVertex3f(vs[6].x, vs[6].y, vs[6].z); 
+        glEnd();
+
+        glPopMatrix();
 }
 
 void OpenGLSkeletonRenderer::setPerspectiveProjection(float fovy, float _near, float _far)

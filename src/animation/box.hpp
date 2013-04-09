@@ -12,17 +12,28 @@ public:
 
         // setters and getters
         void setId(unsigned int id){ m_id = id; }
-        unsigned int getId(){ return m_id; }
+        unsigned int getId() const { return m_id; }
 
         void setMass(float mass){ m_mass = mass; }
-        float getMass(){ return m_mass; }
+        float getMass() const { return m_mass; }
 
-        void setEdge(int i, const math::Vec3f &pa, const math::Vec3f &pb);
-        void getEdge(int i, math::Vec3f &pa, math::Vec3f &pb);
+        void setLocation(const math::Vec3f &location);
+        math::Vec3f getLocation() const;
+
+        /**
+         * Set vertex with index 0-7
+         */
+        void setVertex(int i, const math::Vec3f &v);
+        
+        /**
+         * Get vertex with index 0-7
+         */
+        math::Vec3f getVertex(int i) const;
 
 private:
         unsigned int m_id;
-        math::Vec3f m_edges[12][2];
+        math::Vec3f m_vertices[8];
+        math::Vec3f m_location;
         float m_mass;
 };
 

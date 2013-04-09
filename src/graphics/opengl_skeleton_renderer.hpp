@@ -10,6 +10,7 @@
 
 namespace skeletor {
 namespace animation {
+class Box;
 class SkeletonPose;
 class Skeleton;
 class Joint;
@@ -31,6 +32,8 @@ public:
         
         void addSkeleton(const animation::SkeletonPose &skeleton);
 
+        void addBox(const animation::Box &box);
+
         void onResize(const math::Vec2i &resolution);
         
         void swapBuffers();
@@ -42,6 +45,9 @@ public:
 private:
         /** \brief Vector of skeletons that are drawn */
         std::vector<const animation::SkeletonPose *> m_skeletons;
+
+        /** \brief Vector of boxes that are drawn */
+        std::vector<const animation::Box *> m_boxes;
 
         /** \brief OpenGL projection matrix. */
         math::Mat4x4f m_projectionMatrix;
@@ -61,6 +67,13 @@ private:
 	 * @param skeleton pose.
          */
         void render(const animation::SkeletonPose &skeletonPose) const;
+
+        /**
+         * Renders the box.
+         *
+         * @param box.
+         */
+        void render(const animation::Box &box) const;
 
         /**
 	 * Helper function to set the projection matrix (perspective).
