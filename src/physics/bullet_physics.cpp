@@ -61,6 +61,12 @@ btCollisionObject* BulletPhysics::getCollisionObject(unsigned int id)
         return m_bodyMap[id];
 }
 
+void BulletPhysics::stepSimulation(float timeStep, int maxSubSteps,
+                            float fixedTimeStep)
+{
+        m_dynamicsWorld->stepSimulation(timeStep, maxSubSteps, fixedTimeStep);
+}
+
 void BulletPhysics::createUniqueBox(unsigned int id,
                                     const math::Vec3f &location,
                                     float edge, float mass)

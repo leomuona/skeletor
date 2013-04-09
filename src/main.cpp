@@ -100,11 +100,23 @@ int main()
 
         bp.initPhysics();
         bp.createUniqueBox(1, math::Vec3f(5, -5, 5), 10, 0);
-        btCollisionObject *btBox = bp.getCollisionObject(1);
-        animation::Box *box = new animation::Box(1, 0);
-        physics::BulletObjectsConverter::convertBox(btBox, box);
-        sr.addBox(*box);
+        btCollisionObject *btFloorBox = bp.getCollisionObject(1);
+        animation::Box *floorBox = new animation::Box(1, 0);
+        physics::BulletObjectsConverter::convertBox(btFloorBox, floorBox);
+        sr.addBox(*floorBox);
 
+        bp.createUniqueBox(2, math::Vec3f(7, 10, 7), 2, 10.f);
+        btCollisionObject *btTestBox1 = bp.getCollisionObject(2);
+        animation::Box *testBox1 = new animation::Box(2, 10.f);
+        physics::BulletObjectsConverter::convertBox(btTestBox1, testBox1);
+        sr.addBox(*testBox1);
+
+        bp.createUniqueBox(3, math::Vec3f(4, 5, 5), 2, 10.f);
+        btCollisionObject *btTestBox2 = bp.getCollisionObject(3);
+        animation::Box *testBox2 = new animation::Box(3, 10.f);
+        physics::BulletObjectsConverter::convertBox(btTestBox2, testBox2);
+        sr.addBox(*testBox2);
+         
 	bool running = true;
 	float dt;
 	float total_time = 0;
@@ -116,6 +128,11 @@ int main()
 		last_step = SDL_GetTicks();
 
 		pose.apply(total_time);
+                
+                // simulate physics
+                bp.stepSimulation(dt);
+                physics::BulletObjectsConverter::convertBox(btTestBox1, testBox1);
+                physics::BulletObjectsConverter::convertBox(btTestBox2, testBox2);
 
 		// set camera motion to zero.
 		mousemotion.setZero();
@@ -133,7 +150,9 @@ int main()
 		sr.swapBuffers();
 	}
 
-        delete box;
+        delete floorBox;
+        delete testBox1;
+        delete testBox2;
 
         return 0;
 }

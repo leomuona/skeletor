@@ -2,6 +2,7 @@
 #define BOX_HPP
 
 #include "math/vec3.hpp"
+#include "math/mat4x4.hpp"
 
 namespace skeletor {
 namespace animation {
@@ -30,10 +31,19 @@ public:
          */
         math::Vec3f getVertex(int i) const;
 
+        /**
+         * MultMatrix includes location and rotation and can be given to
+         * OpenGL.
+         *
+         * @param matrix multication matrix
+         */
+        void setMultMatrix(const math::Mat4x4f &matrix);
+        math::Mat4x4f getMultMatrix() const;
+
 private:
         unsigned int m_id;
         math::Vec3f m_vertices[8];
-        math::Vec3f m_location;
+        math::Mat4x4f m_matrix;
         float m_mass;
 };
 

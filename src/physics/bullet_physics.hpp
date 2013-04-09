@@ -44,6 +44,18 @@ public:
                              float edge, float mass);
 
         btCollisionObject* getCollisionObject(unsigned int id);
+
+        /**
+         * Proceed simulation over timeStep.
+         * Will do bunch of substeps in order of fixedTimeStep.
+         *
+         * @param timeStep how long the simulation step should last.
+         * @param maxSubSteps maximum number of substeps, 0 = disable subdividing.
+         * @param fixedTimeStep the delta time of substeps.
+         */
+        void stepSimulation(float timeStep, int maxSubSteps = 1,
+                            float fixedTimeStep = (1.f/60.f));
+
 private:
         /**
          * Holds default collision configuration setup for memory and

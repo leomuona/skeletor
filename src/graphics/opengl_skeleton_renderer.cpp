@@ -150,8 +150,8 @@ void OpenGLSkeletonRenderer::render(const animation::Box &box) const
 {
         glPushMatrix();
         
-        math::Vec3f loc = box.getLocation();
-        glTranslatef(loc.x, loc.y, loc.z);
+        math::Mat4x4f matrix = box.getMultMatrix();
+        glMultMatrixf((GLfloat *) matrix.m);
 
         math::Vec3f vs[8];
         for (int i=0; i<8; ++i) {
