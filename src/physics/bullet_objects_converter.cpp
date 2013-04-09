@@ -13,22 +13,26 @@ void BulletObjectsConverter::convertBox(btCollisionObject *obj, animation::Box *
         if (body) {
                 float mass = body->getInvMass();
                 target->setMass(mass);
+                btTransform bodyTransform = body->getCenterOfMassTransform();
+                btVector3 btOrigin = bodyTransform.getOrigin();
+                math::Vec3f loc;
+                loc.x = btOrigin.getX();
+                loc.y = btOrigin.getY();
+                loc.z = btOrigin.getZ();
+                target->setLocation(loc);
         } 
 
         // set edges
         btBoxShape *shape = static_cast<btBoxShape*>(obj->getCollisionShape());
         if (shape) {
-                btVector3 pa, pb;
-                math::Vec3f mpa, mpb;
-                for (int i = 0; i < 12; ++i) {
-                        shape->getEdge(i, pa, pb);
-                        mpa.x = pa.getX();
-                        mpa.y = pa.getY();
-                        mpa.z = pa.getZ();
-                        mpb.x = pb.getX();
-                        mpb.y = pb.getY();
-                        mpb.z = pb.getZ();
-                        target->setEdge(i, mpa, mpb);
+                btVector3 btv;
+                math::Vec3f mv;
+                for (int i = 0; i < 8; ++i) {
+                        shape->getVertex(i, btv);
+                        mv.x = btv.getX();
+                        mv.y = btv.getY();
+                        mv.z = btv.getZ();
+                        target->setVertex(i, mv);
                 }
         }
 }

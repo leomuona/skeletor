@@ -9,6 +9,7 @@ namespace skeletor {
 
 namespace animation {
 class SkeletonPose;
+class Box;
 }; // namespace animation
 
 namespace graphics {
@@ -34,6 +35,11 @@ public:
          * Add a skeleton to skeleton-vector, that is rendered.
          */
         virtual void addSkeleton(const animation::SkeletonPose &skeleton) = 0;
+
+        /**
+         * Add box for rendering.
+         */
+        virtual void addBox(const animation::Box &box) = 0;
 
         /**
          * Draw a frame.

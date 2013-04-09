@@ -9,16 +9,24 @@ Box::Box(unsigned int id, float mass)
         m_mass = mass;
 }
 
-void Box::setEdge(int i, const math::Vec3f &pa, const math::Vec3f &pb)
+void Box::setLocation(const math::Vec3f &location)
 {
-        m_edges[i][0] = pa;
-        m_edges[i][1] = pb;
+        m_location = location;
 }
 
-void Box::getEdge(int i, math::Vec3f &pa, math::Vec3f &pb)
+math::Vec3f Box::getLocation() const
 {
-        pa = m_edges[i][0];
-        pb = m_edges[i][1];
+        return m_location;
+}
+
+void Box::setVertex(int i, const math::Vec3f &v)
+{
+        m_vertices[i] = v;
+}
+
+math::Vec3f Box::getVertex(int i) const
+{
+        return m_vertices[i];
 }
 
 }; // namespace animation
