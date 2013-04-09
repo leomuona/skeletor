@@ -2,6 +2,7 @@
 
 #include "animation/box.hpp"
 #include "math/vec3.hpp"
+#include "math/mat4x4.hpp"
 #include "btBulletDynamicsCommon.h"
 
 namespace skeletor {
@@ -11,15 +12,19 @@ void BulletObjectsConverter::convertBox(btCollisionObject *obj, animation::Box *
 {
         btRigidBody *body = btRigidBody::upcast(obj);
         if (body) {
+                // mass
                 float mass = body->getInvMass();
                 target->setMass(mass);
+                // location and rotation matrix
                 btTransform bodyTransform;
-                body->getMotionState()->getWorldTransform(bodyTransform);                           btVector3 btOrigin = bodyTransform.getOrigin();
-                math::Vec3f loc;
-                loc.x = btOrigin.getX();
-                loc.y = btOrigin.getY();
-                loc.z = btOrigin.getZ();
-                target->setLocation(loc);
+                body->getMotionState()->getWorldTransform(bodyTransform);
+                math::Mat4x4f mat;
+                btScalar t_mat[16];
+                bodyTransform.getOpenGLMatrix(t_mat);
+                for (int i=0; i<16; ++i) {
+                        mat.m[i] = (float) t_mat[i];
+                }
+                target->setMultMatrix(mat);
         } 
 
         // set edges
