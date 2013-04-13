@@ -1,8 +1,9 @@
 #ifndef SKELETON_POSE_HPP
 #define SKELETON_POSE_HPP
 
-#include "math/mat4x4.hpp"
 #include "animation/skeleton.hpp"
+#include "math/mat4x4.hpp"
+#include "player.hpp"
 
 #include <map>
 
@@ -24,14 +25,24 @@ private:
 	// skeleton, includes num of joints
 	Skeleton* m_skeleton;
 
+	// Player controlling this skeleton
+	// TODO: make generic Character class.
+	Player *m_player;
+
 	// local joint poses, as many as num of skeleton's joints
 	std::map<const Joint *, math::Mat4x4f> m_localPoses;
 
 public:
+	SkeletonPose();
+
 	Skeleton &getSkeleton();
 	const Skeleton &getSkeleton() const;
 
+	Player *getPlayer();
+	const Player *getPlayer() const;
+
 	void setSkeleton(Skeleton *skeleton);
+	void setPlayer(Player *player);
 
 	/**
 	 * Gets the transformation for the given joint.
@@ -61,9 +72,24 @@ inline const Skeleton &SkeletonPose::getSkeleton() const
 	return *m_skeleton;
 }
 
+inline Player *SkeletonPose::getPlayer()
+{
+	return m_player;
+}
+
+inline const Player *SkeletonPose::getPlayer() const
+{
+	return m_player;
+}
+
 inline void SkeletonPose::setSkeleton(Skeleton *skeleton)
 {
 	m_skeleton = skeleton;
+}
+
+inline void SkeletonPose::setPlayer(Player *player)
+{
+	m_player = player;
 }
 
 }; // namespace animation

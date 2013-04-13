@@ -3,6 +3,12 @@
 namespace skeletor {
 namespace animation {
 
+SkeletonPose::SkeletonPose()
+	: m_skeleton(NULL)
+	, m_player(NULL)
+{
+}
+
 math::Mat4x4f SkeletonPose::getTransform(const Joint *joint) const
 {
 	std::map<const Joint *, math::Mat4x4f>::const_iterator it;

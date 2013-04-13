@@ -126,6 +126,7 @@ int main()
 
 	animation::SkeletonPose pose;
 	pose.setSkeleton(skel);
+	pose.setPlayer(&player);
 
 	physics::BulletPhysics bp;
 

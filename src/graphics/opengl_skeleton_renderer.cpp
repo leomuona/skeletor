@@ -95,10 +95,20 @@ void OpenGLSkeletonRenderer::drawFrame(const Camera &camera)
         glLoadIdentity();
 	glMultMatrixf(camera.getModelViewMatrix().m);
 
-        for (std::vector<const animation::SkeletonPose *>::iterator it = 
-                        m_skeletons.begin(); it != m_skeletons.end(); ++it) {
-                render(*(*it));
-        }
+	std::vector<const animation::SkeletonPose *>::const_iterator it;
+	for (it = m_skeletons.begin(); it != m_skeletons.end(); ++it) {
+		const animation::SkeletonPose *pose = *it;
+		const Player *player = pose->getPlayer();
+		if (player) {
+			glPushMatrix();
+			glMultMatrixf(player->getTransformation().m);
+			render(*pose);
+			glPopMatrix();
+		} else {
+			render(*pose);
+		}
+	}
+
         for (std::vector<const animation::Box *>::iterator it = 
                         m_boxes.begin(); it != m_boxes.end(); ++it) {
                 render(*(*it));
