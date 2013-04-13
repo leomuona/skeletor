@@ -9,6 +9,7 @@
 #include "math/vec2.hpp"
 #include "physics/bullet_physics.hpp"
 #include "physics/bullet_objects_converter.hpp"
+#include "player.hpp"
 
 #include "btBulletDynamicsCommon.h"
 #include <SDL/SDL.h>
@@ -17,7 +18,10 @@ bool mouseLeft = false;
 bool mouseRight = false;
 skeletor::math::Vec2f mousemotion;
 skeletor::graphics::OpenGLSkeletonRenderer sr;
-skeletor::graphics::Camera camera;
+skeletor::Player player(skeletor::math::Vec3f(0, 0, 0), skeletor::math::Vec3f(1, 0, 0));
+
+// wasd key states
+bool wasd[4] = { false, false, false, false };
 
 void onMouseButtonDown(int x, int y)
 {
@@ -47,11 +51,30 @@ bool onEvent(const SDL_Event &event)
 	case SDL_KEYDOWN:
 		switch (event.key.keysym.sym) {
 		case SDLK_ESCAPE: return false;
+		case SDLK_w: wasd[0] = true; break;
+		case SDLK_a: wasd[1] = true; break;
+		case SDLK_s: wasd[2] = true; break;
+		case SDLK_d: wasd[3] = true; break;
+		default:break;
+		}
+		break;
+	case SDL_KEYUP:
+		switch (event.key.keysym.sym) {
+		case SDLK_w: wasd[0] = false; break;
+		case SDLK_a: wasd[1] = false; break;
+		case SDLK_s: wasd[2] = false; break;
+		case SDLK_d: wasd[3] = false; break;
 		default:break;
 		}
 		break;
 	case SDL_MOUSEBUTTONDOWN:
 		switch (event.button.button) {
+		case SDL_BUTTON_WHEELDOWN:
+			player.onCameraZoom(1.1f);
+			break;
+		case SDL_BUTTON_WHEELUP:
+			player.onCameraZoom(0.9f);
+			break;
 		case SDL_BUTTON_LEFT:
 			mouseLeft = true;
 			onMouseButtonDown(event.button.x, event.button.y);
@@ -80,6 +103,16 @@ bool onEvent(const SDL_Event &event)
 		break;
 	}
 	return true;
+}
+
+skeletor::math::Vec2f getMovementVector()
+{
+	skeletor::math::Vec2f movementVector;
+	movementVector.x += (wasd[1]) ?  1 : 0;
+	movementVector.x += (wasd[3]) ? -1 : 0;
+	movementVector.y += (wasd[0]) ?  1 : 0;
+	movementVector.y += (wasd[2]) ? -1 : 0;
+	return movementVector;
 }
 
 int main()
@@ -143,11 +176,13 @@ int main()
 			running &= onEvent(event);
 		}
 
+		player.move(getMovementVector(), dt);
+
 		// handle camera motion.
 		mousemotion *= DEGREES_2_RADIANS;
-		camera.onCameraMotion(mousemotion);
+		player.onCameraMotion(mousemotion);
 
-		sr.drawFrame(camera);
+		sr.drawFrame(player.getCamera());
 		sr.swapBuffers();
 	}
 
