@@ -52,6 +52,9 @@ const math::Vec2i &dimension, int bpp, bool fs, const std::string &title)
         // init clear color
         glClearColor(1.f, 1.f, 1.f, 1.f);
 
+        // enable depth test
+        glEnable(GL_DEPTH_TEST);
+
         GLenum error = glGetError();
         if (error != GL_NO_ERROR) {
                 std::string errormsg = "OpenGL initialization failed. ";
@@ -91,9 +94,6 @@ void OpenGLSkeletonRenderer::drawFrame(Camera &camera)
 
         glLoadIdentity();
 	glMultMatrixf(camera.getModelViewMatrix().m);
-
-        // enable depth test
-        glEnable(GL_DEPTH_TEST);
 
         for (std::vector<const animation::SkeletonPose *>::iterator it = 
                         m_skeletons.begin(); it != m_skeletons.end(); ++it) {
