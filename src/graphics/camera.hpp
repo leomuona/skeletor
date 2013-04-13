@@ -14,6 +14,10 @@ private:
         math::Vec3f m_up;
         math::Vec3f m_lookAt;
 
+	const math::Vec3f xAxis;
+	const math::Vec3f yAxis;
+	const math::Vec3f zAxis;
+
 	math::Mat4x4f m_modelview;
 
 public:

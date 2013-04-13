@@ -6,6 +6,9 @@ namespace skeletor {
 namespace graphics {
 
 Camera::Camera()
+	: xAxis(1, 0, 0)
+	, yAxis(0, 1, 0)
+	, zAxis(0, 0, 1)
 {
         m_position = math::Vec3f(15.f, 0.f, 15.f);
         m_up = math::Vec3f(0.f, 1.f ,0.f);
@@ -25,7 +28,11 @@ void Camera::onCameraMotion(const math::Vec2f &motion)
 	m_up.normalize();
 
 	// vertical motion
-	pos = rotatePointAroundAxis(pos, m_up, motion.x);
+	pos = rotatePointAroundAxis(pos, yAxis, motion.x);
+
+	// automagic correction to m_up
+	math::Vec3f diff = yAxis - m_up;
+	m_up += diff * 0.05;
 
 	m_position = pos + m_lookAt;
 
