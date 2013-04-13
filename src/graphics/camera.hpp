@@ -14,6 +14,9 @@ private:
         math::Vec3f m_up;
         math::Vec3f m_lookAt;
 
+	/** \brief magical correction amount. */
+	const float m_yUpCorrection;
+
 	const math::Vec3f xAxis;
 	const math::Vec3f yAxis;
 	const math::Vec3f zAxis;
@@ -29,8 +32,9 @@ public:
 	 * On camera motion event.
 	 *
 	 * @param amount of motion.
+	 * @param delta time
 	 */
-	void onCameraMotion(const math::Vec2f &motion);
+	void onCameraMotion(const math::Vec2f &motion, float dt);
 
 	/**
 	 * On camera zoom event.

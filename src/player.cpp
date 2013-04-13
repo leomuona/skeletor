@@ -37,9 +37,9 @@ void Player::move(const math::Vec2f &movementVector, float delta)
 	m_camera.setPosition(m_camera.getPosition() + diff);
 }
 
-void Player::onCameraMotion(const math::Vec2f &motion)
+void Player::onCameraMotion(const math::Vec2f &motion, float dt)
 {
-	m_camera.onCameraMotion(motion);
+	m_camera.onCameraMotion(motion, dt);
 
 	m_direction = -m_camera.getPosition() + m_camera.getLookAt();
 	m_direction.normalize();

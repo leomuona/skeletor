@@ -6,7 +6,8 @@ namespace skeletor {
 namespace graphics {
 
 Camera::Camera()
-	: xAxis(1, 0, 0)
+	: m_yUpCorrection(2.5f)
+	, xAxis(1, 0, 0)
 	, yAxis(0, 1, 0)
 	, zAxis(0, 0, 1)
 {
@@ -15,7 +16,7 @@ Camera::Camera()
         m_lookAt = math::Vec3f(0.f, 5.f, 0.f);
 }
 
-void Camera::onCameraMotion(const math::Vec2f &motion)
+void Camera::onCameraMotion(const math::Vec2f &motion, float dt)
 {
 	math::Vec3f pos   = m_position - m_lookAt;
 	math::Vec3f cross = pos.cross(m_up);
@@ -32,7 +33,7 @@ void Camera::onCameraMotion(const math::Vec2f &motion)
 
 	// automagic correction to m_up
 	math::Vec3f diff = yAxis - m_up;
-	m_up += diff * 0.05;
+	m_up += diff * m_yUpCorrection * dt;
 
 	m_position = pos + m_lookAt;
 

@@ -181,7 +181,7 @@ int main()
 
 		// handle camera motion.
 		mousemotion *= DEGREES_2_RADIANS;
-		player.onCameraMotion(mousemotion);
+		player.onCameraMotion(mousemotion, dt);
 
 		sr.drawFrame(player.getCamera());
 		sr.swapBuffers();

@@ -64,7 +64,7 @@ public:
 	 * This function calculates how this affects the position of the player.
 	 *
 	 * @param movement vector.
-	 * @param delta
+	 * @param delta time
 	 */
 	void move(const math::Vec2f &movementVector, float delta);
 
@@ -72,8 +72,9 @@ public:
 	 * onCamera motion event
 	 *
 	 * @param amount of motion.
+	 * @param delta time
 	 */
-	void onCameraMotion(const math::Vec2f &motion);
+	void onCameraMotion(const math::Vec2f &motion, float dt);
 
 	/**
 	 * Zoom in or out
