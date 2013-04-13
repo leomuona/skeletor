@@ -88,7 +88,7 @@ void OpenGLSkeletonRenderer::onResize(const math::Vec2i &resolution)
 	glLoadIdentity(); 
 }
 
-void OpenGLSkeletonRenderer::drawFrame(Camera &camera)
+void OpenGLSkeletonRenderer::drawFrame(const Camera &camera)
 {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

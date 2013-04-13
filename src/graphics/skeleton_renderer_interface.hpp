@@ -44,7 +44,7 @@ public:
         /**
          * Draw a frame.
          */
-        virtual void drawFrame(Camera &camera) = 0;
+        virtual void drawFrame(const Camera &camera) = 0;
 
         /**
          * Clean up before exiting program.

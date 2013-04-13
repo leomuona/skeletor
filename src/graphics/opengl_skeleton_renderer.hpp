@@ -38,7 +38,7 @@ public:
         
         void swapBuffers();
 
-        void drawFrame(Camera &camera);
+        void drawFrame(const Camera &camera);
 
         void cleanUp();
 
