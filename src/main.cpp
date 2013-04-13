@@ -18,7 +18,6 @@ bool mouseRight = false;
 skeletor::math::Vec2f mousemotion;
 skeletor::graphics::OpenGLSkeletonRenderer sr;
 skeletor::graphics::Camera camera;
-skeletor::physics::BulletPhysics bp;
 
 void onMouseButtonDown(int x, int y)
 {
@@ -95,6 +94,8 @@ int main()
 	animation::SkeletonPose pose;
 	pose.setSkeleton(skel);
 
+	physics::BulletPhysics bp;
+
         sr.initRenderer(math::Vec2i(800, 600), 32, false, "skeletor");
 	sr.addSkeleton(pose);
 
@@ -105,13 +106,13 @@ int main()
         physics::BulletObjectsConverter::convertBox(btFloorBox, floorBox);
         sr.addBox(*floorBox);
 
-        bp.createUniqueBox(2, math::Vec3f(7, 10, 7), 2, 10.f);
+        bp.createUniqueBox(2, math::Vec3f(4, 10, -7), 2, 10.f);
         btCollisionObject *btTestBox1 = bp.getCollisionObject(2);
         animation::Box *testBox1 = new animation::Box(2, 10.f);
         physics::BulletObjectsConverter::convertBox(btTestBox1, testBox1);
         sr.addBox(*testBox1);
 
-        bp.createUniqueBox(3, math::Vec3f(4, 5, 5), 2, 10.f);
+        bp.createUniqueBox(3, math::Vec3f(4, 5, -5.15f), 2, 10.f);
         btCollisionObject *btTestBox2 = bp.getCollisionObject(3);
         animation::Box *testBox2 = new animation::Box(3, 10.f);
         physics::BulletObjectsConverter::convertBox(btTestBox2, testBox2);
