@@ -255,8 +255,13 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anims, Skeleton &skel
 	// now we can merge the map into single transformation.
 	std::map<std::string, JointFrame>::iterator it = keyframes.begin();
 	while (it != keyframes.end()) {
-		Joint &joint = skeleton.getJoint(it->first);
-		std::vector<KeyFrame> &j_keyframes = joint.getKeyFrames();
+		Joint *joint = skeleton.getJoint(it->first);
+		if (joint == NULL) {
+			std::cout << "No joint with id: " << it->first << std::endl;
+			++it;
+			continue;
+		}
+		std::vector<KeyFrame> &j_keyframes = joint->getKeyFrames();
 
 		size_t size = it->second.getSize();
 		for (unsigned int i=0; i<size; ++i) {

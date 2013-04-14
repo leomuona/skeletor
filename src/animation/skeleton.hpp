@@ -37,8 +37,8 @@ public:
 	 *
 	 * @return joint
 	 */
-	Joint &getJoint(const std::string &id);
-	const Joint &getJoint(const std::string &id) const;
+	Joint *getJoint(const std::string &id);
+	const Joint *getJoint(const std::string &id) const;
 
 	/**
 	 * Overloaded << ostream operator.
@@ -80,16 +80,18 @@ inline const Joint &Skeleton::getRootJoint() const
 	return *m_root;
 }
 
-inline Joint &Skeleton::getJoint(const std::string &id)
+inline Joint *Skeleton::getJoint(const std::string &id)
 {
-	return *m_joints[id];
+	std::map<std::string, Joint *>::iterator it;
+	it = m_joints.find(id);
+	return (it == m_joints.end()) ? NULL : it->second;
 }
 
-inline const Joint &Skeleton::getJoint(const std::string &id) const
+inline const Joint *Skeleton::getJoint(const std::string &id) const
 {
 	std::map<std::string, Joint *>::const_iterator it;
 	it = m_joints.find(id);
-	return *it->second;
+	return (it == m_joints.end()) ? NULL : it->second;
 }
 
 inline std::ostream &operator<<(std::ostream &os, const Skeleton &s)
