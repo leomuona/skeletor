@@ -135,19 +135,19 @@ int main()
 
         bp.initPhysics();
         bp.createUniqueBox(1, math::Vec3f(5, -5, 5), 10, 0);
-        btCollisionObject *btFloorBox = bp.getCollisionObject(1);
+        btCollisionObject *btFloorBox = bp.getBoxCollisionObject(1);
         animation::Box *floorBox = new animation::Box(1, 0);
         physics::BulletObjectsConverter::convertBox(btFloorBox, floorBox);
         sr.addBox(*floorBox);
 
         bp.createUniqueBox(2, math::Vec3f(4, 10, -7), 2, 10.f);
-        btCollisionObject *btTestBox1 = bp.getCollisionObject(2);
+        btCollisionObject *btTestBox1 = bp.getBoxCollisionObject(2);
         animation::Box *testBox1 = new animation::Box(2, 10.f);
         physics::BulletObjectsConverter::convertBox(btTestBox1, testBox1);
         sr.addBox(*testBox1);
 
         bp.createUniqueBox(3, math::Vec3f(4, 5, -5.15f), 2, 10.f);
-        btCollisionObject *btTestBox2 = bp.getCollisionObject(3);
+        btCollisionObject *btTestBox2 = bp.getBoxCollisionObject(3);
         animation::Box *testBox2 = new animation::Box(3, 10.f);
         physics::BulletObjectsConverter::convertBox(btTestBox2, testBox2);
         sr.addBox(*testBox2);
