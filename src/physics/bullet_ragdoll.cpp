@@ -116,7 +116,7 @@ void BulletRagdoll::createJointRecursively(animation::Joint *joint,
         
         matrix = ((matrix * joint->getBindPoseMatrix()) 
                   * skeletonPose->getTransform(joint));
-        animation::Joint *parent = &joint->getParent();
+        animation::Joint *parent = joint->getParent();
         if (parent != NULL) {
                 // Calculate the length of bone
                 math::Mat4x4f t = joint->getLocalMatrix();
