@@ -1,5 +1,8 @@
 #include "physics/bullet_physics.hpp"
 
+#include "animation/skeleton_pose.hpp"
+#include "physics/bullet_ragdoll.hpp"
+
 #include "btBulletDynamicsCommon.h"
 
 namespace skeletor {
@@ -39,7 +42,7 @@ void BulletPhysics::exitPhysics()
                 m_dynamicsWorld->removeCollisionObject(obj);
                 delete obj;
         }
-        m_bodyMap.clear();
+        m_boxes.clear();
 
         // search and destroy collisionshapes
         for (int i=0; i<m_collisionShapes.size(); ++i) {
@@ -56,9 +59,15 @@ void BulletPhysics::exitPhysics()
         delete m_collisionConf;
 }
 
-btCollisionObject* BulletPhysics::getCollisionObject(unsigned int id)
+void BulletPhysics::createSkeleton(unsigned int id,
+                                   const animation::SkeletonPose &skeletonPose)
 {
-        return m_bodyMap[id];
+
+}
+
+btCollisionObject* BulletPhysics::getBoxCollisionObject(unsigned int id)
+{
+        return m_boxes[id];
 }
 
 void BulletPhysics::stepSimulation(float timeStep, int maxSubSteps,
@@ -96,7 +105,7 @@ void BulletPhysics::createUniqueBox(unsigned int id,
         btRigidBody *body = new btRigidBody(rbInfo);
 
         m_dynamicsWorld->addRigidBody(body);
-        m_bodyMap[id] = body;
+        m_boxes[id] = body;
 }
 
 }; // namespace physics

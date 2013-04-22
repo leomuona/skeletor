@@ -16,7 +16,12 @@ class btDiscreteDynamicsWorld;
 class btSequentialImpulseConstraintSolver;
 
 namespace skeletor {
+namespace animation {
+class SkeletonPose;
+}; // namespace animation
 namespace physics {
+
+class BulletRagdoll;
 
 class BulletPhysics : public PhysicsInterface
 {
@@ -43,7 +48,22 @@ public:
         void createUniqueBox(unsigned int id, const math::Vec3f &location,
                              float edge, float mass);
 
-        btCollisionObject* getCollisionObject(unsigned int id);
+        /**
+         * Create skeleton with given identifier.
+         * 
+         * @param id - identifier
+         * @param skeletonPose - skeleton pose that is created.
+         */
+        void createSkeleton(unsigned int id,
+                            const animation::SkeletonPose &skeletonPose);
+        
+        /**
+         * Return collision object of given id.
+         *
+         * @param id identifier of collision object
+         * @return btCollisionObject* pointer to collision object
+         */
+        btCollisionObject* getBoxCollisionObject(unsigned int id);
 
         /**
          * Proceed simulation over timeStep.
@@ -89,9 +109,14 @@ private:
         std::vector<btCollisionShape*> m_collisionShapes;
 
         /**
-         * We need a body map, to keep track of body objects.
+         * We need a body map, to keep track of box bodies.
          */
-        std::map<unsigned int, btCollisionObject*> m_bodyMap;
+        std::map<unsigned int, btCollisionObject*> m_boxes;
+
+        /**
+         * Map for bullet ragdolls.
+         */
+        std::map<unsigned int, BulletRagdoll*> m_ragdolls;
 };
 
 }; // namespace physics
