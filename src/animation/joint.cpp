@@ -61,6 +61,18 @@ const std::vector<KeyFrame> &Joint::getKeyFrames() const
 
 std::pair<KeyFrame, KeyFrame> Joint::find(float time) const
 {
+	if (isnan(time)) {
+		if (m_keyframes.size() == 1) {
+			// static pose.
+			return std::pair<KeyFrame, KeyFrame>(m_keyframes[0],
+			                                     m_keyframes[0]);
+		} else {
+			return std::pair<KeyFrame, KeyFrame>(
+				KeyFrame(0, math::Mat4x4f()),
+				KeyFrame(0, math::Mat4x4f()));
+		}
+	}
+
 	float maxtime = getMaxTime();
 	if (maxtime == 0) {
 		return std::pair<KeyFrame, KeyFrame>(

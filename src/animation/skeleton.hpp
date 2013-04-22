@@ -16,7 +16,7 @@ class Skeleton
 private:
 	Joint *m_root;
 
-	// access to each joint presumably in O(1) by joints id.
+	// access to each joint presumably in O(log n) by joints id.
 	std::map<std::string, Joint *> m_joints;
 
 public:

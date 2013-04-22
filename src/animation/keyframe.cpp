@@ -32,6 +32,10 @@ math::Vec3f KeyFrame::getRotate() const
 
 KeyFrame KeyFrame::lerp(const KeyFrame &other, float time) const
 {
+	if (this->m_time == other.getTime()) {
+		return other;
+	}
+
 	// which is smaller?
 	const KeyFrame &first  = (this->m_time < other.getTime()) ? *this : other;
 	const KeyFrame &second = (this->m_time > other.getTime()) ? *this : other;
