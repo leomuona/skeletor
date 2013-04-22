@@ -2,7 +2,7 @@
 #define BULLET_RAGDOLL_HPP
 
 #include "math/mat4x4.hpp"
-#include <vector>
+#include <map>
 
 class btCollisionShape;
 class btDynamicsWorld;
@@ -33,14 +33,11 @@ public:
         btDynamicsWorld* getOwnerWorld() const;
         void setOwnerWorld(btDynamicsWorld *world);
 
-        std::vector<btCollisionShape*> getShapes() const;
-        void setShapes(std::vector<btCollisionShape*> shapes);
+        std::map<std::string, btCollisionShape*> getShapes() const;
 
-        std::vector<btRigidBody*> getBodies() const;
-        void setBodies(std::vector<btRigidBody*> bodies);
+        std::map<std::string, btRigidBody*> getBodies() const;
 
-        std::vector<btTypedConstraint*> getJoints() const;
-        void setJoints(std::vector<btTypedConstraint*> joints);
+        std::map<std::string, btTypedConstraint*> getJoints() const;
 
 private:
         unsigned int m_id;
@@ -49,9 +46,9 @@ private:
         /** bone radius, maybe changed to be bone specific in future? */
         float m_boneRadius;
 
-        std::vector<btCollisionShape*> m_shapes;
-        std::vector<btRigidBody*> m_bodies;
-        std::vector<btTypedConstraint*> m_joints;
+        std::map<std::string, btCollisionShape*> m_shapes;
+        std::map<std::string, btRigidBody*> m_bodies;
+        std::map<std::string, btTypedConstraint*> m_joints;
 
         btRigidBody* createRigidBody(float mass,
                 const btTransform &startTransform, btCollisionShape *shape);

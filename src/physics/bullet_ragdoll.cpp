@@ -28,25 +28,27 @@ BulletRagdoll::BulletRagdoll(unsigned int id, btDynamicsWorld *ownerWorld,
 
 BulletRagdoll::~BulletRagdoll()
 {
-        int i;
         // delete joints
-        for (i=0; i < m_joints.size(); ++i) {
-                m_ownerWorld->removeConstraint(m_joints[i]);
-                delete m_joints[i];
+        std::map<std::string, btTypedConstraint*>::iterator jit;
+        for (jit = m_joints.begin(); jit != m_joints.end(); ++jit) {
+                m_ownerWorld->removeConstraint(jit->second);
+                delete jit->second;
         }
         m_joints.clear();
 
         // delete bodies
-        for (i=0; i < m_bodies.size(); ++i) {
-                m_ownerWorld->removeRigidBody(m_bodies[i]);
-                delete m_bodies[i]->getMotionState();
-                delete m_bodies[i];
+        std::map<std::string, btRigidBody*>::iterator bid;
+        for (bid = m_bodies.begin(); bid != m_bodies.end(); ++bid) {
+                m_ownerWorld->removeRigidBody(bid->second);
+                delete bid->second->getMotionState();
+                delete bid->second;
         }
         m_bodies.clear();
 
         // delete shapes
-        for (i=0; i < m_shapes.size(); ++i) {
-                delete m_shapes[i];
+        std::map<std::string, btCollisionShape*>::iterator sit;
+        for (sit = m_shapes.begin(); sit != m_shapes.end(); ++sit) {
+                delete sit->second;
         }
         m_shapes.clear();
 }
@@ -71,34 +73,19 @@ void BulletRagdoll::setOwnerWorld(btDynamicsWorld *world)
         m_ownerWorld = world;
 }
 
-std::vector<btCollisionShape*> BulletRagdoll::getShapes() const
+std::map<std::string, btCollisionShape*> BulletRagdoll::getShapes() const
 {
         return m_shapes;
 }
 
-void BulletRagdoll::setShapes(std::vector<btCollisionShape*> shapes)
-{
-        m_shapes = shapes;
-}
-
-std::vector<btRigidBody*> BulletRagdoll::getBodies() const
+std::map<std::string, btRigidBody*> BulletRagdoll::getBodies() const
 {
         return m_bodies;
 }
 
-void BulletRagdoll::setBodies(std::vector<btRigidBody*> bodies)
-{
-        m_bodies = bodies;
-}
-
-std::vector<btTypedConstraint*> BulletRagdoll::getJoints() const
+std::map<std::string, btTypedConstraint*> BulletRagdoll::getJoints() const
 {
         return m_joints;
-}
-
-void BulletRagdoll::setJoints(std::vector<btTypedConstraint*> joints)
-{
-        m_joints = joints;
 }
 
 btRigidBody* BulletRagdoll::createRigidBody(float mass,
@@ -131,14 +118,15 @@ void BulletRagdoll::createJointRecursively(animation::Joint *joint,
                   * skeletonPose->getTransform(joint));
         animation::Joint *parent = &joint->getParent();
         if (parent != NULL) {
-                // calculate the length of bone
+                // Calculate the length of bone
                 math::Mat4x4f t = joint->getLocalMatrix();
                 float bonelen = std::sqrt(std::pow(t.m[12], 2)
                                         + std::pow(t.m[13], 2)
                                         + std::pow(t.m[14], 2));
                 btCapsuleShape *shape = new btCapsuleShape(m_boneRadius,
                                                            bonelen);
-                m_shapes.push_back(shape);
+                m_shapes.insert(std::pair<std::string, btCollisionShape*>(
+                                        joint->getID(), shape));
            
                 // NOTE: Maybe mass should be bone specified in future?
                 float mass = bonelen * M_PI * std::pow(m_boneRadius, 2);
@@ -147,9 +135,22 @@ void BulletRagdoll::createJointRecursively(animation::Joint *joint,
                 transform.setFromOpenGLMatrix(matrix.m);
 
                 btRigidBody *body = createRigidBody(mass, transform, shape);
-                m_bodies.push_back(body);
+                m_bodies.insert(std::pair<std::string, btRigidBody*>(
+                                        joint->getID(), body));
 
-                // TODO: connect joints.
+                // Set damping
+                body->setDamping(0.05f, 0.85f);
+
+                // Create joint constraint
+                btTransform localA, localB;
+                localA.setIdentity();
+                localB.setIdentity();
+
+                // this should be joint specific, but is hardcoded for now.
+                btConeTwistConstraint *coneC;
+                
+
+                // TODO: connecting the joints.
         }
 
         std::vector<animation::Joint*> children = joint->getChildren();
