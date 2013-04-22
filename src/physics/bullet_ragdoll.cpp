@@ -3,21 +3,27 @@
 #include "animation/skeleton_pose.hpp"
 #include "animation/skeleton.hpp"
 #include "animation/joint.hpp"
+#include "math/math.hpp"
 
 #include "btBulletDynamicsCommon.h"
+#include <cmath>
 
 namespace skeletor {
 namespace physics {
 
 BulletRagdoll::BulletRagdoll(unsigned int id, btDynamicsWorld *ownerWorld,
-                             animation::SkeletonPose *skeletonPose)
+                             animation::SkeletonPose *skeletonPose,
+                             const math::Mat4x4f &transMat)
 {
         m_id = id;
         m_ownerWorld = ownerWorld;
+        m_boneRadius = 0.05f;
+
         animation::Skeleton skeleton = skeletonPose->getSkeleton();
         animation::Joint rootJoint = skeleton.getRootJoint();
+        
         // create all joints recursively
-        createJointRecursively(&rootJoint);
+        createJointRecursively(&rootJoint, transMat, skeletonPose);
 }
 
 BulletRagdoll::~BulletRagdoll()
@@ -114,9 +120,42 @@ btRigidBody* BulletRagdoll::createRigidBody(float mass,
         return body;
 }
 
-void BulletRagdoll::createJointRecursively(animation::Joint *joint)
+void BulletRagdoll::createJointRecursively(animation::Joint *joint,
+        math::Mat4x4f matrix, animation::SkeletonPose *skeletonPose)
 {
-        // TODO: create joint and call child joints recursively.
+        if (joint == NULL) {
+                return;
+        }
+        
+        matrix = ((matrix * joint->getBindPoseMatrix()) 
+                  * skeletonPose->getTransform(joint));
+        animation::Joint *parent = &joint->getParent();
+        if (parent != NULL) {
+                // calculate the length of bone
+                math::Mat4x4f t = joint->getLocalMatrix();
+                float bonelen = std::sqrt(std::pow(t.m[12], 2)
+                                        + std::pow(t.m[13], 2)
+                                        + std::pow(t.m[14], 2));
+                btCapsuleShape *shape = new btCapsuleShape(m_boneRadius,
+                                                           bonelen);
+                m_shapes.push_back(shape);
+           
+                // NOTE: Maybe mass should be bone specified in future?
+                float mass = bonelen * M_PI * std::pow(m_boneRadius, 2);
+
+                btTransform transform;
+                transform.setFromOpenGLMatrix(matrix.m);
+
+                btRigidBody *body = createRigidBody(mass, transform, shape);
+                m_bodies.push_back(body);
+
+                // TODO: connect joints.
+        }
+
+        std::vector<animation::Joint*> children = joint->getChildren();
+        for (int i=0; i < children.size(); ++i) {
+                createJointRecursively(children[i], matrix, skeletonPose);
+        }
 }
 
 }; // namespace physics

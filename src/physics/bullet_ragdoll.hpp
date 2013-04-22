@@ -1,6 +1,7 @@
 #ifndef BULLET_RAGDOLL_HPP
 #define BULLET_RAGDOLL_HPP
 
+#include "math/mat4x4.hpp"
 #include <vector>
 
 class btCollisionShape;
@@ -22,7 +23,8 @@ class BulletRagdoll
 {
 public:
         BulletRagdoll(unsigned int id, btDynamicsWorld *ownerWorld,
-                      animation::SkeletonPose *skeletonPose);
+                      animation::SkeletonPose *skeletonPose,
+                      const math::Mat4x4f &transMat);
         ~BulletRagdoll();
 
         unsigned int getId() const;
@@ -44,13 +46,18 @@ private:
         unsigned int m_id;
         btDynamicsWorld *m_ownerWorld;
         
+        /** bone radius, maybe changed to be bone specific in future? */
+        float m_boneRadius;
+
         std::vector<btCollisionShape*> m_shapes;
         std::vector<btRigidBody*> m_bodies;
         std::vector<btTypedConstraint*> m_joints;
 
         btRigidBody* createRigidBody(float mass,
                 const btTransform &startTransform, btCollisionShape *shape);
-        void createJointRecursively(animation::Joint *joint);
+        void createJointRecursively(animation::Joint *joint,
+                                    math::Mat4x4f matrix,
+                                    animation::SkeletonPose *skeletonPose);
 };
 
 }; // namespace physics

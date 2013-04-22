@@ -58,6 +58,8 @@ public:
 	void setID(const std::string &id);
 	std::string getID() const;
 
+        Joint &getParent() const;
+
 	/**
 	 * Gives references to this joints keyframe container.
 	 *
