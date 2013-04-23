@@ -9,6 +9,7 @@
 #include <vector>
 
 namespace skeletor {
+class Player;
 namespace animation {
 class Box;
 class SkeletonPose;
@@ -30,22 +31,17 @@ public:
                 const math::Vec2i &dimension, int bpp, bool fs,
                 const std::string &title);
         
-        void addSkeleton(const animation::SkeletonPose &skeleton);
-
         void addBox(const animation::Box &box);
 
         void onResize(const math::Vec2i &resolution);
         
         void swapBuffers();
 
-        void drawFrame(const Camera &camera);
+        void drawFrame(const Camera &camera, const Player &player);
 
         void cleanUp();
 
 private:
-        /** \brief Vector of skeletons that are drawn */
-        std::vector<const animation::SkeletonPose *> m_skeletons;
-
         /** \brief Vector of boxes that are drawn */
         std::vector<const animation::Box *> m_boxes;
 
@@ -58,8 +54,7 @@ private:
         /**
          * Render a single joint of skeleton.
          */
-        void render(const animation::Joint &joint,
-	            const animation::SkeletonPose &skeletonPose) const; 
+        void render(const animation::Joint &joint, const animation::SkeletonPose &skeletonPose) const; 
 
         /**
          * Renders the skeleton pose.

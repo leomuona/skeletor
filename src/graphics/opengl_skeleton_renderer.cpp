@@ -1,5 +1,6 @@
 #include "graphics/opengl_skeleton_renderer.hpp"
 
+#include "player.hpp"
 #include "graphics/camera.hpp"
 #include "animation/box.hpp"
 #include "animation/skeleton_pose.hpp"
@@ -63,11 +64,6 @@ const math::Vec2i &dimension, int bpp, bool fs, const std::string &title)
         } 
 }
 
-void OpenGLSkeletonRenderer::addSkeleton(const animation::SkeletonPose &skeleton)
-{
-        m_skeletons.push_back(&skeleton);
-}
-
 void OpenGLSkeletonRenderer::addBox(const animation::Box &box)
 {
         m_boxes.push_back(&box);
@@ -88,26 +84,17 @@ void OpenGLSkeletonRenderer::onResize(const math::Vec2i &resolution)
 	glLoadIdentity(); 
 }
 
-void OpenGLSkeletonRenderer::drawFrame(const Camera &camera)
+void OpenGLSkeletonRenderer::drawFrame(const Camera &camera, const Player &player)
 {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glLoadIdentity();
 	glMultMatrixf(camera.getModelViewMatrix().m);
 
-	std::vector<const animation::SkeletonPose *>::const_iterator it;
-	for (it = m_skeletons.begin(); it != m_skeletons.end(); ++it) {
-		const animation::SkeletonPose *pose = *it;
-		const Player *player = pose->getPlayer();
-		if (player) {
-			glPushMatrix();
-			glMultMatrixf(player->getTransformation().m);
-			render(*pose);
-			glPopMatrix();
-		} else {
-			render(*pose);
-		}
-	}
+	glPushMatrix();
+	glMultMatrixf(player.getTransformation().m);
+	render(*player.getCurrentPose());
+	glPopMatrix();
 
         for (std::vector<const animation::Box *>::iterator it = 
                         m_boxes.begin(); it != m_boxes.end(); ++it) {

@@ -6,7 +6,7 @@
 #include <string>
 
 namespace skeletor {
-
+class Player;
 namespace animation {
 class SkeletonPose;
 class Box;
@@ -32,11 +32,6 @@ public:
         virtual void swapBuffers() = 0;
 
         /**
-         * Add a skeleton to skeleton-vector, that is rendered.
-         */
-        virtual void addSkeleton(const animation::SkeletonPose &skeleton) = 0;
-
-        /**
          * Add box for rendering.
          */
         virtual void addBox(const animation::Box &box) = 0;
@@ -44,7 +39,7 @@ public:
         /**
          * Draw a frame.
          */
-        virtual void drawFrame(const Camera &camera) = 0;
+        virtual void drawFrame(const Camera &camera, const Player &player) = 0;
 
         /**
          * Clean up before exiting program.

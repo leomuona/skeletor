@@ -47,7 +47,7 @@ struct Vec2
 		y = 0;
 	}
 
-	bool isZero() {
+	bool isZero() const {
 		return x == 0 && y == 0;
 	}
 

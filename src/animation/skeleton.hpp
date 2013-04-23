@@ -19,13 +19,16 @@ private:
 	// access to each joint presumably in O(log n) by joints id.
 	std::map<std::string, Joint *> m_joints;
 
+	// source file.
+	const std::string m_source;
+
 public:
 	/**
 	 * Contructor.
 	 *
 	 * @param root joint.
 	 */
-	Skeleton(Joint *root);
+	Skeleton(Joint *root, const std::string &source);
 
 	Joint &getRootJoint();
 	const Joint &getRootJoint() const;
@@ -39,6 +42,8 @@ public:
 	 */
 	Joint *getJoint(const std::string &id);
 	const Joint *getJoint(const std::string &id) const;
+
+	std::string getSource() const;
 
 	/**
 	 * Overloaded << ostream operator.
@@ -87,6 +92,11 @@ inline Joint &Skeleton::getRootJoint()
 inline const Joint &Skeleton::getRootJoint() const
 {
 	return *m_root;
+}
+
+inline std::string Skeleton::getSource() const
+{
+	return m_source;
 }
 
 inline Joint *Skeleton::getJoint(const std::string &id)

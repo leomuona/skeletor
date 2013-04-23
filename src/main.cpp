@@ -120,18 +120,10 @@ int main()
         std::cout << "Skeletor: Hello World! HYHAHEHEHEHE!\n";
 
 	using namespace skeletor;
-	animation::Skeleton *skel = animation::Parse::load("../res/astroboy_walk.dae");
-
-	std::cout << *skel;
-
-	animation::SkeletonPose pose;
-	pose.setSkeleton(skel);
-	pose.setPlayer(&player);
 
 	physics::BulletPhysics bp;
 
         sr.initRenderer(math::Vec2i(800, 600), 32, false, "skeletor");
-	sr.addSkeleton(pose);
 
         bp.initPhysics();
         bp.createUniqueBox(1, math::Vec3f(5, -5, 5), 10, 0);
@@ -161,8 +153,6 @@ int main()
 		dt = duration / 1000.f;
 		total_time += dt;
 		last_step = SDL_GetTicks();
-
-		pose.apply(total_time);
                 
                 // simulate physics
                 bp.stepSimulation(dt);
@@ -178,12 +168,13 @@ int main()
 		}
 
 		player.move(getMovementVector(), dt);
+		player.apply(dt);
 
 		// handle camera motion.
 		mousemotion *= DEGREES_2_RADIANS;
 		player.onCameraMotion(mousemotion, dt);
 
-		sr.drawFrame(player.getCamera());
+		sr.drawFrame(player.getCamera(), player);
 		sr.swapBuffers();
 	}
 

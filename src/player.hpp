@@ -1,6 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#include "character.hpp"
 #include "math/mat4x4.hpp"
 #include "math/vec2.hpp"
 #include "math/vec3.hpp"
@@ -22,7 +23,7 @@ namespace skeletor {
  *     /
  *    * Camera position
  */
-class Player
+class Player : public Character
 {
 private:
 	/** \brief distance of the camera. */

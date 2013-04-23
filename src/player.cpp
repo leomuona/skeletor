@@ -1,4 +1,5 @@
 #include "player.hpp"
+#include "animation/skeleton_pose.hpp"
 
 #include <iostream>
 
@@ -19,6 +20,14 @@ Player::Player(const math::Vec3f &position, const math::Vec3f &direction)
 
 void Player::move(const math::Vec2f &movementVector, float delta)
 {
+	if (m_xFadeStatus != kFading) {
+		if (movementVector.isZero() && m_currentPose->getSkeletonSource() != "../res/astroboy_stand_blender.dae") {
+			Character::beginXFade("../res/astroboy_stand_blender.dae");
+		} else if (!movementVector.isZero() && m_currentPose->getSkeletonSource() != "../res/astroboy_walk_blender.dae") {
+			Character::beginXFade("../res/astroboy_walk_blender.dae");
+		}
+	}
+
 	math::Vec2f dir_x(m_direction.z, -m_direction.x);
 	math::Vec2f dir_y(m_direction.x,  m_direction.z);
 	dir_x.normalize();

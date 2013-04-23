@@ -4,8 +4,9 @@
 namespace skeletor {
 namespace animation {
 
-Skeleton::Skeleton(Joint *root)
+Skeleton::Skeleton(Joint *root, const std::string &source)
 	: m_root(root)
+	, m_source(source)
 {
 	std::vector<std::pair<Joint *, int> > joints;
 	preOrder(joints);

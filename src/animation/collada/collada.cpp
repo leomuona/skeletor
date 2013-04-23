@@ -42,7 +42,7 @@ skeletor::animation::Skeleton *loadSkeleton(const std::string &filename)
 	std::cout << filename << ": authoring tool used: " << authoring_tool << std::endl;
 
 	Joint *root_joint = load_library_visual_scenes(root);
-	skeleton = new Skeleton(root_joint);
+	skeleton = new Skeleton(root_joint, filename);
 
 	AnimationLibrary *lib = load_library_animations(root);
 	animationLibraryToKeyFrameAnimation(*lib, *skeleton);
