@@ -116,6 +116,13 @@ public:
 	 */
 	void setBindPoseMatrix(const math::Mat4x4f &bindPoseMatrix);
 
+	/**
+	 * Fixes blender exported keyframes.
+	 *
+	 * Changes the space from 'global space' to 'bind pose space'.
+	 */
+	void fixBlenderExportKeyFrames();
+
 };
 
 }; // namespace animation

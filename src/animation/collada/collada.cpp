@@ -49,9 +49,9 @@ skeletor::animation::Skeleton *loadSkeleton(const std::string &filename)
 
 	util::toLower(authoring_tool);
 	if (util::beginsWith(authoring_tool, "maya")) {
-		skeleton->setupBindPoseMatrices();
+		skeleton->fixMayaExportBindPoses();
 	} else if (util::beginsWith(authoring_tool, "blender")) {
-		// blender specific stuff.
+		skeleton->fixBlenderExportKeyFrames();
 	}
 
 	return skeleton;

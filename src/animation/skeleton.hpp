@@ -47,9 +47,18 @@ public:
 	friend std::ostream &operator<<(std::ostream &os, const Skeleton &s);
 
 	/**
-	 * Sets up the bind pose matrices for the joints.
+	 * Fixes Maya exported skeletons bind pose.
 	 */
-	void setupBindPoseMatrices();
+	void fixMayaExportBindPoses();
+
+	/**
+	 * Fixes the blender exported skeletons keyframes.
+	 *
+	 * Blender exported files keyframe translation is not applied to
+	 * bind pose matrix. This is different from Maya, which has keyframes
+	 * applied to bind pose matrix.
+	 */
+	void fixBlenderExportKeyFrames();
 
 	/**
 	 * Forms a preorder traverse into v vector.

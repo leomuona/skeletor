@@ -7,6 +7,7 @@ Joint::Joint(Joint *parent, const math::Mat4x4f &localMatrix)
 	: m_parent(parent)
 	, m_localMatrix(localMatrix)
 {
+	setBindPoseMatrix(localMatrix);
 }
 
 void Joint::addChild(Joint *child)
@@ -165,6 +166,16 @@ void Joint::setBindPoseMatrix(const math::Mat4x4f &bindPoseMatrix)
 {
 	m_bindPoseMatrix = bindPoseMatrix;
 	m_invBindPoseMatrix = bindPoseMatrix.getInverse();
+}
+
+void Joint::fixBlenderExportKeyFrames()
+{
+	for (int i=0; i<m_keyframes.size(); ++i) {
+		float time = m_keyframes[i].getTime();
+		math::Mat4x4f transform = m_keyframes[i].getTransform();
+
+		m_keyframes[i] = KeyFrame(time, m_invBindPoseMatrix * transform);
+	}
 }
 
 }; // namespace animation

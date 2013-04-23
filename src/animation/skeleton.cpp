@@ -16,7 +16,7 @@ Skeleton::Skeleton(Joint *root)
 	}
 }
 
-void Skeleton::setupBindPoseMatrices()
+void Skeleton::fixMayaExportBindPoses()
 {
 	std::map<std::string, Joint *>::iterator it = m_joints.begin();
 	while (it != m_joints.end()) {
@@ -28,6 +28,15 @@ void Skeleton::setupBindPoseMatrices()
 		}
 		joint->setBindPoseMatrix(bindPose);
 
+		++it;
+	}
+}
+
+void Skeleton::fixBlenderExportKeyFrames()
+{
+	std::map<std::string, Joint *>::iterator it = m_joints.begin();
+	while (it != m_joints.end()) {
+		it->second->fixBlenderExportKeyFrames();
 		++it;
 	}
 }
