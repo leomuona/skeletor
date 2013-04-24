@@ -178,5 +178,15 @@ void Joint::fixBlenderExportKeyFrames()
 	}
 }
 
+void Joint::setConstraintData(ConstraintData &data)
+{
+        m_constraintData = data;
+}
+
+ConstraintData Joint::getConstraintData() const
+{
+        return m_constraintData;
+}
+
 }; // namespace animation
 }; // namespace skeletor

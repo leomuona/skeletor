@@ -10,6 +10,24 @@
 namespace skeletor {
 namespace animation {
 
+/**
+ * ConstraintData defines the joint's connection type to it's parent joint.
+ * This includes type definition is the constraint and possible angular data.
+ * Root joint should have type set as NONE, because it has no parent joint.
+ */
+typedef struct ConstraintData {
+
+        /** /brief Constraint's type: either none or cone twist. */
+        enum Type { NONE, CONE_TWIST } type;              
+        
+        /** /brief Twist angle limit along X axis */
+        float twistAngle;
+        /** /brief Swing1 angle limit along Z axis */
+        float swing1Angle;
+        /** /brief Swing2 angle limit along Y axis */
+        float swing2Angle;
+} ConstraintData; 
+
 class Joint
 {
 private:
@@ -32,6 +50,8 @@ private:
 	// keyframes of this joint.
 	// this structure can be expected to be ordered by KeyFrames time.
 	std::vector<KeyFrame> m_keyframes;
+
+        ConstraintData m_constraintData;
 
 public:
 	/**
@@ -123,6 +143,19 @@ public:
 	 */
 	void fixBlenderExportKeyFrames();
 
+        /**
+         * Sets constraint data.
+         *
+         * @param constraint data
+         */
+        void setConstraintData(ConstraintData &data);
+        
+        /**
+         * Gets constraint data.
+         *
+         * @return constraint data
+         */
+        ConstraintData getConstraintData() const;
 };
 
 }; // namespace animation
