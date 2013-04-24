@@ -5,9 +5,9 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.66.1 r55057</authoring_tool>
     </contributor>
-    <created>2013-04-22T20:12:58</created>
-    <modified>2013-04-22T20:12:58</modified>
-    <unit name="centimeter" meter="0.01"/>
+    <created>2013-04-24T09:54:33</created>
+    <modified>2013-04-24T09:54:33</modified>
+    <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_cameras>
@@ -25,6 +25,75 @@
     </camera>
   </library_cameras>
   <library_lights>
+    <light id="Lamp-light" name="Lamp">
+      <technique_common>
+        <point>
+          <color sid="color">1 1 1</color>
+          <constant_attenuation>1</constant_attenuation>
+          <linear_attenuation>0</linear_attenuation>
+          <quadratic_attenuation>0.00111109</quadratic_attenuation>
+        </point>
+      </technique_common>
+      <extra>
+        <technique profile="blender">
+          <adapt_thresh>0.000999987</adapt_thresh>
+          <area_shape>1</area_shape>
+          <area_size>0.1</area_size>
+          <area_sizey>0.1</area_sizey>
+          <area_sizez>1</area_sizez>
+          <atm_distance_factor>1</atm_distance_factor>
+          <atm_extinction_factor>1</atm_extinction_factor>
+          <atm_turbidity>2</atm_turbidity>
+          <att1>0</att1>
+          <att2>1</att2>
+          <backscattered_light>1</backscattered_light>
+          <bias>1</bias>
+          <blue>1</blue>
+          <buffers>1</buffers>
+          <bufflag>0</bufflag>
+          <bufsize>2880</bufsize>
+          <buftype>2</buftype>
+          <clipend>30.002</clipend>
+          <clipsta>1.000799</clipsta>
+          <compressthresh>0.04999995</compressthresh>
+          <dist sid="blender_dist">29.99998</dist>
+          <energy sid="blender_energy">1</energy>
+          <falloff_type>2</falloff_type>
+          <filtertype>0</filtertype>
+          <flag>0</flag>
+          <gamma sid="blender_gamma">1</gamma>
+          <green>1</green>
+          <halo_intensity sid="blnder_halo_intensity">1</halo_intensity>
+          <horizon_brightness>1</horizon_brightness>
+          <mode>8192</mode>
+          <ray_samp>1</ray_samp>
+          <ray_samp_method>1</ray_samp_method>
+          <ray_samp_type>0</ray_samp_type>
+          <ray_sampy>1</ray_sampy>
+          <ray_sampz>1</ray_sampz>
+          <red>1</red>
+          <samp>3</samp>
+          <shadhalostep>0</shadhalostep>
+          <shadow_b sid="blender_shadow_b">0</shadow_b>
+          <shadow_g sid="blender_shadow_g">0</shadow_g>
+          <shadow_r sid="blender_shadow_r">0</shadow_r>
+          <shadspotsize>45</shadspotsize>
+          <sky_colorspace>0</sky_colorspace>
+          <sky_exposure>1</sky_exposure>
+          <skyblendfac>1</skyblendfac>
+          <skyblendtype>1</skyblendtype>
+          <soft>3</soft>
+          <spotblend>0.15</spotblend>
+          <spotsize>75</spotsize>
+          <spread>1</spread>
+          <sun_brightness>1</sun_brightness>
+          <sun_effect_type>0</sun_effect_type>
+          <sun_intensity>1</sun_intensity>
+          <sun_size>1</sun_size>
+          <type>0</type>
+        </technique>
+      </extra>
+    </light>
     <light id="pointLight1-light" name="astroBoy_newSkeleton_pointLightShape1">
       <technique_common>
         <point>
@@ -91,6 +160,72 @@
           <sun_intensity>1</sun_intensity>
           <sun_size>1</sun_size>
           <type>0</type>
+        </technique>
+      </extra>
+    </light>
+    <light id="ambientLight1-light" name="astroBoy_newSkeleton_ambientLightShape1">
+      <technique_common>
+        <ambient>
+          <color>0.7 0.7 1</color>
+        </ambient>
+      </technique_common>
+      <extra>
+        <technique profile="blender">
+          <adapt_thresh>0.000999987</adapt_thresh>
+          <area_shape>0</area_shape>
+          <area_size>0.1</area_size>
+          <area_sizey>0.1</area_sizey>
+          <area_sizez>0.1</area_sizez>
+          <atm_distance_factor>1</atm_distance_factor>
+          <atm_extinction_factor>1</atm_extinction_factor>
+          <atm_turbidity>2</atm_turbidity>
+          <att1>0</att1>
+          <att2>1</att2>
+          <backscattered_light>1</backscattered_light>
+          <bias>1</bias>
+          <blue>1</blue>
+          <buffers>1</buffers>
+          <bufflag>0</bufflag>
+          <bufsize>512</bufsize>
+          <buftype>2</buftype>
+          <clipend>40</clipend>
+          <clipsta>0.5</clipsta>
+          <compressthresh>0.04999995</compressthresh>
+          <dist sid="blender_dist">2500</dist>
+          <energy sid="blender_energy">1</energy>
+          <falloff_type>2</falloff_type>
+          <filtertype>0</filtertype>
+          <flag>0</flag>
+          <gamma sid="blender_gamma">1</gamma>
+          <green>0.7</green>
+          <halo_intensity sid="blnder_halo_intensity">1</halo_intensity>
+          <horizon_brightness>1</horizon_brightness>
+          <mode>1</mode>
+          <ray_samp>1</ray_samp>
+          <ray_samp_method>1</ray_samp_method>
+          <ray_samp_type>0</ray_samp_type>
+          <ray_sampy>1</ray_sampy>
+          <ray_sampz>1</ray_sampz>
+          <red>0.7</red>
+          <samp>3</samp>
+          <shadhalostep>0</shadhalostep>
+          <shadow_b sid="blender_shadow_b">0</shadow_b>
+          <shadow_g sid="blender_shadow_g">0</shadow_g>
+          <shadow_r sid="blender_shadow_r">0</shadow_r>
+          <shadspotsize>45</shadspotsize>
+          <sky_colorspace>2</sky_colorspace>
+          <sky_exposure>1</sky_exposure>
+          <skyblendfac>1</skyblendfac>
+          <skyblendtype>1</skyblendtype>
+          <soft>3</soft>
+          <spotblend>0.15</spotblend>
+          <spotsize>45</spotsize>
+          <spread>1</spread>
+          <sun_brightness>1</sun_brightness>
+          <sun_effect_type>0</sun_effect_type>
+          <sun_intensity>1</sun_intensity>
+          <sun_size>1</sun_size>
+          <type>3</type>
         </technique>
       </extra>
     </light>
@@ -314,25 +449,25 @@
   <library_animations>
     <animation id="deformation_rig_root_pose_matrix">
       <source id="deformation_rig_root_pose_matrix-input">
-        <float_array id="deformation_rig_root_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_root_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_root_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_root_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_root_pose_matrix-output">
-        <float_array id="deformation_rig_root_pose_matrix-output-array" count="16">-4.37114e-8 0 1 0 0.09262299 0.9957013 -7.45058e-9 7.208961 -0.9957013 0.09262298 -4.28408e-8 -0.1109915 0 0 0 1</float_array>
+        <float_array id="deformation_rig_root_pose_matrix-output-array" count="48">-4.37114e-8 0 1 0 0.09262299 0.9957013 -7.45058e-9 7.208961 -0.9957013 0.09262298 -4.28408e-8 -0.1109915 0 0 0 1 -4.37114e-8 0 1 0 0.09262299 0.9957013 -7.45058e-9 7.208961 -0.9957013 0.09262298 -4.28408e-8 -0.1109915 0 0 0 1 -4.37114e-8 0 1 0 0.09262299 0.9957013 -7.45058e-9 7.208961 -0.9957013 0.09262298 -4.28408e-8 -0.1109915 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_root_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_root_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_root_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_root_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_root_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_root_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_root_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -346,25 +481,25 @@
     </animation>
     <animation id="deformation_rig_spine01_pose_matrix">
       <source id="deformation_rig_spine01_pose_matrix-input">
-        <float_array id="deformation_rig_spine01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_spine01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_spine01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_spine01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_spine01_pose_matrix-output">
-        <float_array id="deformation_rig_spine01_pose_matrix-output-array" count="16">-0.9269186 0.3752625 -3.22747e-5 -6.02007e-6 0.3752625 0.9269183 -4.41666e-4 1.170037 -1.35825e-4 -4.215e-4 -0.9999999 -2.62901e-13 0 0 0 1</float_array>
+        <float_array id="deformation_rig_spine01_pose_matrix-output-array" count="48">-0.9267284 0.3757319 1.43135e-7 -6.02007e-6 0.3757319 0.9267282 -4.03102e-8 1.170037 -1.47793e-7 1.64238e-8 -1 -2.62901e-13 0 0 0 1 -0.9267284 0.3757319 1.43135e-7 -6.02007e-6 0.3757319 0.9267282 -4.03102e-8 1.170037 -1.47793e-7 1.64238e-8 -1 -2.62901e-13 0 0 0 1 -0.9267284 0.3757319 1.43135e-7 -6.02007e-6 0.3757319 0.9267282 -4.03102e-8 1.170037 -1.47793e-7 1.64238e-8 -1 -2.62901e-13 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_spine01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_spine01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_spine01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_spine01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_spine01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_spine01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_spine01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -378,25 +513,25 @@
     </animation>
     <animation id="deformation_rig_spine02_pose_matrix">
       <source id="deformation_rig_spine02_pose_matrix-input">
-        <float_array id="deformation_rig_spine02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_spine02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_spine02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_spine02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_spine02_pose_matrix-output">
-        <float_array id="deformation_rig_spine02_pose_matrix-output-array" count="16">0.9950038 0.0998366 6.30716e-8 0 -0.0998366 0.9950039 -1.93677e-9 1.228601 -6.29389e-8 -4.40753e-9 1 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_spine02_pose_matrix-output-array" count="48">0.9950039 0.09983659 6.30757e-8 -2.38419e-7 -0.09983657 0.9950038 -1.94297e-9 1.2286 -6.29545e-8 -4.364e-9 1 0 0 0 0 1 0.9950039 0.09983659 6.30757e-8 -2.38419e-7 -0.09983657 0.9950038 -1.94297e-9 1.2286 -6.29545e-8 -4.364e-9 1 0 0 0 0 1 0.9950039 0.09983659 6.30757e-8 -2.38419e-7 -0.09983657 0.9950038 -1.94297e-9 1.2286 -6.29545e-8 -4.364e-9 1 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_spine02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_spine02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_spine02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_spine02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_spine02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_spine02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_spine02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -410,25 +545,25 @@
     </animation>
     <animation id="deformation_rig_neck01_pose_matrix">
       <source id="deformation_rig_neck01_pose_matrix-input">
-        <float_array id="deformation_rig_neck01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_neck01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_neck01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_neck01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_neck01_pose_matrix-output">
-        <float_array id="deformation_rig_neck01_pose_matrix-output-array" count="16">0.9452531 0.3263381 8.47285e-9 -7.39098e-6 -0.3263381 0.945253 2.7067e-8 2.269046 8.20364e-10 -2.838e-8 1 -3.05008e-8 0 0 0 1</float_array>
+        <float_array id="deformation_rig_neck01_pose_matrix-output-array" count="48">0.9452531 0.3263382 8.48036e-9 -7.62939e-6 -0.3263381 0.9452531 2.70643e-8 2.269046 8.1603e-10 -2.83501e-8 1 -3.04107e-8 0 0 0 1 0.9452531 0.3263382 8.48036e-9 -7.62939e-6 -0.3263381 0.9452531 2.70643e-8 2.269046 8.1603e-10 -2.83501e-8 1 -3.04107e-8 0 0 0 1 0.9452531 0.3263382 8.48036e-9 -7.62939e-6 -0.3263381 0.9452531 2.70643e-8 2.269046 8.1603e-10 -2.83501e-8 1 -3.04107e-8 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_neck01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_neck01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_neck01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_neck01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_neck01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_neck01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_neck01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -442,25 +577,25 @@
     </animation>
     <animation id="deformation_rig_head_pose_matrix">
       <source id="deformation_rig_head_pose_matrix-input">
-        <float_array id="deformation_rig_head_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_head_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_head_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_head_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_head_pose_matrix-output">
-        <float_array id="deformation_rig_head_pose_matrix-output-array" count="16">0.9900947 0.1403929 -0.001569793 0 -0.1403417 0.9892837 -0.04027238 0.7520008 -0.004100989 0.04009378 0.9991876 4.65661e-10 0 0 0 1</float_array>
+        <float_array id="deformation_rig_head_pose_matrix-output-array" count="48">1 0 1.60949e-9 0 1.49012e-8 1 -8.88178e-16 0.7520008 -1.6095e-9 0 1 -1.42109e-14 0 0 0 1 1 0 1.60949e-9 0 1.49012e-8 1 -8.88178e-16 0.7520008 -1.6095e-9 0 1 -1.42109e-14 0 0 0 1 1 0 1.60949e-9 0 1.49012e-8 1 -8.88178e-16 0.7520008 -1.6095e-9 0 1 -1.42109e-14 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_head_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_head_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_head_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_head_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_head_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_head_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_head_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -474,25 +609,25 @@
     </animation>
     <animation id="deformation_rig_headEnd_pose_matrix">
       <source id="deformation_rig_headEnd_pose_matrix-input">
-        <float_array id="deformation_rig_headEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_headEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_headEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_headEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_headEnd_pose_matrix-output">
-        <float_array id="deformation_rig_headEnd_pose_matrix-output-array" count="16">-4.37722e-8 1.49012e-7 0.9999999 -4.76837e-7 1.91852e-7 1 -1.49012e-7 2.517091 -0.9999999 1.90921e-7 -4.47035e-8 -5.96046e-8 0 0 0 1</float_array>
+        <float_array id="deformation_rig_headEnd_pose_matrix-output-array" count="48">-4.37114e-8 1.63913e-7 1 0 1.94475e-7 1 -1.49012e-7 2.51709 -1 1.94475e-7 -4.37114e-8 1.42109e-14 0 0 0 1 -4.37114e-8 1.63913e-7 1 0 1.94475e-7 1 -1.49012e-7 2.51709 -1 1.94475e-7 -4.37114e-8 1.42109e-14 0 0 0 1 -4.37114e-8 1.63913e-7 1 0 1.94475e-7 1 -1.49012e-7 2.51709 -1 1.94475e-7 -4.37114e-8 1.42109e-14 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_headEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_headEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_headEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_headEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_headEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_headEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_headEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -506,25 +641,25 @@
     </animation>
     <animation id="deformation_rig_L_clavicle_pose_matrix">
       <source id="deformation_rig_L_clavicle_pose_matrix-input">
-        <float_array id="deformation_rig_L_clavicle_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_clavicle_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_clavicle_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_clavicle_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_clavicle_pose_matrix-output">
-        <float_array id="deformation_rig_L_clavicle_pose_matrix-output-array" count="16">0.981494 -0.008998801 0.1912814 -0.07476974 -0.191275 0.001561838 0.9815351 1.531195 -0.009131392 -0.9999584 -1.88311e-4 -0.7852514 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_clavicle_pose_matrix-output-array" count="48">0.9814939 -0.0089988 0.1912813 -0.07476974 -0.191275 0.001561838 0.9815353 1.531194 -0.009131392 -0.9999583 -1.88311e-4 -0.7852514 0 0 0 1 0.9814939 -0.0089988 0.1912813 -0.07476974 -0.191275 0.001561838 0.9815353 1.531194 -0.009131392 -0.9999583 -1.88311e-4 -0.7852514 0 0 0 1 0.9814939 -0.0089988 0.1912813 -0.07476974 -0.191275 0.001561838 0.9815353 1.531194 -0.009131392 -0.9999583 -1.88311e-4 -0.7852514 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_clavicle_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_clavicle_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_clavicle_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_clavicle_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_clavicle_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_clavicle_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_clavicle_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -538,25 +673,25 @@
     </animation>
     <animation id="deformation_rig_L_shoulder_pose_matrix">
       <source id="deformation_rig_L_shoulder_pose_matrix-input">
-        <float_array id="deformation_rig_L_shoulder_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_shoulder_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_shoulder_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_shoulder_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_shoulder_pose_matrix-output">
-        <float_array id="deformation_rig_L_shoulder_pose_matrix-output-array" count="16">0.9998164 -0.01916523 -4.17422e-5 -5.96046e-8 0.01916523 0.9998163 -1.88062e-4 0.2281977 4.53364e-5 1.87228e-4 1 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_shoulder_pose_matrix-output-array" count="48">0.989517 -0.04753844 -0.1363668 -1.19209e-7 0.1433482 0.4379068 0.8875185 0.2281978 0.01752471 -0.8977628 0.4401308 9.53674e-7 0 0 0 1 0.9897202 -0.05331981 -0.1327057 -1.19209e-7 0.1423865 0.4543844 0.8793527 0.2281978 0.01341247 -0.8892086 0.4573055 9.53674e-7 0 0 0 1 0.989517 -0.04753844 -0.1363668 -1.19209e-7 0.1433482 0.4379068 0.8875185 0.2281978 0.01752471 -0.8977628 0.4401308 9.53674e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_shoulder_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_shoulder_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_shoulder_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_shoulder_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_shoulder_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_shoulder_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_shoulder_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -570,25 +705,25 @@
     </animation>
     <animation id="deformation_rig_L_bicep_pose_matrix">
       <source id="deformation_rig_L_bicep_pose_matrix-input">
-        <float_array id="deformation_rig_L_bicep_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_bicep_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_bicep_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_bicep_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_bicep_pose_matrix-output">
-        <float_array id="deformation_rig_L_bicep_pose_matrix-output-array" count="16">0.9972826 0.01454741 0.07221977 -1.19209e-7 -0.07245754 0.01653559 0.9972345 1.417559 0.01331291 -0.9997576 0.01754592 9.53674e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_bicep_pose_matrix-output-array" count="48">0.9999999 1.49012e-8 -6.85453e-6 5.96046e-8 -5.21541e-8 1 1.09524e-6 1.417561 6.89924e-6 -2.32365e-7 0.9999994 -4.76837e-7 0 0 0 1 0.9999999 1.49012e-8 -6.85453e-6 5.96046e-8 -5.21541e-8 1 1.09524e-6 1.417561 6.89924e-6 -2.32365e-7 0.9999994 -4.76837e-7 0 0 0 1 0.9999999 1.49012e-8 -6.85453e-6 5.96046e-8 -5.21541e-8 1 1.09524e-6 1.417561 6.89924e-6 -2.32365e-7 0.9999994 -4.76837e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_bicep_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_bicep_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_bicep_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_bicep_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_bicep_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_bicep_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_bicep_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -602,25 +737,25 @@
     </animation>
     <animation id="deformation_rig_L_elbow_pose_matrix">
       <source id="deformation_rig_L_elbow_pose_matrix-input">
-        <float_array id="deformation_rig_L_elbow_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_elbow_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_elbow_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_elbow_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_elbow_pose_matrix-output">
-        <float_array id="deformation_rig_L_elbow_pose_matrix-output-array" count="16">0.9986219 0.05248263 4.71622e-6 0 -0.05248263 0.9986219 -4.11016e-5 1.253576 -6.84336e-6 4.07936e-5 1 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_elbow_pose_matrix-output-array" count="48">0.993075 0.1161252 -0.01781021 -1.19209e-7 -0.1070272 0.9567558 0.2704873 1.253575 0.0484504 -0.2667076 0.9625586 4.76837e-7 0 0 0 1 0.9933888 0.1133718 -0.01804549 -1.19209e-7 -0.0988576 0.9247205 0.3675851 1.253575 0.0583608 -0.3633707 0.9298147 4.76837e-7 0 0 0 1 0.993075 0.1161252 -0.01781021 -1.19209e-7 -0.1070272 0.9567558 0.2704873 1.253575 0.0484504 -0.2667076 0.9625586 4.76837e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_elbow_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_elbow_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_elbow_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_elbow_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_elbow_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_elbow_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_elbow_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -634,25 +769,25 @@
     </animation>
     <animation id="deformation_rig_L_forearm_pose_matrix">
       <source id="deformation_rig_L_forearm_pose_matrix-input">
-        <float_array id="deformation_rig_L_forearm_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_forearm_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_forearm_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_forearm_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_forearm_pose_matrix-output">
-        <float_array id="deformation_rig_L_forearm_pose_matrix-output-array" count="16">0.9999999 0 -9.31323e-8 1.19209e-7 7.45058e-9 1 -2.37953e-7 1.20086 1.30385e-7 6.0536e-9 1 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_forearm_pose_matrix-output-array" count="48">1 0 -1.49012e-7 0 2.98023e-8 0.9999998 -1.49012e-8 1.200861 1.04308e-7 6.14673e-8 1 -2.38419e-7 0 0 0 1 1 0 -1.49012e-7 0 2.98023e-8 0.9999998 -1.49012e-8 1.200861 1.04308e-7 6.14673e-8 1 -2.38419e-7 0 0 0 1 1 0 -1.49012e-7 0 2.98023e-8 0.9999998 -1.49012e-8 1.200861 1.04308e-7 6.14673e-8 1 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_forearm_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_forearm_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_forearm_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_forearm_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_forearm_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_forearm_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_forearm_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -666,25 +801,25 @@
     </animation>
     <animation id="deformation_rig_L_wrist_pose_matrix">
       <source id="deformation_rig_L_wrist_pose_matrix-input">
-        <float_array id="deformation_rig_L_wrist_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_wrist_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_wrist_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_wrist_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_wrist_pose_matrix-output">
-        <float_array id="deformation_rig_L_wrist_pose_matrix-output-array" count="16">0.9312446 0.3428025 0.1235719 -1.49012e-8 -0.3578993 0.9241909 0.1333381 1.095171 -0.06849536 -0.1683967 0.9833367 2.38419e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_wrist_pose_matrix-output-array" count="48">1 -7.45058e-9 -4.47035e-8 0 2.98023e-8 0.9999999 6.70552e-8 1.095171 2.98023e-8 4.47035e-8 1 -2.38419e-7 0 0 0 1 1 -7.45058e-9 -4.47035e-8 0 2.98023e-8 0.9999999 6.70552e-8 1.095171 2.98023e-8 4.47035e-8 1 -2.38419e-7 0 0 0 1 1 -7.45058e-9 -4.47035e-8 0 2.98023e-8 0.9999999 6.70552e-8 1.095171 2.98023e-8 4.47035e-8 1 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_wrist_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_wrist_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_wrist_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_wrist_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_wrist_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_wrist_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_wrist_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -698,25 +833,25 @@
     </animation>
     <animation id="deformation_rig_L_pinkyOrient_pose_matrix">
       <source id="deformation_rig_L_pinkyOrient_pose_matrix-input">
-        <float_array id="deformation_rig_L_pinkyOrient_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_pinkyOrient_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinkyOrient_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_pinkyOrient_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_pinkyOrient_pose_matrix-output">
-        <float_array id="deformation_rig_L_pinkyOrient_pose_matrix-output-array" count="16">0.9256318 -0.2731608 -0.2618954 -0.02109289 0.284204 0.9587535 0.004484573 0.08872652 0.2498681 -0.07858299 0.9650858 -0.03464794 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_pinkyOrient_pose_matrix-output-array" count="48">0.9256318 -0.2731607 -0.2618955 -0.02109307 0.2842041 0.9587533 0.004484706 0.088727 0.2498681 -0.07858294 0.965086 -0.0346477 0 0 0 1 0.9256318 -0.2731607 -0.2618955 -0.02109307 0.2842041 0.9587533 0.004484706 0.088727 0.2498681 -0.07858294 0.965086 -0.0346477 0 0 0 1 0.9256318 -0.2731607 -0.2618955 -0.02109307 0.2842041 0.9587533 0.004484706 0.088727 0.2498681 -0.07858294 0.965086 -0.0346477 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinkyOrient_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_pinkyOrient_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_pinkyOrient_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_pinkyOrient_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_pinkyOrient_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinkyOrient_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_pinkyOrient_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -730,25 +865,25 @@
     </animation>
     <animation id="deformation_rig_L_pinky_01_pose_matrix">
       <source id="deformation_rig_L_pinky_01_pose_matrix-input">
-        <float_array id="deformation_rig_L_pinky_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_pinky_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinky_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_pinky_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_pinky_01_pose_matrix-output">
-        <float_array id="deformation_rig_L_pinky_01_pose_matrix-output-array" count="16">0.9631253 0.1013051 0.2492524 0 -0.08246784 0.9929693 -0.08491787 1.446141 -0.2561026 0.06123156 0.9647084 -5.96046e-8 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_pinky_01_pose_matrix-output-array" count="48">0.9631255 0.1013051 0.2492523 -3.72529e-8 -0.0824678 0.9929692 -0.08491819 1.446141 -0.2561026 0.06123162 0.9647084 2.38419e-7 0 0 0 1 0.9631255 0.1013051 0.2492523 -3.72529e-8 -0.0824678 0.9929692 -0.08491819 1.446141 -0.2561026 0.06123162 0.9647084 2.38419e-7 0 0 0 1 0.9631255 0.1013051 0.2492523 -3.72529e-8 -0.0824678 0.9929692 -0.08491819 1.446141 -0.2561026 0.06123162 0.9647084 2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinky_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_pinky_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_pinky_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_pinky_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_pinky_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinky_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_pinky_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -762,25 +897,25 @@
     </animation>
     <animation id="deformation_rig_L_pinky_02_pose_matrix">
       <source id="deformation_rig_L_pinky_02_pose_matrix-input">
-        <float_array id="deformation_rig_L_pinky_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_pinky_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinky_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_pinky_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_pinky_02_pose_matrix-output">
-        <float_array id="deformation_rig_L_pinky_02_pose_matrix-output-array" count="16">0.9995648 0.02949953 -1.85072e-5 5.96046e-8 -0.02949877 0.9995443 0.006396957 0.5375838 2.07216e-4 -0.006393742 0.9999796 -1.19209e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_pinky_02_pose_matrix-output-array" count="48">0.9995649 0.02949952 -1.85072e-5 -5.96046e-8 -0.0294988 0.9995444 0.006397082 0.5375836 2.07156e-4 -0.006393754 0.9999795 -2.38419e-7 0 0 0 1 0.9995649 0.02949952 -1.85072e-5 -5.96046e-8 -0.0294988 0.9995444 0.006397082 0.5375836 2.07156e-4 -0.006393754 0.9999795 -2.38419e-7 0 0 0 1 0.9995649 0.02949952 -1.85072e-5 -5.96046e-8 -0.0294988 0.9995444 0.006397082 0.5375836 2.07156e-4 -0.006393754 0.9999795 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinky_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_pinky_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_pinky_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_pinky_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_pinky_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinky_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_pinky_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -794,25 +929,25 @@
     </animation>
     <animation id="deformation_rig_L_pinkyEnd_pose_matrix">
       <source id="deformation_rig_L_pinkyEnd_pose_matrix-input">
-        <float_array id="deformation_rig_L_pinkyEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_pinkyEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinkyEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_pinkyEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_pinkyEnd_pose_matrix-output">
-        <float_array id="deformation_rig_L_pinkyEnd_pose_matrix-output-array" count="16">-5.96046e-8 1.78814e-7 1 5.96046e-8 1.9744e-7 1 -2.23517e-7 0.7284427 -1 1.56462e-7 -2.98023e-8 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_pinkyEnd_pose_matrix-output-array" count="48">-7.45058e-8 1.8999e-7 1 5.96046e-8 1.75089e-7 1 -1.82539e-7 0.7284439 -0.9999999 1.33179e-7 -7.45058e-8 -2.38419e-7 0 0 0 1 -7.45058e-8 1.8999e-7 1 5.96046e-8 1.75089e-7 1 -1.82539e-7 0.7284439 -0.9999999 1.33179e-7 -7.45058e-8 -2.38419e-7 0 0 0 1 -7.45058e-8 1.8999e-7 1 5.96046e-8 1.75089e-7 1 -1.82539e-7 0.7284439 -0.9999999 1.33179e-7 -7.45058e-8 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinkyEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_pinkyEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_pinkyEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_pinkyEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_pinkyEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_pinkyEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_pinkyEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -826,25 +961,25 @@
     </animation>
     <animation id="deformation_rig_L_middleOrient_pose_matrix">
       <source id="deformation_rig_L_middleOrient_pose_matrix-input">
-        <float_array id="deformation_rig_L_middleOrient_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_middleOrient_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middleOrient_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_middleOrient_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_middleOrient_pose_matrix-output">
-        <float_array id="deformation_rig_L_middleOrient_pose_matrix-output-array" count="16">0.9994226 0.008658737 0.03285384 -0.02109289 -0.008654296 0.9999626 -2.80656e-4 0.08872652 -0.03285493 -4.01586e-6 0.99946 -0.03464794 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_middleOrient_pose_matrix-output-array" count="48">0.9994227 0.008658789 0.03285377 -0.02109307 -0.008654214 0.9999625 -2.80499e-4 0.088727 -0.03285493 -3.93577e-6 0.9994603 -0.0346477 0 0 0 1 0.9994227 0.008658789 0.03285377 -0.02109307 -0.008654214 0.9999625 -2.80499e-4 0.088727 -0.03285493 -3.93577e-6 0.9994603 -0.0346477 0 0 0 1 0.9994227 0.008658789 0.03285377 -0.02109307 -0.008654214 0.9999625 -2.80499e-4 0.088727 -0.03285493 -3.93577e-6 0.9994603 -0.0346477 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middleOrient_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_middleOrient_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_middleOrient_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_middleOrient_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_middleOrient_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middleOrient_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_middleOrient_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -858,25 +993,25 @@
     </animation>
     <animation id="deformation_rig_L_middle_01_pose_matrix">
       <source id="deformation_rig_L_middle_01_pose_matrix-input">
-        <float_array id="deformation_rig_L_middle_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_middle_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middle_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_middle_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_middle_01_pose_matrix-output">
-        <float_array id="deformation_rig_L_middle_01_pose_matrix-output-array" count="16">0.9989206 -0.03283685 -0.03285436 0 0.03285512 0.9994601 1.66446e-5 1.467666 0.03283615 -0.001096338 0.9994602 -2.38419e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_middle_01_pose_matrix-output-array" count="48">0.9989204 -0.03283685 -0.03285447 0 0.03285512 0.9994602 1.7019e-5 1.467666 0.03283618 -0.001096409 0.99946 0 0 0 0 1 0.9989204 -0.03283685 -0.03285447 0 0.03285512 0.9994602 1.7019e-5 1.467666 0.03283618 -0.001096409 0.99946 0 0 0 0 1 0.9989204 -0.03283685 -0.03285447 0 0.03285512 0.9994602 1.7019e-5 1.467666 0.03283618 -0.001096409 0.99946 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middle_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_middle_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_middle_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_middle_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_middle_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middle_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_middle_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -890,25 +1025,25 @@
     </animation>
     <animation id="deformation_rig_L_middle_02_pose_matrix">
       <source id="deformation_rig_L_middle_02_pose_matrix-input">
-        <float_array id="deformation_rig_L_middle_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_middle_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middle_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_middle_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_middle_02_pose_matrix-output">
-        <float_array id="deformation_rig_L_middle_02_pose_matrix-output-array" count="16">0.9999999 -2.98023e-8 0 -2.38419e-7 -2.98023e-8 0.9999999 7.45058e-9 0.5698509 -1.49012e-8 4.47035e-8 1 -1.19209e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_middle_02_pose_matrix-output-array" count="48">1 7.45058e-9 1.49012e-8 0 -7.45058e-9 0.9999999 6.0536e-8 0.5698504 -1.49012e-8 2.79397e-9 0.9999999 2.38419e-7 0 0 0 1 1 7.45058e-9 1.49012e-8 0 -7.45058e-9 0.9999999 6.0536e-8 0.5698504 -1.49012e-8 2.79397e-9 0.9999999 2.38419e-7 0 0 0 1 1 7.45058e-9 1.49012e-8 0 -7.45058e-9 0.9999999 6.0536e-8 0.5698504 -1.49012e-8 2.79397e-9 0.9999999 2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middle_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_middle_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_middle_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_middle_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_middle_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middle_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_middle_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -922,25 +1057,25 @@
     </animation>
     <animation id="deformation_rig_L_middleEnd_pose_matrix">
       <source id="deformation_rig_L_middleEnd_pose_matrix-input">
-        <float_array id="deformation_rig_L_middleEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_middleEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middleEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_middleEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_middleEnd_pose_matrix-output">
-        <float_array id="deformation_rig_L_middleEnd_pose_matrix-output-array" count="16">1.63913e-7 3.8743e-7 -1 0 1.3411e-7 0.9999999 3.57628e-7 0.7657294 1 -3.35276e-7 8.9407e-8 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_middleEnd_pose_matrix-output-array" count="48">5.96046e-8 3.27826e-7 -0.9999999 0 1.53668e-7 0.9999999 3.57628e-7 0.7657297 1 -3.29688e-7 5.96046e-8 -2.38419e-7 0 0 0 1 5.96046e-8 3.27826e-7 -0.9999999 0 1.53668e-7 0.9999999 3.57628e-7 0.7657297 1 -3.29688e-7 5.96046e-8 -2.38419e-7 0 0 0 1 5.96046e-8 3.27826e-7 -0.9999999 0 1.53668e-7 0.9999999 3.57628e-7 0.7657297 1 -3.29688e-7 5.96046e-8 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middleEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_middleEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_middleEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_middleEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_middleEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_middleEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_middleEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -954,25 +1089,25 @@
     </animation>
     <animation id="deformation_rig_L_indexOrient_pose_matrix">
       <source id="deformation_rig_L_indexOrient_pose_matrix-input">
-        <float_array id="deformation_rig_L_indexOrient_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_indexOrient_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_indexOrient_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_indexOrient_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_indexOrient_pose_matrix-output">
-        <float_array id="deformation_rig_L_indexOrient_pose_matrix-output-array" count="16">0.9141477 0.2811726 0.2920201 -0.02109289 -0.2678311 0.9596573 -0.08558345 0.08872652 -0.3043028 2.36928e-5 0.9525753 -0.03464794 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_indexOrient_pose_matrix-output-array" count="48">0.9141478 0.2811726 0.2920201 -0.02109307 -0.267831 0.9596572 -0.08558326 0.088727 -0.3043029 2.3745e-5 0.9525755 -0.0346477 0 0 0 1 0.9141478 0.2811726 0.2920201 -0.02109307 -0.267831 0.9596572 -0.08558326 0.088727 -0.3043029 2.3745e-5 0.9525755 -0.0346477 0 0 0 1 0.9141478 0.2811726 0.2920201 -0.02109307 -0.267831 0.9596572 -0.08558326 0.088727 -0.3043029 2.3745e-5 0.9525755 -0.0346477 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_indexOrient_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_indexOrient_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_indexOrient_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_indexOrient_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_indexOrient_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_indexOrient_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_indexOrient_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -986,25 +1121,25 @@
     </animation>
     <animation id="deformation_rig_L_index_01_pose_matrix">
       <source id="deformation_rig_L_index_01_pose_matrix-input">
-        <float_array id="deformation_rig_L_index_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_index_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_index_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_index_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_index_01_pose_matrix-output">
-        <float_array id="deformation_rig_L_index_01_pose_matrix-output-array" count="16">0.9401242 -0.1357512 -0.3126311 2.38419e-7 0.1611706 0.985289 0.05682848 1.460459 0.3003173 -0.1038124 0.9481731 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_index_01_pose_matrix-output-array" count="48">0.9401242 -0.1357511 -0.3126308 1.19209e-7 0.1611706 0.985289 0.05682804 1.460458 0.3003173 -0.1038124 0.9481732 -4.76837e-7 0 0 0 1 0.9401242 -0.1357511 -0.3126308 1.19209e-7 0.1611706 0.985289 0.05682804 1.460458 0.3003173 -0.1038124 0.9481732 -4.76837e-7 0 0 0 1 0.9401242 -0.1357511 -0.3126308 1.19209e-7 0.1611706 0.985289 0.05682804 1.460458 0.3003173 -0.1038124 0.9481732 -4.76837e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_index_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_index_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_index_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_index_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_index_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_index_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_index_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1018,25 +1153,25 @@
     </animation>
     <animation id="deformation_rig_L_index_02_pose_matrix">
       <source id="deformation_rig_L_index_02_pose_matrix-input">
-        <float_array id="deformation_rig_L_index_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_index_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_index_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_index_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_index_02_pose_matrix-output">
-        <float_array id="deformation_rig_L_index_02_pose_matrix-output-array" count="16">0.9999053 -0.01373884 -7.42778e-4 0 0.0137355 0.9998969 -0.004197337 0.5718751 8.00461e-4 0.004186615 0.999991 1.19209e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_index_02_pose_matrix-output-array" count="48">0.9999053 -0.01373884 -7.42882e-4 -1.19209e-7 0.01373556 0.9998969 -0.004197169 0.5718756 8.00475e-4 0.004186552 0.9999909 -2.38419e-7 0 0 0 1 0.9999053 -0.01373884 -7.42882e-4 -1.19209e-7 0.01373556 0.9998969 -0.004197169 0.5718756 8.00475e-4 0.004186552 0.9999909 -2.38419e-7 0 0 0 1 0.9999053 -0.01373884 -7.42882e-4 -1.19209e-7 0.01373556 0.9998969 -0.004197169 0.5718756 8.00475e-4 0.004186552 0.9999909 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_index_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_index_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_index_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_index_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_index_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_index_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_index_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1050,25 +1185,25 @@
     </animation>
     <animation id="deformation_rig_L_indexEnd_pose_matrix">
       <source id="deformation_rig_L_indexEnd_pose_matrix-input">
-        <float_array id="deformation_rig_L_indexEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_indexEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_indexEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_indexEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_indexEnd_pose_matrix-output">
-        <float_array id="deformation_rig_L_indexEnd_pose_matrix-output-array" count="16">0.2910796 -2.11596e-6 -0.9566989 0 2.11596e-6 1 -1.51992e-6 0.7151527 0.9566989 -1.54227e-6 0.2910796 2.38419e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_indexEnd_pose_matrix-output-array" count="48">0.2910796 -2.08616e-6 -0.9566989 1.19209e-7 2.13832e-6 0.9999998 -1.56462e-6 0.715153 0.9566987 -1.48267e-6 0.2910796 0 0 0 0 1 0.2910796 -2.08616e-6 -0.9566989 1.19209e-7 2.13832e-6 0.9999998 -1.56462e-6 0.715153 0.9566987 -1.48267e-6 0.2910796 0 0 0 0 1 0.2910796 -2.08616e-6 -0.9566989 1.19209e-7 2.13832e-6 0.9999998 -1.56462e-6 0.715153 0.9566987 -1.48267e-6 0.2910796 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_indexEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_indexEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_indexEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_indexEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_indexEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_indexEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_indexEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1082,25 +1217,25 @@
     </animation>
     <animation id="deformation_rig_L_thumbOrient_pose_matrix">
       <source id="deformation_rig_L_thumbOrient_pose_matrix-input">
-        <float_array id="deformation_rig_L_thumbOrient_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_thumbOrient_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumbOrient_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_thumbOrient_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_thumbOrient_pose_matrix-output">
-        <float_array id="deformation_rig_L_thumbOrient_pose_matrix-output-array" count="16">0.5315516 0.6114737 0.586134 -0.02109289 -0.5662467 0.771163 -0.2909855 0.08872652 -0.6299344 -0.1772227 0.7561578 -0.03464794 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_thumbOrient_pose_matrix-output-array" count="48">0.5315516 0.6114737 0.586134 -0.02109307 -0.5662467 0.7711629 -0.2909853 0.088727 -0.6299347 -0.1772227 0.7561579 -0.0346477 0 0 0 1 0.5315516 0.6114737 0.586134 -0.02109307 -0.5662467 0.7711629 -0.2909853 0.088727 -0.6299347 -0.1772227 0.7561579 -0.0346477 0 0 0 1 0.5315516 0.6114737 0.586134 -0.02109307 -0.5662467 0.7711629 -0.2909853 0.088727 -0.6299347 -0.1772227 0.7561579 -0.0346477 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumbOrient_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_thumbOrient_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_thumbOrient_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_thumbOrient_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_thumbOrient_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumbOrient_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_thumbOrient_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1114,25 +1249,25 @@
     </animation>
     <animation id="deformation_rig_L_thumb_01_pose_matrix">
       <source id="deformation_rig_L_thumb_01_pose_matrix-input">
-        <float_array id="deformation_rig_L_thumb_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_thumb_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumb_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_thumb_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_thumb_01_pose_matrix-output">
-        <float_array id="deformation_rig_L_thumb_01_pose_matrix-output-array" count="16">0.7726209 0.2309772 -0.59136 0 -0.04396746 0.9487001 0.3131053 0.812875 0.6333436 -0.2159112 0.7431409 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_thumb_01_pose_matrix-output-array" count="48">0.7726208 0.2309772 -0.5913599 1.19209e-7 -0.04396728 0.9487001 0.3131055 0.8128755 0.6333436 -0.2159112 0.7431408 -4.76837e-7 0 0 0 1 0.7726208 0.2309772 -0.5913599 1.19209e-7 -0.04396728 0.9487001 0.3131055 0.8128755 0.6333436 -0.2159112 0.7431408 -4.76837e-7 0 0 0 1 0.7726208 0.2309772 -0.5913599 1.19209e-7 -0.04396728 0.9487001 0.3131055 0.8128755 0.6333436 -0.2159112 0.7431408 -4.76837e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumb_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_thumb_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_thumb_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_thumb_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_thumb_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumb_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_thumb_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1146,25 +1281,25 @@
     </animation>
     <animation id="deformation_rig_L_thumb_02_pose_matrix">
       <source id="deformation_rig_L_thumb_02_pose_matrix-input">
-        <float_array id="deformation_rig_L_thumb_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_thumb_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumb_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_thumb_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_thumb_02_pose_matrix-output">
-        <float_array id="deformation_rig_L_thumb_02_pose_matrix-output-array" count="16">0.9624251 -0.2079593 -0.1746163 -4.76837e-7 0.2386685 0.9545231 0.1786702 0.3184187 0.1295194 -0.2136323 0.9682904 8.9407e-8 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_thumb_02_pose_matrix-output-array" count="48">0.9624251 -0.2079592 -0.1746164 -4.76837e-7 0.2386686 0.9545232 0.1786701 0.318419 0.1295194 -0.2136323 0.9682904 1.19209e-7 0 0 0 1 0.9624251 -0.2079592 -0.1746164 -4.76837e-7 0.2386686 0.9545232 0.1786701 0.318419 0.1295194 -0.2136323 0.9682904 1.19209e-7 0 0 0 1 0.9624251 -0.2079592 -0.1746164 -4.76837e-7 0.2386686 0.9545232 0.1786701 0.318419 0.1295194 -0.2136323 0.9682904 1.19209e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumb_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_thumb_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_thumb_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_thumb_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_thumb_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumb_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_thumb_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1178,25 +1313,25 @@
     </animation>
     <animation id="deformation_rig_L_thumbEnd_pose_matrix">
       <source id="deformation_rig_L_thumbEnd_pose_matrix-input">
-        <float_array id="deformation_rig_L_thumbEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_thumbEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumbEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_thumbEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_thumbEnd_pose_matrix-output">
-        <float_array id="deformation_rig_L_thumbEnd_pose_matrix-output-array" count="16">0.9834114 8.9407e-8 -0.1813898 4.76837e-7 -8.9407e-8 1 1.49012e-8 0.5840361 0.1813897 5.96046e-8 0.9834113 -2.38419e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_thumbEnd_pose_matrix-output-array" count="48">0.9834113 8.9407e-8 -0.1813896 -2.38419e-7 0 1 -1.06171e-7 0.5840364 0.1813897 -1.49012e-8 0.9834114 2.68221e-7 0 0 0 1 0.9834113 8.9407e-8 -0.1813896 -2.38419e-7 0 1 -1.06171e-7 0.5840364 0.1813897 -1.49012e-8 0.9834114 2.68221e-7 0 0 0 1 0.9834113 8.9407e-8 -0.1813896 -2.38419e-7 0 1 -1.06171e-7 0.5840364 0.1813897 -1.49012e-8 0.9834114 2.68221e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumbEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_thumbEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_thumbEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_thumbEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_thumbEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_thumbEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_thumbEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1210,25 +1345,25 @@
     </animation>
     <animation id="deformation_rig_R_clavicle_pose_matrix">
       <source id="deformation_rig_R_clavicle_pose_matrix-input">
-        <float_array id="deformation_rig_R_clavicle_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_clavicle_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_clavicle_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_clavicle_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_clavicle_pose_matrix-output">
-        <float_array id="deformation_rig_R_clavicle_pose_matrix-output-array" count="16">-0.9814944 -0.008998621 0.1912795 -0.07476974 0.1912732 0.001562084 0.9815356 1.531194 -0.009131259 0.9999585 1.88018e-4 0.7852515 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_clavicle_pose_matrix-output-array" count="48">-0.9899114 -0.1256469 0.06548446 -0.07476974 0.1416726 -0.8710498 0.4703203 1.531194 -0.002054041 0.4748529 0.880063 0.7852514 0 0 0 1 -0.9919318 -0.1011702 0.07639222 -0.07476974 0.1267073 -0.8104829 0.571894 1.531194 0.004055947 0.5769594 0.8167629 0.7852514 0 0 0 1 -0.9899114 -0.1256469 0.06548446 -0.07476974 0.1416726 -0.8710498 0.4703203 1.531194 -0.002054041 0.4748529 0.880063 0.7852514 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_clavicle_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_clavicle_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_clavicle_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_clavicle_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_clavicle_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_clavicle_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_clavicle_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1242,25 +1377,25 @@
     </animation>
     <animation id="deformation_rig_R_shoulder_pose_matrix">
       <source id="deformation_rig_R_shoulder_pose_matrix-input">
-        <float_array id="deformation_rig_R_shoulder_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_shoulder_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_shoulder_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_shoulder_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_shoulder_pose_matrix-output">
-        <float_array id="deformation_rig_R_shoulder_pose_matrix-output-array" count="16">0.9998164 -0.01916542 -4.01099e-5 5.96046e-8 -0.0191654 -0.9998167 1.88072e-4 0.2281976 -4.37051e-5 -1.87264e-4 -0.9999999 9.53674e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_shoulder_pose_matrix-output-array" count="48">0.9998163 -0.01916542 -4.01046e-5 0 -0.0191654 -0.9998168 1.88078e-4 0.2281981 -4.37032e-5 -1.87208e-4 -0.9999998 0 0 0 0 1 0.9998163 -0.01916542 -4.01046e-5 0 -0.0191654 -0.9998168 1.88078e-4 0.2281981 -4.37032e-5 -1.87208e-4 -0.9999998 0 0 0 0 1 0.9998163 -0.01916542 -4.01046e-5 0 -0.0191654 -0.9998168 1.88078e-4 0.2281981 -4.37032e-5 -1.87208e-4 -0.9999998 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_shoulder_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_shoulder_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_shoulder_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_shoulder_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_shoulder_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_shoulder_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_shoulder_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1274,25 +1409,25 @@
     </animation>
     <animation id="deformation_rig_R_bicep_pose_matrix">
       <source id="deformation_rig_R_bicep_pose_matrix-input">
-        <float_array id="deformation_rig_R_bicep_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_bicep_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_bicep_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_bicep_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_bicep_pose_matrix-output">
-        <float_array id="deformation_rig_R_bicep_pose_matrix-output-array" count="16">0.8542513 -0.3457798 0.3881896 4.17233e-7 0.4293155 0.04814199 -0.9018706 -1.417559 0.2931606 0.93708 0.1895736 -9.53674e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_bicep_pose_matrix-output-array" count="48">1 1.28336e-5 6.11134e-6 2.38419e-7 1.28336e-5 -0.9999996 -4.12927e-5 -1.417559 6.11134e-6 4.09233e-5 -0.9999999 -4.76837e-7 0 0 0 1 1 1.28336e-5 6.11134e-6 2.38419e-7 1.28336e-5 -0.9999996 -4.12927e-5 -1.417559 6.11134e-6 4.09233e-5 -0.9999999 -4.76837e-7 0 0 0 1 1 1.28336e-5 6.11134e-6 2.38419e-7 1.28336e-5 -0.9999996 -4.12927e-5 -1.417559 6.11134e-6 4.09233e-5 -0.9999999 -4.76837e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_bicep_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_bicep_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_bicep_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_bicep_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_bicep_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_bicep_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_bicep_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1306,25 +1441,25 @@
     </animation>
     <animation id="deformation_rig_R_elbow_pose_matrix">
       <source id="deformation_rig_R_elbow_pose_matrix-input">
-        <float_array id="deformation_rig_R_elbow_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_elbow_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_elbow_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_elbow_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_elbow_pose_matrix-output">
-        <float_array id="deformation_rig_R_elbow_pose_matrix-output-array" count="16">0.9986218 -0.05248204 -6.10948e-6 2.38419e-7 0.05248195 0.9986219 -4.10974e-5 1.253586 8.25524e-6 4.08292e-5 1 2.08616e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_elbow_pose_matrix-output-array" count="48">0.9796419 -0.1961359 0.04280565 -8.9407e-8 0.1774023 0.9455943 0.2727264 1.253586 -0.09396821 -0.2595803 0.961139 0 0 0 0 1 0.9834891 -0.1756014 0.04374362 -8.9407e-8 0.1423959 0.9000915 0.411775 1.253586 -0.1116815 -0.3987473 0.9102352 0 0 0 0 1 0.9796419 -0.1961359 0.04280565 -8.9407e-8 0.1774023 0.9455943 0.2727264 1.253586 -0.09396821 -0.2595803 0.961139 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_elbow_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_elbow_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_elbow_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_elbow_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_elbow_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_elbow_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_elbow_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1338,25 +1473,25 @@
     </animation>
     <animation id="deformation_rig_R_forearm_pose_matrix">
       <source id="deformation_rig_R_forearm_pose_matrix-input">
-        <float_array id="deformation_rig_R_forearm_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_forearm_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_forearm_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_forearm_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_forearm_pose_matrix-output">
-        <float_array id="deformation_rig_R_forearm_pose_matrix-output-array" count="16">1 2.98023e-8 7.7486e-7 4.76837e-7 -5.96046e-8 1 2.98023e-8 1.20085 -7.15256e-7 0 0.9999999 -2.98023e-8 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_forearm_pose_matrix-output-array" count="48">1 -1.49012e-8 6.51926e-7 -2.38419e-7 0 0.9999999 -3.04542e-7 1.20085 -7.22706e-7 5.86733e-8 1 2.38419e-7 0 0 0 1 1 -1.49012e-8 6.51926e-7 -2.38419e-7 0 0.9999999 -3.04542e-7 1.20085 -7.22706e-7 5.86733e-8 1 2.38419e-7 0 0 0 1 1 -1.49012e-8 6.51926e-7 -2.38419e-7 0 0.9999999 -3.04542e-7 1.20085 -7.22706e-7 5.86733e-8 1 2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_forearm_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_forearm_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_forearm_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_forearm_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_forearm_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_forearm_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_forearm_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1370,25 +1505,25 @@
     </animation>
     <animation id="deformation_rig_R_wrist_pose_matrix">
       <source id="deformation_rig_R_wrist_pose_matrix-input">
-        <float_array id="deformation_rig_R_wrist_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_wrist_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_wrist_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_wrist_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_wrist_pose_matrix-output">
-        <float_array id="deformation_rig_R_wrist_pose_matrix-output-array" count="16">0.9681288 0.2412826 0.06715143 4.76837e-7 0.2496141 -0.9514818 -0.179931 1.095172 0.02047926 0.1909583 -0.9813845 -1.78814e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_wrist_pose_matrix-output-array" count="48">1 1.80304e-6 8.64267e-7 2.38419e-7 1.80304e-6 -1 2.79397e-8 1.095172 8.75443e-7 -1.30385e-8 -1 -2.38419e-7 0 0 0 1 1 1.80304e-6 8.64267e-7 2.38419e-7 1.80304e-6 -1 2.79397e-8 1.095172 8.75443e-7 -1.30385e-8 -1 -2.38419e-7 0 0 0 1 1 1.80304e-6 8.64267e-7 2.38419e-7 1.80304e-6 -1 2.79397e-8 1.095172 8.75443e-7 -1.30385e-8 -1 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_wrist_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_wrist_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_wrist_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_wrist_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_wrist_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_wrist_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_wrist_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1402,25 +1537,25 @@
     </animation>
     <animation id="deformation_rig_R_pinkyOrient_pose_matrix">
       <source id="deformation_rig_R_pinkyOrient_pose_matrix-input">
-        <float_array id="deformation_rig_R_pinkyOrient_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_pinkyOrient_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinkyOrient_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_pinkyOrient_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_pinkyOrient_pose_matrix-output">
-        <float_array id="deformation_rig_R_pinkyOrient_pose_matrix-output-array" count="16">0.9256301 0.2731547 0.261907 0.02109194 0.2842068 -0.9587524 -0.004515082 -0.08872366 0.2498707 0.07861519 -0.9650825 0.03460115 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_pinkyOrient_pose_matrix-output-array" count="48">0.9256303 0.2731547 0.2619071 0.02109206 0.2842067 -0.9587525 -0.004515268 -0.08872366 0.2498707 0.07861517 -0.9650825 0.03460097 0 0 0 1 0.9256303 0.2731547 0.2619071 0.02109206 0.2842067 -0.9587525 -0.004515268 -0.08872366 0.2498707 0.07861517 -0.9650825 0.03460097 0 0 0 1 0.9256303 0.2731547 0.2619071 0.02109206 0.2842067 -0.9587525 -0.004515268 -0.08872366 0.2498707 0.07861517 -0.9650825 0.03460097 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinkyOrient_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_pinkyOrient_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_pinkyOrient_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_pinkyOrient_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_pinkyOrient_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinkyOrient_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_pinkyOrient_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1434,25 +1569,25 @@
     </animation>
     <animation id="deformation_rig_R_pinky_01_pose_matrix">
       <source id="deformation_rig_R_pinky_01_pose_matrix-input">
-        <float_array id="deformation_rig_R_pinky_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_pinky_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinky_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_pinky_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_pinky_01_pose_matrix-output">
-        <float_array id="deformation_rig_R_pinky_01_pose_matrix-output-array" count="16">0.9631308 -0.1012982 -0.2492342 0 0.0824537 0.9929677 -0.08494909 1.446143 0.2560869 0.06126711 0.9647104 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_pinky_01_pose_matrix-output-array" count="48">0.9631308 -0.1012983 -0.2492343 1.19209e-7 0.08245364 0.9929678 -0.08494931 1.446143 0.2560869 0.06126706 0.9647103 2.38419e-7 0 0 0 1 0.9631308 -0.1012983 -0.2492343 1.19209e-7 0.08245364 0.9929678 -0.08494931 1.446143 0.2560869 0.06126706 0.9647103 2.38419e-7 0 0 0 1 0.9631308 -0.1012983 -0.2492343 1.19209e-7 0.08245364 0.9929678 -0.08494931 1.446143 0.2560869 0.06126706 0.9647103 2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinky_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_pinky_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_pinky_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_pinky_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_pinky_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinky_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_pinky_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1466,25 +1601,25 @@
     </animation>
     <animation id="deformation_rig_R_pinky_02_pose_matrix">
       <source id="deformation_rig_R_pinky_02_pose_matrix-input">
-        <float_array id="deformation_rig_R_pinky_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_pinky_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinky_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_pinky_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_pinky_02_pose_matrix-output">
-        <float_array id="deformation_rig_R_pinky_02_pose_matrix-output-array" count="16">0.9995646 -0.02950045 1.23233e-5 4.76837e-7 0.02949974 0.9995443 0.006397232 0.5375872 -2.01136e-4 -0.006394133 0.9999796 1.78814e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_pinky_02_pose_matrix-output-array" count="48">0.9995648 -0.02950048 1.23978e-5 0 0.02949981 0.9995445 0.006397343 0.5375876 -2.01117e-4 -0.006394127 0.9999796 -2.38419e-7 0 0 0 1 0.9995648 -0.02950048 1.23978e-5 0 0.02949981 0.9995445 0.006397343 0.5375876 -2.01117e-4 -0.006394127 0.9999796 -2.38419e-7 0 0 0 1 0.9995648 -0.02950048 1.23978e-5 0 0.02949981 0.9995445 0.006397343 0.5375876 -2.01117e-4 -0.006394127 0.9999796 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinky_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_pinky_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_pinky_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_pinky_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_pinky_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinky_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_pinky_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1498,25 +1633,25 @@
     </animation>
     <animation id="deformation_rig_R_pinkyEnd_pose_matrix">
       <source id="deformation_rig_R_pinkyEnd_pose_matrix-input">
-        <float_array id="deformation_rig_R_pinkyEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_pinkyEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinkyEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_pinkyEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_pinkyEnd_pose_matrix-output">
-        <float_array id="deformation_rig_R_pinkyEnd_pose_matrix-output-array" count="16">-7.97212e-6 8.46386e-6 1 0 8.55327e-6 -1 8.37445e-6 0.7284434 1 8.52346e-6 8.07643e-6 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_pinkyEnd_pose_matrix-output-array" count="48">-8.06153e-6 8.44523e-6 0.9999999 -2.98023e-8 8.46782e-6 -0.9999999 8.44523e-6 0.7284431 1 8.43662e-6 8.05408e-6 4.76837e-7 0 0 0 1 -8.06153e-6 8.44523e-6 0.9999999 -2.98023e-8 8.46782e-6 -0.9999999 8.44523e-6 0.7284431 1 8.43662e-6 8.05408e-6 4.76837e-7 0 0 0 1 -8.06153e-6 8.44523e-6 0.9999999 -2.98023e-8 8.46782e-6 -0.9999999 8.44523e-6 0.7284431 1 8.43662e-6 8.05408e-6 4.76837e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinkyEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_pinkyEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_pinkyEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_pinkyEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_pinkyEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_pinkyEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_pinkyEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1530,25 +1665,25 @@
     </animation>
     <animation id="deformation_rig_R_middleOrient_pose_matrix">
       <source id="deformation_rig_R_middleOrient_pose_matrix-input">
-        <float_array id="deformation_rig_R_middleOrient_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_middleOrient_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middleOrient_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_middleOrient_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_middleOrient_pose_matrix-output">
-        <float_array id="deformation_rig_R_middleOrient_pose_matrix-output-array" count="16">0.9994224 -0.008658797 -0.03285508 0.02109194 -0.008655161 -0.9999626 2.48745e-4 -0.08872366 -0.0328559 3.58522e-5 -0.9994598 0.03460115 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_middleOrient_pose_matrix-output-array" count="48">0.9994227 -0.008658826 -0.03285503 0.02109206 -0.008655265 -0.9999626 2.48584e-4 -0.08872366 -0.03285598 3.5841e-5 -0.9994597 0.03460097 0 0 0 1 0.9994227 -0.008658826 -0.03285503 0.02109206 -0.008655265 -0.9999626 2.48584e-4 -0.08872366 -0.03285598 3.5841e-5 -0.9994597 0.03460097 0 0 0 1 0.9994227 -0.008658826 -0.03285503 0.02109206 -0.008655265 -0.9999626 2.48584e-4 -0.08872366 -0.03285598 3.5841e-5 -0.9994597 0.03460097 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middleOrient_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_middleOrient_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_middleOrient_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_middleOrient_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_middleOrient_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middleOrient_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_middleOrient_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1562,25 +1697,25 @@
     </animation>
     <animation id="deformation_rig_R_middle_01_pose_matrix">
       <source id="deformation_rig_R_middle_01_pose_matrix-input">
-        <float_array id="deformation_rig_R_middle_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_middle_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middle_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_middle_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_middle_01_pose_matrix-output">
-        <float_array id="deformation_rig_R_middle_01_pose_matrix-output-array" count="16">0.9989205 0.03283817 0.0328566 0 -0.0328553 0.99946 -1.49906e-5 1.467669 -0.03283934 -0.001064569 0.99946 2.98023e-8 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_middle_01_pose_matrix-output-array" count="48">0.9989205 0.03283817 0.03285659 -1.19209e-7 -0.03285532 0.9994602 -1.51219e-5 1.467668 -0.0328394 -0.001064638 0.9994602 7.15256e-7 0 0 0 1 0.9989205 0.03283817 0.03285659 -1.19209e-7 -0.03285532 0.9994602 -1.51219e-5 1.467668 -0.0328394 -0.001064638 0.9994602 7.15256e-7 0 0 0 1 0.9989205 0.03283817 0.03285659 -1.19209e-7 -0.03285532 0.9994602 -1.51219e-5 1.467668 -0.0328394 -0.001064638 0.9994602 7.15256e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middle_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_middle_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_middle_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_middle_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_middle_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middle_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_middle_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1594,25 +1729,25 @@
     </animation>
     <animation id="deformation_rig_R_middle_02_pose_matrix">
       <source id="deformation_rig_R_middle_02_pose_matrix-input">
-        <float_array id="deformation_rig_R_middle_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_middle_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middle_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_middle_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_middle_02_pose_matrix-output">
-        <float_array id="deformation_rig_R_middle_02_pose_matrix-output-array" count="16">0.9999999 0 -5.96046e-8 0 5.96046e-8 1 -7.45058e-8 0.56985 2.98023e-8 1.49012e-8 1 1.19209e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_middle_02_pose_matrix-output-array" count="48">1 -1.49012e-8 -3.72529e-8 0 0 1 2.42144e-8 0.5698507 4.47035e-8 -3.81842e-8 0.9999999 0 0 0 0 1 1 -1.49012e-8 -3.72529e-8 0 0 1 2.42144e-8 0.5698507 4.47035e-8 -3.81842e-8 0.9999999 0 0 0 0 1 1 -1.49012e-8 -3.72529e-8 0 0 1 2.42144e-8 0.5698507 4.47035e-8 -3.81842e-8 0.9999999 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middle_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_middle_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_middle_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_middle_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_middle_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middle_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_middle_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1626,25 +1761,25 @@
     </animation>
     <animation id="deformation_rig_R_middleEnd_pose_matrix">
       <source id="deformation_rig_R_middleEnd_pose_matrix-input">
-        <float_array id="deformation_rig_R_middleEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_middleEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middleEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_middleEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_middleEnd_pose_matrix-output">
-        <float_array id="deformation_rig_R_middleEnd_pose_matrix-output-array" count="16">2.98023e-8 -2.08616e-7 -1 0 -1.63913e-7 -1 1.49012e-7 0.7657299 -0.9999999 1.93715e-7 1.49012e-8 -2.38419e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_middleEnd_pose_matrix-output-array" count="48">-8.9407e-8 -1.78814e-7 -1 1.19209e-7 -2.86847e-7 -1 1.78814e-7 0.7657297 -0.9999999 1.66707e-7 7.45058e-8 -2.38419e-7 0 0 0 1 -8.9407e-8 -1.78814e-7 -1 1.19209e-7 -2.86847e-7 -1 1.78814e-7 0.7657297 -0.9999999 1.66707e-7 7.45058e-8 -2.38419e-7 0 0 0 1 -8.9407e-8 -1.78814e-7 -1 1.19209e-7 -2.86847e-7 -1 1.78814e-7 0.7657297 -0.9999999 1.66707e-7 7.45058e-8 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middleEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_middleEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_middleEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_middleEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_middleEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_middleEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_middleEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1658,25 +1793,25 @@
     </animation>
     <animation id="deformation_rig_R_indexOrient_pose_matrix">
       <source id="deformation_rig_R_indexOrient_pose_matrix-input">
-        <float_array id="deformation_rig_R_indexOrient_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_indexOrient_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_indexOrient_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_indexOrient_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_indexOrient_pose_matrix-output">
-        <float_array id="deformation_rig_R_indexOrient_pose_matrix-output-array" count="16">0.9141403 -0.2811692 -0.2920465 0.02109194 -0.2678467 -0.959658 0.08552316 -0.08872366 -0.3043113 4.36008e-5 -0.9525727 0.03460115 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_indexOrient_pose_matrix-output-array" count="48">0.9141405 -0.2811693 -0.2920465 0.02109206 -0.2678469 -0.9596581 0.08552305 -0.08872366 -0.3043113 4.36045e-5 -0.9525728 0.03460097 0 0 0 1 0.9141405 -0.2811693 -0.2920465 0.02109206 -0.2678469 -0.9596581 0.08552305 -0.08872366 -0.3043113 4.36045e-5 -0.9525728 0.03460097 0 0 0 1 0.9141405 -0.2811693 -0.2920465 0.02109206 -0.2678469 -0.9596581 0.08552305 -0.08872366 -0.3043113 4.36045e-5 -0.9525728 0.03460097 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_indexOrient_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_indexOrient_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_indexOrient_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_indexOrient_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_indexOrient_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_indexOrient_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_indexOrient_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1690,25 +1825,25 @@
     </animation>
     <animation id="deformation_rig_R_index_01_pose_matrix">
       <source id="deformation_rig_R_index_01_pose_matrix-input">
-        <float_array id="deformation_rig_R_index_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_index_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_index_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_index_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_index_01_pose_matrix-output">
-        <float_array id="deformation_rig_R_index_01_pose_matrix-output-array" count="16">0.9401231 0.1357928 0.3126164 0 -0.1611637 0.9852991 0.05667409 1.460473 -0.3003245 -0.1036629 0.9481872 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_index_01_pose_matrix-output-array" count="48">0.9401228 0.1357927 0.3126161 -1.19209e-7 -0.1611636 0.9852991 0.056674 1.460473 -0.3003245 -0.1036629 0.9481872 4.76837e-7 0 0 0 1 0.9401228 0.1357927 0.3126161 -1.19209e-7 -0.1611636 0.9852991 0.056674 1.460473 -0.3003245 -0.1036629 0.9481872 4.76837e-7 0 0 0 1 0.9401228 0.1357927 0.3126161 -1.19209e-7 -0.1611636 0.9852991 0.056674 1.460473 -0.3003245 -0.1036629 0.9481872 4.76837e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_index_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_index_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_index_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_index_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_index_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_index_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_index_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1722,25 +1857,25 @@
     </animation>
     <animation id="deformation_rig_R_index_02_pose_matrix">
       <source id="deformation_rig_R_index_02_pose_matrix-input">
-        <float_array id="deformation_rig_R_index_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_index_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_index_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_index_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_index_02_pose_matrix-output">
-        <float_array id="deformation_rig_R_index_02_pose_matrix-output-array" count="16">0.9999054 0.01374266 7.49588e-4 4.76837e-7 -0.01373938 0.9998969 -0.004182175 0.5718601 -8.06749e-4 0.004171684 0.999991 -2.98023e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_index_02_pose_matrix-output-array" count="48">0.9999055 0.01374251 7.49405e-4 2.38419e-7 -0.01373941 0.9998969 -0.004182376 0.5718606 -8.0679e-4 0.004171805 0.999991 -2.38419e-7 0 0 0 1 0.9999055 0.01374251 7.49405e-4 2.38419e-7 -0.01373941 0.9998969 -0.004182376 0.5718606 -8.0679e-4 0.004171805 0.999991 -2.38419e-7 0 0 0 1 0.9999055 0.01374251 7.49405e-4 2.38419e-7 -0.01373941 0.9998969 -0.004182376 0.5718606 -8.0679e-4 0.004171805 0.999991 -2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_index_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_index_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_index_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_index_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_index_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_index_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_index_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1754,25 +1889,25 @@
     </animation>
     <animation id="deformation_rig_R_indexEnd_pose_matrix">
       <source id="deformation_rig_R_indexEnd_pose_matrix-input">
-        <float_array id="deformation_rig_R_indexEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_indexEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_indexEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_indexEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_indexEnd_pose_matrix-output">
-        <float_array id="deformation_rig_R_indexEnd_pose_matrix-output-array" count="16">0.2910792 2.98023e-8 -0.9566988 0 -7.274e-5 -0.9999999 -2.21431e-5 0.7151575 -0.9566985 7.59959e-5 -0.2910793 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_indexEnd_pose_matrix-output-array" count="48">0.2910793 1.19209e-7 -0.9566988 -2.38419e-7 -7.25985e-5 -0.9999999 -2.21431e-5 0.7151577 -0.9566987 7.58758e-5 -0.2910793 2.38419e-7 0 0 0 1 0.2910793 1.19209e-7 -0.9566988 -2.38419e-7 -7.25985e-5 -0.9999999 -2.21431e-5 0.7151577 -0.9566987 7.58758e-5 -0.2910793 2.38419e-7 0 0 0 1 0.2910793 1.19209e-7 -0.9566988 -2.38419e-7 -7.25985e-5 -0.9999999 -2.21431e-5 0.7151577 -0.9566987 7.58758e-5 -0.2910793 2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_indexEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_indexEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_indexEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_indexEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_indexEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_indexEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_indexEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1786,25 +1921,25 @@
     </animation>
     <animation id="deformation_rig_R_thumbOrient_pose_matrix">
       <source id="deformation_rig_R_thumbOrient_pose_matrix-input">
-        <float_array id="deformation_rig_R_thumbOrient_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_thumbOrient_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumbOrient_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_thumbOrient_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_thumbOrient_pose_matrix-output">
-        <float_array id="deformation_rig_R_thumbOrient_pose_matrix-output-array" count="16">0.5315055 -0.6114597 -0.5861896 0.02109194 -0.5662815 -0.7711532 0.2909424 -0.08872366 -0.6299418 0.1773109 -0.756131 0.03460115 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_thumbOrient_pose_matrix-output-array" count="48">0.5315057 -0.6114599 -0.5861896 0.02109206 -0.5662817 -0.7711531 0.2909424 -0.08872366 -0.6299419 0.1773109 -0.756131 0.03460097 0 0 0 1 0.5315057 -0.6114599 -0.5861896 0.02109206 -0.5662817 -0.7711531 0.2909424 -0.08872366 -0.6299419 0.1773109 -0.756131 0.03460097 0 0 0 1 0.5315057 -0.6114599 -0.5861896 0.02109206 -0.5662817 -0.7711531 0.2909424 -0.08872366 -0.6299419 0.1773109 -0.756131 0.03460097 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumbOrient_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_thumbOrient_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_thumbOrient_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_thumbOrient_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_thumbOrient_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumbOrient_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_thumbOrient_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1818,25 +1953,25 @@
     </animation>
     <animation id="deformation_rig_R_thumb_01_pose_matrix">
       <source id="deformation_rig_R_thumb_01_pose_matrix-input">
-        <float_array id="deformation_rig_R_thumb_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_thumb_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumb_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_thumb_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_thumb_01_pose_matrix-output">
-        <float_array id="deformation_rig_R_thumb_01_pose_matrix-output-array" count="16">0.7726316 -0.2308712 0.591387 0 0.04397022 0.9487553 0.3129378 0.8128734 -0.63333 -0.2157823 0.7431898 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_thumb_01_pose_matrix-output-array" count="48">0.7726315 -0.2308711 0.591387 -4.76837e-7 0.04397008 0.9487554 0.3129378 0.8128731 -0.6333299 -0.2157823 0.7431899 4.76837e-7 0 0 0 1 0.7726315 -0.2308711 0.591387 -4.76837e-7 0.04397008 0.9487554 0.3129378 0.8128731 -0.6333299 -0.2157823 0.7431899 4.76837e-7 0 0 0 1 0.7726315 -0.2308711 0.591387 -4.76837e-7 0.04397008 0.9487554 0.3129378 0.8128731 -0.6333299 -0.2157823 0.7431899 4.76837e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumb_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_thumb_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_thumb_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_thumb_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_thumb_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumb_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_thumb_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1850,25 +1985,25 @@
     </animation>
     <animation id="deformation_rig_R_thumb_02_pose_matrix">
       <source id="deformation_rig_R_thumb_02_pose_matrix-input">
-        <float_array id="deformation_rig_R_thumb_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_thumb_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumb_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_thumb_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_thumb_02_pose_matrix-output">
-        <float_array id="deformation_rig_R_thumb_02_pose_matrix-output-array" count="16">0.9624266 0.2079539 0.1746152 -4.76837e-7 -0.2386727 0.9545082 0.1787428 0.3184311 -0.1295014 -0.2137027 0.9682771 -1.78814e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_thumb_02_pose_matrix-output-array" count="48">0.9624265 0.2079538 0.1746152 4.76837e-7 -0.2386727 0.9545083 0.1787428 0.3184314 -0.1295014 -0.2137027 0.968277 2.38419e-7 0 0 0 1 0.9624265 0.2079538 0.1746152 4.76837e-7 -0.2386727 0.9545083 0.1787428 0.3184314 -0.1295014 -0.2137027 0.968277 2.38419e-7 0 0 0 1 0.9624265 0.2079538 0.1746152 4.76837e-7 -0.2386727 0.9545083 0.1787428 0.3184314 -0.1295014 -0.2137027 0.968277 2.38419e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumb_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_thumb_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_thumb_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_thumb_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_thumb_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumb_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_thumb_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1882,25 +2017,25 @@
     </animation>
     <animation id="deformation_rig_R_thumbEnd_pose_matrix">
       <source id="deformation_rig_R_thumbEnd_pose_matrix-input">
-        <float_array id="deformation_rig_R_thumbEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_thumbEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumbEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_thumbEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_thumbEnd_pose_matrix-output">
-        <float_array id="deformation_rig_R_thumbEnd_pose_matrix-output-array" count="16">0.98341 -4.85778e-6 -0.1813966 0 -9.38773e-6 -1 -2.44826e-5 0.5840228 -0.1813965 2.57194e-5 -0.9834101 -3.57628e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_thumbEnd_pose_matrix-output-array" count="48">0.98341 -4.76837e-6 -0.1813965 0 -9.35793e-6 -1 -2.44081e-5 0.584023 -0.1813965 2.57045e-5 -0.9834101 0 0 0 0 1 0.98341 -4.76837e-6 -0.1813965 0 -9.35793e-6 -1 -2.44081e-5 0.584023 -0.1813965 2.57045e-5 -0.9834101 0 0 0 0 1 0.98341 -4.76837e-6 -0.1813965 0 -9.35793e-6 -1 -2.44081e-5 0.584023 -0.1813965 2.57045e-5 -0.9834101 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumbEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_thumbEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_thumbEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_thumbEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_thumbEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_thumbEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_thumbEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1914,25 +2049,25 @@
     </animation>
     <animation id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix">
       <source id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix-input">
-        <float_array id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_shoulder_parentConstraint2_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_shoulder_parentConstraint2_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix-output">
-        <float_array id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix-output-array" count="16">1 -5.21541e-8 5.09899e-8 1.19209e-7 3.72529e-9 1 -1.34514e-9 0 -2.74158e-8 3.59124e-7 1 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix-output-array" count="48">1 -1.86265e-9 5.40167e-8 0 1.86265e-9 0.9999996 2.30561e-7 -9.53674e-7 -5.21541e-8 1.3964e-7 0.9999999 4.76837e-7 0 0 0 1 1 -1.86265e-9 5.40167e-8 0 1.86265e-9 0.9999996 2.30561e-7 -9.53674e-7 -5.21541e-8 1.3964e-7 0.9999999 4.76837e-7 0 0 0 1 1 -1.86265e-9 5.40167e-8 0 1.86265e-9 0.9999996 2.30561e-7 -9.53674e-7 -5.21541e-8 1.3964e-7 0.9999999 4.76837e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_shoulder_parentConstraint2_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_shoulder_parentConstraint2_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_shoulder_parentConstraint2_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_shoulder_parentConstraint2_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_shoulder_parentConstraint2_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1946,25 +2081,25 @@
     </animation>
     <animation id="deformation_rig_hips_pose_matrix">
       <source id="deformation_rig_hips_pose_matrix-input">
-        <float_array id="deformation_rig_hips_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_hips_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_hips_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_hips_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_hips_pose_matrix-output">
-        <float_array id="deformation_rig_hips_pose_matrix-output-array" count="16">-4.37114e-8 0 -1 0.208883 -7.74381e-15 1 0 -0.3256998 1 7.99361e-15 -4.37114e-8 9.13057e-9 0 0 0 1</float_array>
+        <float_array id="deformation_rig_hips_pose_matrix-output-array" count="48">-4.37114e-8 0 -1 0.208883 -7.74381e-15 1 0 -0.3256998 1 7.99361e-15 -4.37114e-8 9.13057e-9 0 0 0 1 -4.37114e-8 0 -1 0.208883 -7.74381e-15 1 0 -0.3256998 1 7.99361e-15 -4.37114e-8 9.13057e-9 0 0 0 1 -4.37114e-8 0 -1 0.208883 -7.74381e-15 1 0 -0.3256998 1 7.99361e-15 -4.37114e-8 9.13057e-9 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_hips_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_hips_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_hips_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_hips_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_hips_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_hips_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_hips_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -1978,25 +2113,25 @@
     </animation>
     <animation id="deformation_rig_L_hip_pose_matrix">
       <source id="deformation_rig_L_hip_pose_matrix-input">
-        <float_array id="deformation_rig_L_hip_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_hip_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_hip_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_hip_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_hip_pose_matrix-output">
-        <float_array id="deformation_rig_L_hip_pose_matrix-output-array" count="16">-2.02531e-6 5.96046e-8 1 0.8697671 0.1390068 -0.9902915 3.12924e-7 -0.1654444 0.9902915 0.1390068 1.99676e-6 0.2878624 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_hip_pose_matrix-output-array" count="48">-2.02531e-6 5.96046e-8 1 0.8697671 0.1390068 -0.9902915 3.12924e-7 -0.1654444 0.9902915 0.1390068 1.99676e-6 0.2878624 0 0 0 1 -2.02531e-6 5.96046e-8 1 0.8697671 0.1390068 -0.9902915 3.12924e-7 -0.1654444 0.9902915 0.1390068 1.99676e-6 0.2878624 0 0 0 1 -2.02531e-6 5.96046e-8 1 0.8697671 0.1390068 -0.9902915 3.12924e-7 -0.1654444 0.9902915 0.1390068 1.99676e-6 0.2878624 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_hip_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_hip_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_hip_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_hip_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_hip_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_hip_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_hip_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2010,25 +2145,25 @@
     </animation>
     <animation id="deformation_rig_L_knee_01_pose_matrix">
       <source id="deformation_rig_L_knee_01_pose_matrix-input">
-        <float_array id="deformation_rig_L_knee_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_knee_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_knee_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_knee_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_knee_01_pose_matrix-output">
-        <float_array id="deformation_rig_L_knee_01_pose_matrix-output-array" count="16">-0.9793884 -0.2019867 3.46539e-6 0 -0.2019866 0.9793885 2.29935e-7 2.546397 -3.43906e-6 -4.84497e-7 -1 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_knee_01_pose_matrix-output-array" count="48">-0.9793884 -0.2019867 3.46539e-6 0 -0.2019866 0.9793885 2.29935e-7 2.546397 -3.43906e-6 -4.84497e-7 -1 0 0 0 0 1 -0.9793884 -0.2019867 3.46539e-6 0 -0.2019866 0.9793885 2.29935e-7 2.546397 -3.43906e-6 -4.84497e-7 -1 0 0 0 0 1 -0.9793884 -0.2019867 3.46539e-6 0 -0.2019866 0.9793885 2.29935e-7 2.546397 -3.43906e-6 -4.84497e-7 -1 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_knee_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_knee_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_knee_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_knee_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_knee_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_knee_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_knee_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2042,25 +2177,25 @@
     </animation>
     <animation id="deformation_rig_L_knee_02_pose_matrix">
       <source id="deformation_rig_L_knee_02_pose_matrix-input">
-        <float_array id="deformation_rig_L_knee_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_knee_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_knee_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_knee_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_knee_02_pose_matrix-output">
-        <float_array id="deformation_rig_L_knee_02_pose_matrix-output-array" count="16">0.9999945 0.003287852 1.55932e-6 0 -0.003287837 0.9999945 8.00444e-8 0.4990227 -1.55773e-6 -9.85086e-8 0.9999999 5.96046e-8 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_knee_02_pose_matrix-output-array" count="48">0.9999945 0.003287852 1.55932e-6 0 -0.003287837 0.9999945 8.00444e-8 0.4990227 -1.55773e-6 -9.85086e-8 0.9999999 5.96046e-8 0 0 0 1 0.9999945 0.003287852 1.55932e-6 0 -0.003287837 0.9999945 8.00444e-8 0.4990227 -1.55773e-6 -9.85086e-8 0.9999999 5.96046e-8 0 0 0 1 0.9999945 0.003287852 1.55932e-6 0 -0.003287837 0.9999945 8.00444e-8 0.4990227 -1.55773e-6 -9.85086e-8 0.9999999 5.96046e-8 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_knee_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_knee_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_knee_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_knee_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_knee_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_knee_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_knee_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2074,25 +2209,25 @@
     </animation>
     <animation id="deformation_rig_L_ankle_pose_matrix">
       <source id="deformation_rig_L_ankle_pose_matrix-input">
-        <float_array id="deformation_rig_L_ankle_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_ankle_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_ankle_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_ankle_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_ankle_pose_matrix-output">
-        <float_array id="deformation_rig_L_ankle_pose_matrix-output-array" count="16">-0.3315808 -0.943427 7.29424e-8 0 -0.9434268 0.3315808 1.10167e-7 2.918914 -1.2972e-7 -3.13166e-8 -0.9999999 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_ankle_pose_matrix-output-array" count="48">-0.3315808 -0.943427 7.29424e-8 0 -0.9434268 0.3315808 1.10167e-7 2.918914 -1.2972e-7 -3.13166e-8 -0.9999999 0 0 0 0 1 -0.3315808 -0.943427 7.29424e-8 0 -0.9434268 0.3315808 1.10167e-7 2.918914 -1.2972e-7 -3.13166e-8 -0.9999999 0 0 0 0 1 -0.3315808 -0.943427 7.29424e-8 0 -0.9434268 0.3315808 1.10167e-7 2.918914 -1.2972e-7 -3.13166e-8 -0.9999999 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_ankle_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_ankle_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_ankle_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_ankle_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_ankle_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_ankle_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_ankle_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2106,25 +2241,25 @@
     </animation>
     <animation id="deformation_rig_L_toeBall_pose_matrix">
       <source id="deformation_rig_L_toeBall_pose_matrix-input">
-        <float_array id="deformation_rig_L_toeBall_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_toeBall_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_toeBall_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_toeBall_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_toeBall_pose_matrix-output">
-        <float_array id="deformation_rig_L_toeBall_pose_matrix-output-array" count="16">0.8721433 0.4892505 1.59662e-7 -2.98023e-8 -0.4892506 0.8721432 3.4924e-8 1.59437 -1.22162e-7 -1.08574e-7 1 -5.96046e-8 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_toeBall_pose_matrix-output-array" count="48">0.8721433 0.4892505 1.59662e-7 -2.98023e-8 -0.4892506 0.8721432 3.4924e-8 1.59437 -1.22162e-7 -1.08574e-7 1 -5.96046e-8 0 0 0 1 0.8721433 0.4892505 1.59662e-7 -2.98023e-8 -0.4892506 0.8721432 3.4924e-8 1.59437 -1.22162e-7 -1.08574e-7 1 -5.96046e-8 0 0 0 1 0.8721433 0.4892505 1.59662e-7 -2.98023e-8 -0.4892506 0.8721432 3.4924e-8 1.59437 -1.22162e-7 -1.08574e-7 1 -5.96046e-8 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_toeBall_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_toeBall_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_toeBall_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_toeBall_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_toeBall_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_toeBall_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_toeBall_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2138,25 +2273,25 @@
     </animation>
     <animation id="deformation_rig_L_toeEnd_pose_matrix">
       <source id="deformation_rig_L_toeEnd_pose_matrix-input">
-        <float_array id="deformation_rig_L_toeEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_L_toeEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_toeEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_toeEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_toeEnd_pose_matrix-output">
-        <float_array id="deformation_rig_L_toeEnd_pose_matrix-output-array" count="16">-4.00866e-8 1 -6.98585e-6 -1.86265e-9 -1.19209e-7 6.98585e-6 1 1.644879 1 4.00874e-8 1.19209e-7 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_L_toeEnd_pose_matrix-output-array" count="48">-4.00866e-8 1 -6.98585e-6 -1.86265e-9 -1.19209e-7 6.98585e-6 1 1.644879 1 4.00874e-8 1.19209e-7 0 0 0 0 1 -4.00866e-8 1 -6.98585e-6 -1.86265e-9 -1.19209e-7 6.98585e-6 1 1.644879 1 4.00874e-8 1.19209e-7 0 0 0 0 1 -4.00866e-8 1 -6.98585e-6 -1.86265e-9 -1.19209e-7 6.98585e-6 1 1.644879 1 4.00874e-8 1.19209e-7 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_toeEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_L_toeEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_L_toeEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_L_toeEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_L_toeEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_L_toeEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_L_toeEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2170,25 +2305,25 @@
     </animation>
     <animation id="deformation_rig_R_hip_pose_matrix">
       <source id="deformation_rig_R_hip_pose_matrix-input">
-        <float_array id="deformation_rig_R_hip_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_hip_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_hip_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_hip_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_hip_pose_matrix-output">
-        <float_array id="deformation_rig_R_hip_pose_matrix-output-array" count="16">-0.2214709 -0.004687846 0.9751558 -0.8697727 0.1354018 -0.99045 0.02599019 -0.1654339 0.965721 0.1377939 0.2199905 0.2878586 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_hip_pose_matrix-output-array" count="48">-0.2214709 -0.004687846 0.9751558 -0.8697727 0.1354018 -0.99045 0.02599019 -0.1654339 0.965721 0.1377939 0.2199905 0.2878586 0 0 0 1 -0.2214709 -0.004687846 0.9751558 -0.8697727 0.1354018 -0.99045 0.02599019 -0.1654339 0.965721 0.1377939 0.2199905 0.2878586 0 0 0 1 -0.2214709 -0.004687846 0.9751558 -0.8697727 0.1354018 -0.99045 0.02599019 -0.1654339 0.965721 0.1377939 0.2199905 0.2878586 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_hip_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_hip_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_hip_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_hip_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_hip_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_hip_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_hip_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2202,25 +2337,25 @@
     </animation>
     <animation id="deformation_rig_R_knee_01_pose_matrix">
       <source id="deformation_rig_R_knee_01_pose_matrix-input">
-        <float_array id="deformation_rig_R_knee_01_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_knee_01_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_knee_01_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_knee_01_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_knee_01_pose_matrix-output">
-        <float_array id="deformation_rig_R_knee_01_pose_matrix-output-array" count="16">-0.9309488 -0.2082948 0.2999126 -5.96046e-8 -0.2140645 0.9767208 0.01388034 2.546398 -0.2958221 -0.05127874 -0.9538655 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_knee_01_pose_matrix-output-array" count="48">-0.9309488 -0.2082948 0.2999126 -5.96046e-8 -0.2140645 0.9767208 0.01388034 2.546398 -0.2958221 -0.05127874 -0.9538655 0 0 0 0 1 -0.9309488 -0.2082948 0.2999126 -5.96046e-8 -0.2140645 0.9767208 0.01388034 2.546398 -0.2958221 -0.05127874 -0.9538655 0 0 0 0 1 -0.9309488 -0.2082948 0.2999126 -5.96046e-8 -0.2140645 0.9767208 0.01388034 2.546398 -0.2958221 -0.05127874 -0.9538655 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_knee_01_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_knee_01_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_knee_01_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_knee_01_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_knee_01_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_knee_01_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_knee_01_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2234,25 +2369,25 @@
     </animation>
     <animation id="deformation_rig_R_knee_02_pose_matrix">
       <source id="deformation_rig_R_knee_02_pose_matrix-input">
-        <float_array id="deformation_rig_R_knee_02_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_knee_02_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_knee_02_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_knee_02_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_knee_02_pose_matrix-output">
-        <float_array id="deformation_rig_R_knee_02_pose_matrix-output-array" count="16">0.9998989 -0.01318415 -0.005325183 0 0.01317942 0.9999126 -9.22121e-4 0.4990282 0.005336881 8.51841e-4 0.9999853 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_knee_02_pose_matrix-output-array" count="48">0.9998989 -0.01318415 -0.005325183 0 0.01317942 0.9999126 -9.22121e-4 0.4990282 0.005336881 8.51841e-4 0.9999853 0 0 0 0 1 0.9998989 -0.01318415 -0.005325183 0 0.01317942 0.9999126 -9.22121e-4 0.4990282 0.005336881 8.51841e-4 0.9999853 0 0 0 0 1 0.9998989 -0.01318415 -0.005325183 0 0.01317942 0.9999126 -9.22121e-4 0.4990282 0.005336881 8.51841e-4 0.9999853 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_knee_02_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_knee_02_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_knee_02_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_knee_02_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_knee_02_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_knee_02_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_knee_02_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2266,25 +2401,25 @@
     </animation>
     <animation id="deformation_rig_R_ankle_pose_matrix">
       <source id="deformation_rig_R_ankle_pose_matrix-input">
-        <float_array id="deformation_rig_R_ankle_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_ankle_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_ankle_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_ankle_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_ankle_pose_matrix-output">
-        <float_array id="deformation_rig_R_ankle_pose_matrix-output-array" count="16">-0.3449754 -0.9359475 -0.07066715 -5.96046e-8 -0.9381008 0.3462924 -0.006932884 2.918918 0.03096032 0.06390127 -0.9974756 5.96046e-8 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_ankle_pose_matrix-output-array" count="48">-0.3449754 -0.9359475 -0.07066715 -5.96046e-8 -0.9381008 0.3462924 -0.006932884 2.918918 0.03096032 0.06390127 -0.9974756 5.96046e-8 0 0 0 1 -0.3449754 -0.9359475 -0.07066715 -5.96046e-8 -0.9381008 0.3462924 -0.006932884 2.918918 0.03096032 0.06390127 -0.9974756 5.96046e-8 0 0 0 1 -0.3449754 -0.9359475 -0.07066715 -5.96046e-8 -0.9381008 0.3462924 -0.006932884 2.918918 0.03096032 0.06390127 -0.9974756 5.96046e-8 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_ankle_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_ankle_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_ankle_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_ankle_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_ankle_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_ankle_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_ankle_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2298,25 +2433,25 @@
     </animation>
     <animation id="deformation_rig_R_toeBall_pose_matrix">
       <source id="deformation_rig_R_toeBall_pose_matrix-input">
-        <float_array id="deformation_rig_R_toeBall_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_toeBall_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_toeBall_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_toeBall_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_toeBall_pose_matrix-output">
-        <float_array id="deformation_rig_R_toeBall_pose_matrix-output-array" count="16">0.8721465 0.4892444 -6.8256e-4 5.96046e-8 -0.4892448 0.8721457 -0.001218473 1.594371 -8.38673e-7 0.001396624 0.999999 0 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_toeBall_pose_matrix-output-array" count="48">0.8721465 0.4892444 -6.8256e-4 5.96046e-8 -0.4892448 0.8721457 -0.001218473 1.594371 -8.38673e-7 0.001396624 0.999999 0 0 0 0 1 0.8721465 0.4892444 -6.8256e-4 5.96046e-8 -0.4892448 0.8721457 -0.001218473 1.594371 -8.38673e-7 0.001396624 0.999999 0 0 0 0 1 0.8721465 0.4892444 -6.8256e-4 5.96046e-8 -0.4892448 0.8721457 -0.001218473 1.594371 -8.38673e-7 0.001396624 0.999999 0 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_toeBall_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_toeBall_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_toeBall_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_toeBall_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_toeBall_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_toeBall_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_toeBall_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2330,25 +2465,25 @@
     </animation>
     <animation id="deformation_rig_R_toeEnd_pose_matrix">
       <source id="deformation_rig_R_toeEnd_pose_matrix-input">
-        <float_array id="deformation_rig_R_toeEnd_pose_matrix-input-array" count="1">0</float_array>
+        <float_array id="deformation_rig_R_toeEnd_pose_matrix-input-array" count="3">0 0.625 1.25</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_toeEnd_pose_matrix-input-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_toeEnd_pose_matrix-input-array" count="3" stride="1">
             <param name="TIME" type="float"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_toeEnd_pose_matrix-output">
-        <float_array id="deformation_rig_R_toeEnd_pose_matrix-output-array" count="16">-0.002493478 -0.9999968 -1.49594e-6 0 -6.2678e-6 1.51177e-6 -1 1.64488 0.9999969 -0.002493477 -6.27339e-6 1.19209e-7 0 0 0 1</float_array>
+        <float_array id="deformation_rig_R_toeEnd_pose_matrix-output-array" count="48">-0.002493478 -0.9999968 -1.49594e-6 0 -6.2678e-6 1.51177e-6 -1 1.64488 0.9999969 -0.002493477 -6.27339e-6 1.19209e-7 0 0 0 1 -0.002493478 -0.9999968 -1.49594e-6 0 -6.2678e-6 1.51177e-6 -1 1.64488 0.9999969 -0.002493477 -6.27339e-6 1.19209e-7 0 0 0 1 -0.002493478 -0.9999968 -1.49594e-6 0 -6.2678e-6 1.51177e-6 -1 1.64488 0.9999969 -0.002493477 -6.27339e-6 1.19209e-7 0 0 0 1</float_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_toeEnd_pose_matrix-output-array" count="1" stride="16">
+          <accessor source="#deformation_rig_R_toeEnd_pose_matrix-output-array" count="3" stride="16">
             <param name="TRANSFORM" type="float4x4"/>
           </accessor>
         </technique_common>
       </source>
       <source id="deformation_rig_R_toeEnd_pose_matrix-interpolation">
-        <Name_array id="deformation_rig_R_toeEnd_pose_matrix-interpolation-array" count="1">LINEAR</Name_array>
+        <Name_array id="deformation_rig_R_toeEnd_pose_matrix-interpolation-array" count="3">LINEAR LINEAR LINEAR</Name_array>
         <technique_common>
-          <accessor source="#deformation_rig_R_toeEnd_pose_matrix-interpolation-array" count="1" stride="1">
+          <accessor source="#deformation_rig_R_toeEnd_pose_matrix-interpolation-array" count="3" stride="1">
             <param name="INTERPOLATION" type="name"/>
           </accessor>
         </technique_common>
@@ -2364,7 +2499,7 @@
   <library_controllers>
     <controller id="deformation_rig_boy-skin" name="deformation_rig">
       <skin source="#boyShape-mesh">
-        <bind_shape_matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
+        <bind_shape_matrix>0.01 0 0 0 0 -1.62921e-9 -0.01 0 0 0.01 -1.62921e-9 0 0 0 0 1</bind_shape_matrix>
         <source id="deformation_rig_boy-skin-joints">
           <Name_array id="deformation_rig_boy-skin-joints-array" count="44">root spine01 spine02 neck01 head L_clavicle L_shoulder L_bicep L_elbow L_forearm L_wrist L_pinky_01 L_pinky_02 L_middle_01 L_middle_02 L_index_01 L_index_02 L_thumb_01 L_thumb_02 R_clavicle R_shoulder R_bicep R_elbow R_forearm R_wrist R_pinky_01 R_pinky_02 R_middle_01 R_middle_02 R_index_01 R_index_02 R_thumb_01 R_thumb_02 hips L_hip L_knee_01 L_knee_02 L_ankle L_toeBall R_hip R_knee_01 R_knee_02 R_ankle R_toeBall</Name_array>
           <technique_common>
@@ -2374,7 +2509,7 @@
           </technique_common>
         </source>
         <source id="deformation_rig_boy-skin-bind_poses">
-          <float_array id="deformation_rig_boy-skin-bind_poses-array" count="704">0 0.09262293 -0.9957013 -0.7782298 0 0.9957013 0.09262293 -7.167691 1 0 0 0 0 0 0 1 0 0.2882804 0.9575461 -2.411549 0 0.9575462 -0.2882804 -8.019215 -1 0 0 2.58722e-7 0 0 0 1 0 0.1912419 0.981543 -1.47623 0 0.9815431 -0.191242 -9.442373 -1 0 0 1.2458e-7 0 0 0 1 0 -0.1395428 0.9902161 2.426479 0 0.9902162 0.1395428 -11.552 -1 0 0 -1.7449e-7 0 0 0 1 0 -0.1395429 0.9902162 2.426479 0 0.9902163 0.1395428 -12.304 -1 0 0 -1.70584e-7 0 0 0 1 0.009131312 -4.18499e-5 0.9999584 0.7162741 0.9999583 -1.87926e-4 -0.009131312 -0.7897462 1.88308e-4 1 4.00352e-5 -11.03916 0 0 0 1 0.02829414 0 0.9995998 0.696133 0.9995995 1.41561e-7 -0.02829408 -1.033551 0 1 0 -11.039 0 0 0 1 0.02829408 6.77258e-6 0.9995998 0.6960572 0.9995995 1.3411e-7 -0.02829408 -2.45111 -1.94022e-7 1 -6.8546e-6 -11.039 0 0 0 1 -0.02420645 0 0.9997071 0.8896053 0.9997069 4.1306e-5 0.02420645 -3.6635 -4.1428e-5 1 -9.86661e-7 -11.03885 0 0 0 1 -0.02420645 0 0.9997072 0.8896038 0.9997069 4.1306e-5 0.02420645 -4.86436 -4.14248e-5 1 -1.12027e-6 -11.03885 0 0 0 1 -0.02420645 0 0.9997072 0.8896031 0.9997071 4.1306e-5 0.02420645 -5.959531 -4.10945e-5 1 -1.17166e-6 -11.03885 0 0 0 1 0.1697037 -1.80779e-5 0.9854954 -0.157364 0.9854751 0.006416559 -0.1697001 -7.616179 -0.006320238 0.9999794 0.00110656 -10.84222 0 0 0 1 0.1405582 -1.6205e-7 0.9900726 0.08098411 0.9900724 1.96099e-5 -0.1405582 -8.085369 -1.94113e-5 1 2.77249e-6 -10.89416 0 0 0 1 -6.69089e-6 0 1 0.715855 1 2.03848e-5 6.69501e-6 -7.53517 -2.04972e-5 1 0 -11.00435 0 0 0 1 -6.69623e-6 0 1 0.7158553 1 2.04444e-5 6.69501e-6 -8.105022 -2.04152e-5 1 0 -11.00435 0 0 0 1 -0.1468154 -8.76188e-6 0.9891641 1.411355 0.9875267 -0.05751532 0.1465718 -6.68645 0.05689096 0.9983447 0.008452653 -11.40799 0 0 0 1 -0.1331917 3.65078e-7 0.9910905 1.302393 0.98968 -0.05332976 0.1330022 -7.324727 0.05285465 0.9985769 0.007102549 -11.37847 0 0 0 1 -0.6737781 -2.79546e-5 0.7389339 4.689156 0.6495135 -0.4768671 0.5922247 0.9876694 0.3523566 0.8789754 0.3213207 -11.81978 0 0 0 1 -0.4478055 4.23193e-6 0.8941311 3.141799 0.6848191 -0.6429522 0.3429796 2.188748 0.574885 0.7659062 0.2879145 -12.14421 0 0 0 1 0.009131252 3.99277e-5 -0.9999584 -0.716253 -0.9999581 -1.8768e-4 -0.009131252 -0.7897488 -1.88022e-4 1 3.81751e-5 -11.03916 0 0 0 1 0.0282942 -1.78814e-7 -0.9995998 -0.6961297 0.999599 -3.94881e-7 0.0282942 1.033554 6.51576e-7 -1 2.26089e-7 11.039 0 0 0 1 0.02830702 -6.29574e-6 -0.9995994 -0.6960311 -0.9995987 -4.06951e-5 -0.02830702 -2.450668 -4.0254e-5 1 -7.48154e-6 -11.03911 0 0 0 1 -0.02419292 0 -0.9997074 -0.8895703 -0.9997067 5.66244e-7 0.02419292 -3.663071 3.25131e-7 1 -1.59306e-7 -11.03895 0 0 0 1 -0.02419286 -8.41916e-7 -0.9997075 -0.8895621 -0.9997066 5.06639e-7 0.02419292 -4.863921 6.36334e-7 1 -8.9417e-7 -11.03895 0 0 0 1 -0.02419471 0 -0.9997074 -0.8895826 0.9997068 -5.96046e-7 -0.02419471 5.959092 -3.28365e-7 -1 0 11.03895 0 0 0 1 0.1697252 4.68548e-6 -0.9854914 0.1576173 -0.9854706 0.006377458 -0.1697218 -7.615746 0.006284058 0.9999799 0.00108695 -10.84232 0 0 0 1 0.1405788 -8.29436e-6 -0.9900694 -0.08079236 -0.9900688 -1.95503e-5 -0.1405789 -8.08494 -1.8239e-5 1 -1.10297e-5 -10.89425 0 0 0 1 5.26788e-6 0 -1 -0.7158303 -0.9999993 -2.03848e-5 -5.25096e-6 -7.534728 -2.04974e-5 1 0 -11.00446 0 0 0 1 5.27854e-6 0 -1 -0.7158307 -0.9999992 -2.03252e-5 -5.25096e-6 -8.104578 -2.03334e-5 1.000001 0 -11.00446 0 0 0 1 -0.1468071 1.62795e-5 -0.9891653 -1.411445 -0.9875301 -0.05746567 0.1465637 -6.687051 -0.05684053 0.9983476 0.008452355 -11.40739 0 0 0 1 -0.1331793 3.72529e-7 -0.991092 -1.302374 -0.9896829 -0.05329459 0.1329902 -7.325148 -0.05281984 0.9985791 0.007098019 -11.37799 0 0 0 1 -0.6737729 3.63886e-5 -0.7389385 -4.689257 -0.6495391 -0.4768195 0.5922349 0.9869359 -0.3523183 0.8790015 0.3212919 -11.81962 0 0 0 1 -0.4478039 6.73532e-6 -0.8941319 -3.14196 -0.6848128 -0.6429657 0.3429671 2.188828 -0.5748933 0.7658952 0.2879275 -12.14399 0 0 0 1 1 0 0 0 0 0.9957013 0.09262299 -6.841991 0 -0.09262293 0.9957013 0.9871128 0 0 0 1 -2.02101e-6 0.04668551 0.9989097 -0.2356221 0 -0.9989097 0.04668551 6.708928 1 1.63913e-7 2.0205e-6 -0.869768 0 0 0 1 -1.46525e-6 0.1560431 -0.9877502 -0.6100072 0 -0.98775 -0.1560431 4.124326 -1 -2.08616e-7 1.45286e-6 0.8697682 0 0 0 1 0 0.1592898 -0.9872319 -0.6219247 0 -0.9872317 -0.1592898 3.623279 -1 0 0 0.8697676 0 0 0 1 0 0.8785635 0.4776254 -0.4582984 0 -0.4776253 0.8785634 0.820294 1 0 0 -0.8697677 0 0 0 1 0 0.9999117 -0.01327973 -0.02098476 0 0.01327991 0.9999117 -0.8993276 1 0 0 -0.8697677 0 0 0 1 -0.2214708 0.04537177 0.9741108 -0.4213626 -0.004687845 -0.9989548 0.04546314 6.70507 0.9751556 0.005502283 0.2214521 0.8284681 0 0 0 1 -0.08129107 0.1699742 -0.9820897 -0.7430359 -0.008452236 -0.9854329 -0.1698533 4.107146 -0.9966546 -0.005506694 0.08154356 -0.8588956 0 0 0 1 -0.08671331 0.1569402 -0.9837938 -0.6999917 -0.008228719 -0.9875926 -0.156821 3.616868 -0.9961994 -0.005503058 0.08692884 -0.8582533 0 0 0 1 0.006790697 0.8721508 0.48919 -0.4398394 0.01465117 -0.4892355 0.8720288 0.8420072 0.9998698 0.001245498 -0.01610022 0.9007149 0 0 0 1 -0.001246333 0.9999991 9.78746e-6 -0.0155152 0.0174967 1.19308e-5 0.9998469 -0.8701015 0.9998464 0.001246333 -0.0174967 0.901931 0 0 0 1</float_array>
+          <float_array id="deformation_rig_boy-skin-bind_poses-array" count="704">-4.19666e-6 99.57012 9.262314 -0.7782297 1.13866e-6 -9.262314 99.57012 -7.16769 100 4.35235e-6 4.04869e-7 0 0 0 0 1 -1.04623e-5 -95.75461 28.82802 -2.411548 1.12079e-6 28.82803 95.75463 -8.019215 -100 1.0273e-5 -3.0928e-6 2.58722e-7 0 0 0 1 -4.22648e-6 -98.15431 19.12419 -1.47623 5.07066e-7 19.12419 98.15431 -9.442373 -100 4.17718e-6 -1.4605e-6 1.2458e-7 0 0 0 1 -4.24217e-6 -99.02161 -13.9543 2.426479 1.93505e-6 -13.95429 99.02162 -11.552 -100 3.86237e-6 1.35816e-6 -1.7449e-7 0 0 0 1 -4.08122e-6 -99.02161 -13.9543 2.426478 1.93505e-6 -13.95429 99.02162 -12.304 -100 3.703e-6 1.3357e-6 -1.70584e-7 0 0 0 1 0.9131348 -99.99585 -0.004199981 0.7162741 99.99583 0.9131358 -0.01879215 -0.7897463 0.01883077 -0.004019796 100 -11.03916 0 0 0 1 2.829401 -99.95997 -2.67029e-5 0.696133 99.95997 2.829411 1.43051e-5 -1.033551 8.42209e-5 -1.05276e-5 100 -11.039 0 0 0 1 2.829408 -99.95999 6.59943e-4 0.6960573 99.95997 2.829411 1.52588e-5 -2.45111 4.21105e-5 6.6982e-4 100 -11.03901 0 0 0 1 -2.420652 -99.97072 -2.57492e-5 0.8896054 99.9707 -2.420651 0.004127502 -3.6635 -0.004126727 8.22458e-5 100 -11.03885 0 0 0 1 -2.420653 -99.97072 -1.33514e-5 0.8896039 99.97071 -2.420651 0.004127502 -4.86436 -0.004126727 9.60632e-5 100 -11.03885 0 0 0 1 -2.420649 -99.97072 -7.62939e-6 0.8896031 99.9707 -2.42065 0.004123687 -5.959531 -0.004126727 1.01985e-4 100 -11.03885 0 0 0 1 16.97037 -98.54953 -0.001823782 -0.157364 98.54749 16.97001 0.6416702 -7.616179 -0.6320604 -0.1106762 99.99795 -10.84222 0 0 0 1 14.05582 -99.00727 -3.23653e-5 0.08098411 99.00727 14.05582 0.001960754 -8.085369 -0.00191164 -2.90905e-4 100 -10.89416 0 0 0 1 -6.69186e-4 -100 -2.19345e-5 0.7158551 100 -6.69501e-4 0.002037048 -7.535169 -0.002056896 -1.25531e-5 100 -11.00435 0 0 0 1 -6.69869e-4 -100 -2.38419e-5 0.7158553 100 -6.69501e-4 0.002037048 -8.105022 -0.002046406 -1.41426e-5 100 -11.00435 0 0 0 1 -14.68154 -98.91641 -8.92639e-4 1.411356 98.75267 -14.65719 -5.751549 -6.686449 5.689101 -0.8452873 99.83447 -11.40799 0 0 0 1 -13.31917 -99.10905 1.90735e-5 1.302393 98.968 -13.30022 -5.33297 -7.324727 5.285456 -0.7102754 99.85771 -11.37847 0 0 0 1 -67.37781 -73.89339 -0.002803802 4.689155 64.95134 -59.22246 -47.68673 0.9876694 35.23567 -32.13207 87.89754 -11.81978 0 0 0 1 -44.78055 -89.41312 4.11987e-4 3.141799 68.48192 -34.29795 -64.29524 2.188748 57.48848 -28.79146 76.59061 -12.14421 0 0 0 1 0.9131305 99.99585 0.0040102 -0.7162532 -99.99581 0.9131308 -0.01876735 -0.7897488 -0.01880216 -0.00383377 100 -11.03916 0 0 0 1 2.82942 99.95997 -1.43051e-6 -0.6961296 99.95989 -2.829422 -3.91006e-5 1.033553 -8.42209e-5 -5.26381e-6 -100 11.039 0 0 0 1 2.830708 99.95995 -6.13213e-4 -0.696031 -99.95987 2.830705 -0.004068374 -2.450668 -0.004042625 7.32992e-4 100 -11.03911 0 0 0 1 -2.419293 99.97074 5.72205e-6 -0.8895703 -99.97068 -2.419296 4.95911e-5 -3.663071 2.10551e-5 0 100 -11.03895 0 0 0 1 -2.419289 99.97075 -6.77109e-5 -0.8895621 -99.97066 -2.419296 5.34058e-5 -4.863921 6.31654e-5 7.3364e-5 100 -11.03895 0 0 0 1 -2.419472 99.97074 2.00272e-5 -0.8895826 99.97068 2.419476 -4.95911e-5 5.959091 -4.21103e-5 1.31595e-5 -100 11.03895 0 0 0 1 16.97252 98.54914 4.84467e-4 0.1576173 -98.54707 16.97219 0.6377564 -7.615746 0.6284262 -0.10871 99.998 -10.84232 0 0 0 1 14.05789 99.00695 -8.13305e-4 -0.08079224 -99.00687 14.0579 -0.001945495 -8.08494 -0.001807749 0.00108695 100 -10.89425 0 0 0 1 5.29141e-4 100 2.09808e-5 -0.7158302 -99.99992 5.25096e-4 -0.002037048 -7.534727 -0.002025425 -1.8144e-5 100.0001 -11.00446 0 0 0 1 5.26822e-4 100 2.43187e-5 -0.7158307 -99.99993 5.25096e-4 -0.002037048 -8.104578 -0.002046406 -2.12233e-5 100.0001 -11.00446 0 0 0 1 -14.68071 98.91653 0.001645088 -1.411444 -98.75299 -14.65637 -5.746555 -6.687051 -5.684027 -0.8452471 99.83477 -11.40739 0 0 0 1 -13.31793 99.10922 5.34058e-5 -1.302375 -98.96829 -13.29902 -5.329468 -7.325148 -5.281988 -0.7098208 99.8579 -11.37799 0 0 0 1 -67.37729 73.89385 0.00364685 -4.689257 -64.95391 -59.22348 -47.68196 0.9869357 -35.23183 -32.12921 87.90014 -11.81962 0 0 0 1 -44.78039 89.4132 6.92368e-4 -3.14196 -68.48128 -34.29671 -64.29658 2.188829 -57.48933 -28.79276 76.58953 -12.14399 0 0 0 1 100 0 0 0 1.13866e-6 -9.262314 99.57012 -6.84199 -1.74481e-7 -99.57013 -9.262313 0.9871128 0 0 0 1 -2.02101e-4 -99.89097 4.668537 -0.2356221 2.08051e-6 -4.668536 -99.89097 6.708929 100 -2.0206e-4 1.52588e-5 -0.8697679 0 0 0 1 -1.46525e-4 98.77502 15.60433 -0.6100071 -4.61732e-6 15.60433 -98.775 4.124326 -100 -1.45435e-4 -2.09808e-5 0.8697681 0 0 0 1 9.39512e-6 98.72319 15.92901 -0.6219247 3.41802e-6 15.929 -98.72317 3.623278 -100 1.00136e-5 -5.72205e-6 0.8697675 0 0 0 1 6.47217e-6 -47.76256 87.85635 -0.4582985 -4.5016e-6 -87.85633 -47.76255 0.8202942 100 -1.11116e-6 -3.94051e-6 -0.8697677 0 0 0 1 -4.36913e-6 1.32796 99.99117 -0.02098476 -1.16169e-5 -99.99117 1.327978 -0.8993276 100 -1.18053e-5 8.41878e-6 -0.8697677 0 0 0 1 -22.14708 -97.41109 4.537162 -0.4213626 -0.4687855 -4.546298 -99.89549 6.70507 97.51557 -22.14521 0.5502253 0.8284681 0 0 0 1 -8.129112 98.20897 16.99744 -0.7430358 -0.845225 16.98535 -98.5433 4.107146 -99.66547 -8.154362 -0.5506706 -0.8588957 0 0 0 1 -8.671334 98.37939 15.69403 -0.6999917 -0.8228755 15.68212 -98.75926 3.616868 -99.61994 -8.692886 -0.5503082 -0.8582534 0 0 0 1 0.6790702 -48.91902 87.21507 -0.4398394 1.465118 -87.20288 -48.92356 0.8420072 99.98699 1.610028 0.1245533 0.9007149 0 0 0 1 -0.1246365 -9.95038e-4 99.99991 -0.0155152 1.749671 -99.9847 0.001176774 -0.8701015 99.98464 1.74967 0.1246357 0.9019309 0 0 0 1</float_array>
           <technique_common>
             <accessor source="#deformation_rig_boy-skin-bind_poses-array" count="44" stride="16">
               <param name="TRANSFORM" type="float4x4"/>
@@ -2408,12 +2543,20 @@
         <matrix sid="transform">0.6858805 -0.3173701 0.6548619 7.481132 0.7276338 0.3124686 -0.6106656 -6.50764 -0.01081678 0.8953432 0.4452454 5.343665 0 0 0 1</matrix>
         <instance_camera url="#Camera-camera"/>
       </node>
+      <node id="Lamp" name="Lamp" type="NODE">
+        <matrix sid="transform">-0.2908646 -0.7711008 0.5663932 4.076245 0.9551712 -0.1998834 0.2183912 1.005454 -0.05518906 0.6045247 0.7946723 5.903862 0 0 0 1</matrix>
+        <instance_light url="#Lamp-light"/>
+      </node>
       <node id="pointLight1" name="pointLight1" type="NODE">
-        <matrix sid="transform">1 0 0 -3.58797 0 1 0 16.1723 0 0 1 4.66578 0 0 0 1</matrix>
+        <matrix sid="transform">0.01 0 0 -0.0358797 0 -1.62921e-9 -0.01 -0.04665781 0 0.01 -1.62921e-9 0.161723 0 0 0 1</matrix>
         <instance_light url="#pointLight1-light"/>
       </node>
+      <node id="ambientLight1" name="ambientLight1" type="NODE">
+        <matrix sid="transform">0.01 0 0 0.199831 0 -1.62921e-9 -0.01 0.116396 0 0.01 -1.62921e-9 -0.114289 0 0 0 1</matrix>
+        <instance_light url="#ambientLight1-light"/>
+      </node>
       <node id="deformation_rig" name="deformation_rig" type="NODE">
-        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <matrix sid="transform">0.01 0 0 0 0 -1.62921e-9 -0.01 0 0 0.01 -1.62921e-9 0 0 0 0 1</matrix>
         <node id="root" name="root" sid="root" type="JOINT">
           <matrix sid="transform">-4.37114e-8 0 1 0 0.09262299 0.9957013 -7.45058e-9 7.208961 -0.9957013 0.09262298 -4.28408e-8 -0.1109915 0 0 0 1</matrix>
           <node id="spine01" name="spine01" sid="spine01" type="JOINT">
@@ -2632,6 +2775,33 @@
             </technique_common>
           </bind_material>
         </instance_controller>
+      </node>
+      <node id="L_pinkyOrient" name="L_pinkyOrient" type="NODE">
+        <matrix sid="transform">0.999707 -0.02420047 -4.89958e-7 -0.021093 0.02420047 0.999707 2.02399e-5 0.088727 -4.50198e-14 -2.02458e-5 1 -0.034648 0 0 0 1</matrix>
+      </node>
+      <node id="L_middleOrient" name="L_middleOrient" type="NODE">
+        <matrix sid="transform">0.999707 -0.02420047 -4.89958e-7 -0.021093 0.02420047 0.999707 2.02399e-5 0.088727 -4.50198e-14 -2.02458e-5 1 -0.034648 0 0 0 1</matrix>
+      </node>
+      <node id="L_indexOrient" name="L_indexOrient" type="NODE">
+        <matrix sid="transform">0.999707 -0.02420047 -4.89958e-7 -0.021093 0.02420047 0.999707 2.02399e-5 0.088727 -4.50198e-14 -2.02458e-5 1 -0.034648 0 0 0 1</matrix>
+      </node>
+      <node id="L_thumbOrient" name="L_thumbOrient" type="NODE">
+        <matrix sid="transform">0.999707 -0.02420047 -4.89958e-7 -0.021093 0.02420047 0.999707 2.02399e-5 0.088727 -4.50198e-14 -2.02458e-5 1 -0.034648 0 0 0 1</matrix>
+      </node>
+      <node id="R_pinkyOrient" name="R_pinkyOrient" type="NODE">
+        <matrix sid="transform">0.999707 -0.02420047 -4.89958e-7 0.021092 0.02420047 0.999707 2.02399e-5 -0.088724 -4.50198e-14 -2.02458e-5 1 0.034601 0 0 0 1</matrix>
+      </node>
+      <node id="R_middleOrient" name="R_middleOrient" type="NODE">
+        <matrix sid="transform">0.999707 -0.02420047 -4.89958e-7 0.021092 0.02420047 0.999707 2.02399e-5 -0.088724 -4.50198e-14 -2.02458e-5 1 0.034601 0 0 0 1</matrix>
+      </node>
+      <node id="R_indexOrient" name="R_indexOrient" type="NODE">
+        <matrix sid="transform">0.999707 -0.02420047 -4.89958e-7 0.021092 0.02420047 0.999707 2.02399e-5 -0.088724 -4.50198e-14 -2.02458e-5 1 0.034601 0 0 0 1</matrix>
+      </node>
+      <node id="R_thumbOrient" name="R_thumbOrient" type="NODE">
+        <matrix sid="transform">0.999707 -0.02420047 -4.89958e-7 0.021092 0.02420047 0.999707 2.02399e-5 -0.088724 -4.50198e-14 -2.02458e-5 1 0.034601 0 0 0 1</matrix>
+      </node>
+      <node id="L_shoulder_parentConstraint2" name="L_shoulder_parentConstraint2" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
       </node>
     </visual_scene>
   </library_visual_scenes>
