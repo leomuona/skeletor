@@ -6,6 +6,7 @@ class btCollisionObject;
 namespace skeletor {
 namespace animation {
 class Box;
+class Joint;
 class SkeletonPose;
 }; // namespace animation
 namespace physics {
@@ -13,6 +14,9 @@ namespace physics {
 class BulletRagdoll;
 
 class BulletObjectsConverter {
+private:
+        static void convertJointRecursively(BulletRagdoll *ragdoll,
+                                            animation::Joint *target);
 public:
         static void convertBox(btCollisionObject *obj, animation::Box* target);
         static void convertSkeleton(BulletRagdoll *obj,

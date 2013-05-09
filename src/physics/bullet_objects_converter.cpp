@@ -1,9 +1,16 @@
 #include "physics/bullet_objects_converter.hpp"
 
 #include "animation/box.hpp"
+#include "animation/joint.hpp"
+#include "animation/skeleton_pose.hpp"
 #include "math/vec3.hpp"
 #include "math/mat4x4.hpp"
+#include "physics/bullet_ragdoll.hpp"
 #include "btBulletDynamicsCommon.h"
+
+#include <map>
+#include <string>
+#include <iostream>
 
 namespace skeletor {
 namespace physics {
@@ -39,6 +46,29 @@ void BulletObjectsConverter::convertBox(btCollisionObject *obj, animation::Box *
                         mv.z = btv.getZ();
                         target->setVertex(i, mv);
                 }
+        }
+}
+
+void BulletObjectsConverter::convertSkeleton(BulletRagdoll *obj, animation::SkeletonPose *target)
+{
+        animation::Joint *rootJoint = &target->getSkeleton().getRootJoint();
+        BulletObjectsConverter::convertJointRecursively(obj, rootJoint);
+}
+
+void BulletObjectsConverter::convertJointRecursively(BulletRagdoll *ragdoll, animation::Joint *target)
+{
+        btCollisionShape* shape = ragdoll->getShapes()[target->getID()];
+        btRigidBody* body = ragdoll->getBodies()[target->getID()];
+        btTypedConstraint* constraint;
+        if (target->getParent()) {
+                constraint = ragdoll->getJoints()[target->getID()];
+        }
+        // TODO: convert the stuff
+
+        
+        std::vector<animation::Joint*> children = target->getChildren();
+        for (int i=0; i < children.size(); ++i) {
+                convertJointRecursively(ragdoll, children[i]);
         }
 }
 
