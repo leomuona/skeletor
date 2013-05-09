@@ -141,16 +141,24 @@ void BulletRagdoll::createJointRecursively(animation::Joint *joint,
                 // Set damping
                 body->setDamping(0.05f, 0.85f);
 
-                // Create joint constraint
+                // Create joint constraint: A = parent, B = this
                 btTransform localA, localB;
-                localA.setIdentity();
-                localB.setIdentity();
+                math::Mat4x4f parentMatrix = parent->getLocalMatrix()*(-1.0f);
+                localA.setFromOpenGLMatrix(parentMatrix.m);
+                localB.setFromOpenGLMatrix(joint->getLocalMatrix().m);
 
-                // this should be joint specific, but is hardcoded for now.
-                btConeTwistConstraint *coneC;
-                
-
-                // TODO: connecting the joints.
+                animation::ConstraintData cdata = joint->getConstraintData();
+                if(cdata.type == animation::ConstraintData::CONE_TWIST) {
+                        btConeTwistConstraint *coneC;
+                        btRigidBody *parentBody = m_bodies[parent->getID()];
+                        coneC = new btConeTwistConstraint(*parentBody, *body,
+                                                          localA, localB);
+                        coneC->setLimit(cdata.swing1Angle, cdata.swing2Angle,
+                                        cdata.twistAngle);
+                        m_ownerWorld->addConstraint(coneC, true);
+                        m_joints.insert(std::pair<std::string,
+                                btTypedConstraint*>(joint->getID(), coneC));
+                }
         }
 
         std::vector<animation::Joint*> children = joint->getChildren();

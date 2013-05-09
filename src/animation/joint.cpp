@@ -8,6 +8,13 @@ Joint::Joint(Joint *parent, const math::Mat4x4f &localMatrix)
 	, m_localMatrix(localMatrix)
 {
 	setBindPoseMatrix(localMatrix);
+        /* if there is a parent, set "default" cone twist joint */ 
+        if (parent != NULL) {
+                m_constraintData.type = ConstraintData::CONE_TWIST;
+                m_constraintData.twistAngle = 0.0f; 
+                m_constraintData.swing1Angle = M_PI / 4.0f; 
+                m_constraintData.swing2Angle = M_PI / 4.0f;
+        }
 }
 
 void Joint::addChild(Joint *child)
