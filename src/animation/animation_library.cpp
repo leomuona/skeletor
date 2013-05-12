@@ -11,7 +11,6 @@ namespace animation {
 AnimationLibrary *AnimationLibrary::m_instance = NULL;
 
 AnimationLibrary::AnimationLibrary()
-	: m_crossFadeTime(0.3)
 {
 }
 
