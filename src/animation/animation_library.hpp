@@ -19,9 +19,6 @@ class SkeletonPose;
 class AnimationLibrary
 {
 private:
-	/** \brief some float value used for cross-fading, */
-	const float m_crossFadeTime;
-
 	std::map<std::string, Skeleton *> m_animations;
 
 	// Singleton instance.
