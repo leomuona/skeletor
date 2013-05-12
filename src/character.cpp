@@ -3,8 +3,6 @@
 #include "animation/skeleton.hpp"
 #include "animation/skeleton_pose.hpp"
 
-#include <iostream>
-
 namespace skeletor {
 
 Character::Character()
@@ -39,8 +37,6 @@ Character::~Character()
 
 void Character::beginXFade(const std::string &target)
 {
-	std::cout << "start xfade: " << target << std::endl;
-
 	m_xFadeCurrentTime = 0;
 	m_xFadeStatus = kFading;
 
@@ -63,8 +59,6 @@ void Character::xFade(float dt)
 
 void Character::endXFade(float dt)
 {
-	std::cout << "ended xfade.\n";
-
 	m_xFadeStatus = kDone;
 	m_currentPose->setSkeleton(&m_xFadeTargetPose->getSkeleton());
 	m_currentPose->apply(dt);
