@@ -24,7 +24,9 @@ Joint *load_library_visual_scenes(rapidxml::xml_node<> *root)
 	while (vs != NULL) {
 		xml_node<> *node = vs->first_node("node");
 		xml_node<> *root_node = findRootNode(node, "root");
-		root_joint = buildJointHierarchy(root_node, NULL);
+		if (root_node) {
+			root_joint = buildJointHierarchy(root_node, NULL);
+		}
 
 		vs = vs->next_sibling("visual_scene");
 	}
