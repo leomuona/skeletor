@@ -17,3 +17,13 @@ add_executable(skeletor ${sources})
 target_link_libraries(skeletor ${libraries})
 target_link_libraries(skeletor ${bullet_libraries})
 
+# tests
+ENABLE_TESTING()
+include_directories(.)
+file(GLOB_RECURSE test_sources test/*cpp test/*c)
+list(REMOVE_ITEM sources "${CMAKE_SOURCE_DIR}/src/main.cpp")
+add_executable(test_skeletor ${sources} ${test_sources})
+target_link_libraries(test_skeletor ${libraries})
+target_link_libraries(test_skeletor ${bullet_libraries})
+
+add_test("COLLADA" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor animation collada)
