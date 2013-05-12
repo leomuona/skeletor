@@ -34,7 +34,7 @@ struct Mat2x2
 
 	bool operator==(const Mat2x2<T> &rhs) const {
 		for (int i=0; i<4; ++i) {
-			if (std::abs(m[i] - rhs.m[i]) < EPSILON) {
+			if (std::abs(m[i] - rhs.m[i]) > EPSILON) {
 				return false;
 			}
 		}

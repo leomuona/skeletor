@@ -42,7 +42,7 @@ struct Mat4x4
 
 	bool operator==(const Mat4x4<T> &rhs) const {
 		for (int i=0; i<16; ++i) {
-			if (std::abs(m[i] - rhs.m[i]) < EPSILON) {
+			if (std::abs(m[i] - rhs.m[i]) > EPSILON) {
 				return false;
 			}
 		}

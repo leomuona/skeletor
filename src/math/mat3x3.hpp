@@ -38,7 +38,7 @@ struct Mat3x3
 
 	bool operator==(const Mat3x3<T> &rhs) const {
 		for (int i=0; i<9; ++i) {
-			if (std::abs(m[i] - rhs.m[i]) < EPSILON) {
+			if (std::abs(m[i] - rhs.m[i]) > EPSILON) {
 				return false;
 			}
 		}
