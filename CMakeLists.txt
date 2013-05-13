@@ -30,3 +30,4 @@ add_executable(test_skeletor ${test_sources})
 target_link_libraries(test_skeletor lib_skeletor)
 
 add_test("COLLADA" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor animation collada)
+add_test("KeyFrame" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor animation keyframe)

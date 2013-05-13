@@ -1,5 +1,6 @@
 #include "test/animation/animation.hpp"
 #include "test/animation/collada.hpp"
+#include "test/animation/keyframe.hpp"
 
 #include <stdio.h>
 
@@ -11,6 +12,8 @@ int testAnimation(const std::string &test)
 {
 	if (test == "collada") {
 		return testCollada();
+	} else if (test == "keyframe") {
+		return testKeyFrame();
 	} else {
 		printf("invalid animation test: %s\n", test.c_str());
 		return 1;
