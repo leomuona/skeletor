@@ -9,6 +9,7 @@
 #include "math/vec2.hpp"
 #include "physics/bullet_physics.hpp"
 #include "physics/bullet_objects_converter.hpp"
+#include "physics/bullet_ragdoll.hpp"
 #include "player.hpp"
 
 #include "btBulletDynamicsCommon.h"
@@ -126,7 +127,7 @@ int main()
         sr.initRenderer(math::Vec2i(800, 600), 32, false, "skeletor");
 
         bp.initPhysics();
-        bp.createUniqueBox(1, math::Vec3f(5, -5, 5), 10, 0);
+        bp.createUniqueBox(1, math::Vec3f(10, -10, 10), 20, 0);
         btCollisionObject *btFloorBox = bp.getBoxCollisionObject(1);
         animation::Box *floorBox = new animation::Box(1, 0);
         physics::BulletObjectsConverter::convertBox(btFloorBox, floorBox);
@@ -143,7 +144,11 @@ int main()
         animation::Box *testBox2 = new animation::Box(3, 10.f);
         physics::BulletObjectsConverter::convertBox(btTestBox2, testBox2);
         sr.addBox(*testBox2);
-         
+        
+        bp.createSkeleton(666, player.getCurrentPose(), player.getTransformation());
+        physics::BulletRagdoll *ragdoll = bp.getSkeletonRagdoll(666);
+        physics::BulletObjectsConverter::convertSkeleton(ragdoll, player.getCurrentPose());
+
 	bool running = true;
 	float dt;
 	float total_time = 0;

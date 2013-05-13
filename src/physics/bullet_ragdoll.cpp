@@ -19,7 +19,7 @@ BulletRagdoll::BulletRagdoll(unsigned int id, btDynamicsWorld *ownerWorld,
         m_ownerWorld = ownerWorld;
         m_boneRadius = 0.05f;
 
-        animation::Skeleton skeleton = skeletonPose->getSkeleton();
+        animation::Skeleton skeleton = skeletonPose->getSkeleton();       
         animation::Joint rootJoint = skeleton.getRootJoint();
         
         // create all joints recursively
@@ -36,13 +36,7 @@ BulletRagdoll::~BulletRagdoll()
         }
         m_joints.clear();
 
-        // delete bodies
-        std::map<std::string, btRigidBody*>::iterator bid;
-        for (bid = m_bodies.begin(); bid != m_bodies.end(); ++bid) {
-                m_ownerWorld->removeRigidBody(bid->second);
-                delete bid->second->getMotionState();
-                delete bid->second;
-        }
+        // clear bodies, delete is done in bullet physics destructor
         m_bodies.clear();
 
         // delete shapes
@@ -113,7 +107,6 @@ void BulletRagdoll::createJointRecursively(animation::Joint *joint,
         if (joint == NULL) {
                 return;
         }
-        
         matrix = ((matrix * joint->getBindPoseMatrix()) 
                   * skeletonPose->getTransform(joint));
         animation::Joint *parent = joint->getParent();
@@ -127,17 +120,15 @@ void BulletRagdoll::createJointRecursively(animation::Joint *joint,
                                                            bonelen);
                 m_shapes.insert(std::pair<std::string, btCollisionShape*>(
                                         joint->getID(), shape));
-           
                 // NOTE: Maybe mass should be bone specified in future?
                 float mass = bonelen * M_PI * std::pow(m_boneRadius, 2);
 
                 btTransform transform;
                 transform.setFromOpenGLMatrix(matrix.m);
-
+                // NOTE: Is the body created to center of mass or at the edge?
                 btRigidBody *body = createRigidBody(mass, transform, shape);
                 m_bodies.insert(std::pair<std::string, btRigidBody*>(
                                         joint->getID(), body));
-
                 // Set damping
                 body->setDamping(0.05f, 0.85f);
 
@@ -146,9 +137,10 @@ void BulletRagdoll::createJointRecursively(animation::Joint *joint,
                 math::Mat4x4f parentMatrix = parent->getLocalMatrix()*(-1.0f);
                 localA.setFromOpenGLMatrix(parentMatrix.m);
                 localB.setFromOpenGLMatrix(joint->getLocalMatrix().m);
-
+                
                 animation::ConstraintData cdata = joint->getConstraintData();
-                if(cdata.type == animation::ConstraintData::CONE_TWIST) {
+                if (cdata.type == animation::ConstraintData::CONE_TWIST
+                                && m_bodies[parent->getID()] != NULL) {
                         btConeTwistConstraint *coneC;
                         btRigidBody *parentBody = m_bodies[parent->getID()];
                         coneC = new btConeTwistConstraint(*parentBody, *body,
@@ -157,10 +149,10 @@ void BulletRagdoll::createJointRecursively(animation::Joint *joint,
                                         cdata.twistAngle);
                         m_ownerWorld->addConstraint(coneC, true);
                         m_joints.insert(std::pair<std::string,
-                                btTypedConstraint*>(joint->getID(), coneC));
+                                btTypedConstraint*>(joint->getID(), coneC)); 
                 }
         }
-
+        
         std::vector<animation::Joint*> children = joint->getChildren();
         for (int i=0; i < children.size(); ++i) {
                 createJointRecursively(children[i], matrix, skeletonPose);

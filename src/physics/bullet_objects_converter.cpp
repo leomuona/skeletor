@@ -23,8 +23,7 @@ void BulletObjectsConverter::convertBox(btCollisionObject *obj, animation::Box *
                 float mass = body->getInvMass();
                 target->setMass(mass);
                 // location and rotation matrix
-                btTransform bodyTransform;
-                body->getMotionState()->getWorldTransform(bodyTransform);
+                btTransform bodyTransform = body->getCenterOfMassTransform();
                 math::Mat4x4f mat;
                 btScalar t_mat[16];
                 bodyTransform.getOpenGLMatrix(t_mat);
@@ -57,15 +56,25 @@ void BulletObjectsConverter::convertSkeleton(BulletRagdoll *obj, animation::Skel
 
 void BulletObjectsConverter::convertJointRecursively(BulletRagdoll *ragdoll, animation::Joint *target)
 {
-        btCollisionShape* shape = ragdoll->getShapes()[target->getID()];
-        btRigidBody* body = ragdoll->getBodies()[target->getID()];
-        btTypedConstraint* constraint;
+        btCapsuleShape* shape;
+        btRigidBody* body;
         if (target->getParent()) {
-                constraint = ragdoll->getJoints()[target->getID()];
-        }
-        // TODO: convert the stuff
-
+                shape = static_cast<btCapsuleShape*>(
+                        ragdoll->getShapes()[target->getID()]);
+                body = ragdoll->getBodies()[target->getID()];
+                
+                btTransform trans = body->getCenterOfMassTransform();
+                float halfHeight = (float) shape->getHalfHeight();
+                math::Mat4x4f mat;
+                btScalar t_mat[16];
+                trans.getOpenGLMatrix(t_mat);
+                for (int i=0; i<16; ++i) {
+                        mat.m[i] = (float) t_mat[i];
+                }
+                // TODO: what the fuck am I doing?
         
+        }
+
         std::vector<animation::Joint*> children = target->getChildren();
         for (int i=0; i < children.size(); ++i) {
                 convertJointRecursively(ragdoll, children[i]);

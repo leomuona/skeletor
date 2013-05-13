@@ -31,6 +31,12 @@ void BulletPhysics::initPhysics()
 
 void BulletPhysics::exitPhysics()
 {
+        std::map<unsigned int, BulletRagdoll*>::iterator it;
+        for (it = m_ragdolls.begin(); it != m_ragdolls.end(); it++) {
+                delete it->second;
+        }
+        m_ragdolls.clear();
+
         // search and destroy rigidbodies
         for (int i=m_dynamicsWorld->getNumCollisionObjects()-1; i>=0; --i) {
                 btCollisionObject *obj = 
@@ -43,7 +49,7 @@ void BulletPhysics::exitPhysics()
                 delete obj;
         }
         m_boxes.clear();
-
+        
         // search and destroy collisionshapes
         for (int i=0; i<m_collisionShapes.size(); ++i) {
                 btCollisionShape *shape = m_collisionShapes[i];
@@ -60,9 +66,17 @@ void BulletPhysics::exitPhysics()
 }
 
 void BulletPhysics::createSkeleton(unsigned int id,
-                                   const animation::SkeletonPose &skeletonPose)
+                                   animation::SkeletonPose *skeletonPose,
+                                   const math::Mat4x4f &transMat)
 {
+        BulletRagdoll *ragdoll = new BulletRagdoll(id, m_dynamicsWorld,
+                                                   skeletonPose, transMat);
+        m_ragdolls[id] = ragdoll;
+}
 
+BulletRagdoll* BulletPhysics::getSkeletonRagdoll(unsigned int id)
+{
+        return m_ragdolls[id];
 }
 
 btCollisionObject* BulletPhysics::getBoxCollisionObject(unsigned int id)

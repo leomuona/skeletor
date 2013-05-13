@@ -2,6 +2,7 @@
 #define PHYSICS_INTERFACE_HPP
 
 #include "math/vec3.hpp"
+#include "math/mat4x4.hpp"
 
 namespace skeletor {
 
@@ -19,7 +20,8 @@ public:
                                      const math::Vec3f &location,
                                      float edge, float mass) = 0;
         virtual void createSkeleton(unsigned int id,
-                        const animation::SkeletonPose &skeletonPose) = 0;
+                        animation::SkeletonPose *skeletonPose,
+                        const math::Mat4x4f &transMat) = 0;
         virtual void stepSimulation(float timeStep, int maxSubSteps = 1,
                                     float fixedTimeStep = (1.f/60.f)) = 0;
 };
