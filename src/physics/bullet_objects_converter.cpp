@@ -48,38 +48,5 @@ void BulletObjectsConverter::convertBox(btCollisionObject *obj, animation::Box *
         }
 }
 
-void BulletObjectsConverter::convertSkeleton(BulletRagdoll *obj, animation::SkeletonPose *target)
-{
-        animation::Joint *rootJoint = &target->getSkeleton().getRootJoint();
-        BulletObjectsConverter::convertJointRecursively(obj, rootJoint);
-}
-
-void BulletObjectsConverter::convertJointRecursively(BulletRagdoll *ragdoll, animation::Joint *target)
-{
-        btCapsuleShape* shape;
-        btRigidBody* body;
-        if (target->getParent()) {
-                shape = static_cast<btCapsuleShape*>(
-                        ragdoll->getShapes()[target->getID()]);
-                body = ragdoll->getBodies()[target->getID()];
-                
-                btTransform trans = body->getCenterOfMassTransform();
-                float halfHeight = (float) shape->getHalfHeight();
-                math::Mat4x4f mat;
-                btScalar t_mat[16];
-                trans.getOpenGLMatrix(t_mat);
-                for (int i=0; i<16; ++i) {
-                        mat.m[i] = (float) t_mat[i];
-                }
-                // TODO: what the fuck am I doing?
-        
-        }
-
-        std::vector<animation::Joint*> children = target->getChildren();
-        for (int i=0; i < children.size(); ++i) {
-                convertJointRecursively(ragdoll, children[i]);
-        }
-}
-
 }; // namespace physics
 }; // namespace skeletor

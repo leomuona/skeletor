@@ -147,7 +147,6 @@ int main()
         
         bp.createSkeleton(666, player.getCurrentPose(), player.getTransformation());
         physics::BulletRagdoll *ragdoll = bp.getSkeletonRagdoll(666);
-        physics::BulletObjectsConverter::convertSkeleton(ragdoll, player.getCurrentPose());
 
 	bool running = true;
 	float dt;
