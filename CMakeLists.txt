@@ -31,3 +31,4 @@ target_link_libraries(test_skeletor lib_skeletor)
 
 add_test("COLLADA" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor animation collada)
 add_test("KeyFrame" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor animation keyframe)
+add_test("PlayerMovement" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor player_movement)

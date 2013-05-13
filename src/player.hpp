@@ -115,6 +115,13 @@ public:
 	 * @return transformation matrix.
 	 */
 	math::Mat4x4f getTransformation() const;
+
+	/**
+	 * Getter for the hardcorded movement speed
+	 *
+	 * @return movement speed
+	 */
+	float getMovementSpeed() const;
 };
 
 inline const graphics::Camera &Player::getCamera() const
@@ -130,6 +137,11 @@ inline math::Vec3f Player::getDirection() const
 inline math::Vec3f Player::getPosition() const
 {
 	return m_position;
+}
+
+inline float Player::getMovementSpeed() const
+{
+	return m_movementSpeed;
 }
 
 inline math::Mat4x4f Player::getTransformation() const
