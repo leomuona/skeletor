@@ -146,7 +146,8 @@ int main()
         sr.addBox(*testBox2);
         
         bp.createSkeleton(666, player.getCurrentPose(), player.getTransformation());
-        physics::BulletRagdoll *ragdoll = bp.getSkeletonRagdoll(666);
+        
+        bp.initOpenGLDebugDrawer(1); // 1 = DBG_Draw_Wireframe
 
 	bool running = true;
 	float dt;
@@ -179,6 +180,7 @@ int main()
 		player.onCameraMotion(mousemotion, dt);
 
 		sr.drawFrame(player.getCamera(), player);
+                bp.debugDrawWorld();
 		sr.swapBuffers();
 	}
 

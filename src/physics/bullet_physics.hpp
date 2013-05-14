@@ -22,6 +22,7 @@ class SkeletonPose;
 }; // namespace animation
 namespace physics {
 
+class BulletOpenGLDebugDrawer;
 class BulletRagdoll;
 
 class BulletPhysics : public PhysicsInterface
@@ -82,6 +83,10 @@ public:
         void stepSimulation(float timeStep, int maxSubSteps = 1,
                             float fixedTimeStep = (1.f/60.f));
 
+
+        void initOpenGLDebugDrawer(int debugMode);
+
+        void debugDrawWorld();
 private:
         /**
          * Holds default collision configuration setup for memory and
@@ -113,6 +118,8 @@ private:
          * Collision shapes, kept pointers for deletion.
          */
         std::vector<btCollisionShape*> m_collisionShapes;
+
+        BulletOpenGLDebugDrawer *m_debugDrawer;
 
         /**
          * We need a body map, to keep track of box bodies.

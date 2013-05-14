@@ -121,7 +121,8 @@ void BulletRagdoll::createJointRecursively(animation::Joint *joint,
                 m_shapes.insert(std::pair<std::string, btCollisionShape*>(
                                         joint->getID(), shape));
                 // NOTE: Maybe mass should be bone specified in future?
-                float mass = bonelen * M_PI * std::pow(m_boneRadius, 2);
+                //float mass = bonelen * M_PI * std::pow(m_boneRadius, 2);
+                float mass = 0.0f;
 
                 btTransform transform;
                 transform.setFromOpenGLMatrix(matrix.m);

@@ -1,6 +1,7 @@
 #include "physics/bullet_physics.hpp"
 
 #include "animation/skeleton_pose.hpp"
+#include "physics/bullet_opengl_debug_drawer.hpp"
 #include "physics/bullet_ragdoll.hpp"
 
 #include "btBulletDynamicsCommon.h"
@@ -56,6 +57,10 @@ void BulletPhysics::exitPhysics()
                 delete shape;
         }
         m_collisionShapes.clear();
+
+        if (m_debugDrawer != NULL) {
+                delete m_debugDrawer;
+        }
 
         // delete rest of the stuff
         delete m_dynamicsWorld;
@@ -120,6 +125,18 @@ void BulletPhysics::createUniqueBox(unsigned int id,
 
         m_dynamicsWorld->addRigidBody(body);
         m_boxes[id] = body;
+}
+
+void BulletPhysics::initOpenGLDebugDrawer(int debugMode)
+{
+        m_debugDrawer = new BulletOpenGLDebugDrawer();
+        m_debugDrawer->setDebugMode(debugMode);
+        m_dynamicsWorld->setDebugDrawer(m_debugDrawer);
+}
+
+void BulletPhysics::debugDrawWorld()
+{
+        m_dynamicsWorld->debugDrawWorld();
 }
 
 }; // namespace physics
