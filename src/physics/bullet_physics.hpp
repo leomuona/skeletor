@@ -3,6 +3,7 @@
 
 #include "physics/physics_interface.hpp"
 #include "math/vec3.hpp"
+#include "math/mat4x4.hpp"
 
 #include <vector>
 #include <map>
@@ -53,10 +54,15 @@ public:
          * 
          * @param id - identifier
          * @param skeletonPose - skeleton pose that is created.
+         * @param transMat - transformation matrix for the skeleton.
          */
         void createSkeleton(unsigned int id,
-                            const animation::SkeletonPose &skeletonPose);
+                            animation::SkeletonPose *skeletonPose,
+                            const math::Mat4x4f &transMat);
         
+
+        BulletRagdoll* getSkeletonRagdoll(unsigned int id);
+
         /**
          * Return collision object of given id.
          *
