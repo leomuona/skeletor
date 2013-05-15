@@ -16,6 +16,8 @@
 
 Unit tests of the program are located under test directory. We didn't use any framework for creating unit test, using assert and return values is good enough. CMake has an integrated utitlity ctest for running and reporting the test results. After compiling the code (instructions are found from manual) unit tests can be performed by running 'ctest' or 'make test' in build directory.
 
+The math library used (sources under src/math directory) has separate repository for its unit tests. These tests test the functionality of the library extensively. The test repository can be found from \url{https://github.com/jesseniemisto/math-test}.
+
 Unit tests are only meant to test workings of individual components. The interaction between these individual components are tested in \nameref{sec:system_tests}.
 
 \section{System tests}
