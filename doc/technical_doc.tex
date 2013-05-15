@@ -40,4 +40,23 @@ The figure in ~\ref{animsubsys} shows the basic architecture of the animation su
 
 Put your stuff in here Leorio~
 
+
+\section{Known bugs and limitations}
+
+Here is the list of known bugs and limitations on the software.
+
+\begin{itemize}
+  \item Collada
+  \begin{itemize}
+    \item Collada files must have at least and at most one skeleton.
+    \item Root joint of the skeleton must be named as 'root'.
+    \item Only Maya and blender exported collada files work and has been tested.
+    \item Only library\_animation and library\_visual\_scene nodes are read, meaning character meshes are not read nor rendered.
+    \item Only supported (and tested) version of collada schema is 1.4.1. Other versions are untested.
+  \end{itemize}
+  \item Animation crossfading only works with identical skeletons.
+  \item KeyFrame animation assumes that interpolation is linear, no bezier is supported.
+  \item Turning camera too far up or down distorts the scene, proper way of handling would be to put degrees of freedom to camera movement.
+\end{itemize}
+
 \end{document}
