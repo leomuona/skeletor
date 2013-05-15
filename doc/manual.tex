@@ -1,0 +1,55 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[left=2cm,top=1cm,right=2cm,nohead,nofoot]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\begin{document}
+\author{Jesse Niemistö \and Leo Muona}
+\title{Game Engine Architecture: End-term project - Spring 2013 \\
+       Manual}
+
+\maketitle
+
+\section{Building}
+\label{sec:building}
+
+Compiling has only been tested on Linux operating systems, but in theory it should work on all Major OSes. Software (and system) requirements are listed in chapter~\ref{sec:system_requirements}
+
+Executing following commands on command line will compile the program.
+
+\begin{itemize}
+  \item cd build
+  \item cmake ..
+  \item make
+\end{itemize}
+
+Adding parameter -DCMAKE\_BUILD\_TYPE=Debug or -DCMAKE\_BUILD\_TYPE=Release to 'cmake ..' command will build the debug build or release build.
+
+\section{System requirements}
+\label{sec:system_requirements}
+
+The following libraries are required of the system running or building the software.
+
+\begin{itemize}
+  \item OpenGL 1.4 or newer
+  \item SDL 1.2.x
+  \item cmake 2.6 or newer
+\end{itemize}
+
+OpenGL is used for rendering the graphics. Only fixed pipeline is used so it should work with as low as 1.4 version. SDL is used for cross-platform window creation and handling. Cmake is used as build system.
+
+All these requirements are met by the linux machines in Helsinki University.
+
+The actual hardware requirements are quite low, and it should perform quite well even on netbooks.
+
+\section{Usage}
+\label{sec:usage}
+
+The first step of using the software is to build it. To do that please see chapter~\ref{sec:building}.
+
+After building, in build directory there will be a binary named as skeletor. Skeletor uses relative paths for referencing its resource files, so it must be executed in the build directory.
+
+After executing the software, the user is able to 'play'. Movement of the character is controlled with the usual WASD-keys. Camera movement is controlled with mouse by holding down the left mouse button and moving the mouse. Camera distance from the character is handled with mouse wheel.
+
+\end{document}

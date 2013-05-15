@@ -1,0 +1,30 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[left=2cm,top=1cm,right=2cm,nohead,nofoot]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\begin{document}
+\author{Jesse Niemistö \and Leo Muona}
+\title{Game Engine Architecture: End-term project - Spring 2013 \\
+       Test document}
+
+\maketitle
+
+\section{Unit tests}
+\label{sec:unit_tests}
+
+Unit tests of the program are located under test directory. We didn't use any framework for creating unit test, using assert and return values is good enough. CMake has an integrated utitlity ctest for running and reporting the test results. After compiling the code (instructions are found from manual) unit tests can be performed by running 'ctest' or 'make test' in build directory.
+
+The math library used (sources under src/math directory) has separate repository for its unit tests. These tests test the functionality of the library extensively. The test repository can be found from \url{https://github.com/jesseniemisto/math-test}.
+
+Unit tests are only meant to test workings of individual components. The interaction between these individual components are tested in \nameref{sec:system_tests}.
+
+\section{System tests}
+\label{sec:system_tests}
+
+System tests have to be run unfortunately by hand.
+
+write some test cases here.
+
+\end{document}

@@ -4,6 +4,7 @@
 
 #include "test/animation/animation.hpp"
 #include "test/player.hpp"
+#include "test/util/util.hpp"
 
 /**
  * Test framework main.
@@ -28,6 +29,8 @@ int main(int argc, char **argv)
 
 	if (subsys == "animation") {
 		return test::animation::testAnimation(argv[2]);
+	} else if (subsys == "util") {
+		return test::util::testUtil(argv[2]);
 	} else if (subsys == "player_movement") {
 		return test::testPlayerMovement();
 	} else {
