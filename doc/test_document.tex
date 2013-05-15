@@ -23,8 +23,31 @@ Unit tests are only meant to test workings of individual components. The interac
 \section{System tests}
 \label{sec:system_tests}
 
-System tests have to be run unfortunately by hand.
+System tests have to be run unfortunately by hand. This is done by following the test cases below.
 
-write some test cases here.
+\subsection{1. Graphical initialization test}
+
+Start the test by executing the binary file build/skeletor (after building the program as instructed).
+
+Expected result: You should see a graphical OpenGL window open up for the skeletor. In this window a skeleton character should be visible.
+
+\subsection{2. Camera movement test}
+
+Start the program. After you see the initilization you should see a skeleton character. To turn the camera, press your left mouse button on the window and drag the mouse simultaniously. Scroll the mouse whell towards you and then towards the screen.
+
+Expected result: Camera is moving from up and down according to your mouse movement. The character is turning left when you drag your mouse right and turning right when you drag your mouse left, according to mouse movement speed. When scrolling mouse wheel towards you the camera should go further away from the character and when scrolling mouse wheel towards screen the camera should move closer to the character.
+
+\subsection{3. Character movement test}
+
+Character turning is already tested in prevous test (2. Camera movement test). Now try to move the character with W-A-S-D button.
+
+Expected result: When pressing W, the character should move forward. When pressing S, the character should move backwards. When pressing A, the character should strafe left. When pressing D, the character should strafe right. When the character is moving in any of these options, a walking animation should be visible.
+
+\subsection{4. Box gravity test}
+
+Start the program. After starting the program, look towards the two boxes close to you.
+
+Expected result: The boxes should fall down to the ground and then one box rolls over the other. The physics of these boxes should look like in the real world.
+
 
 \end{document}
