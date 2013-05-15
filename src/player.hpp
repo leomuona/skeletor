@@ -14,6 +14,7 @@ namespace skeletor {
  *
  * The camera lookat is at player, and the camera moves with player.
  *
+ * <pre>
  *         __ * player facing direction
  *          /|
  *         /
@@ -22,6 +23,7 @@ namespace skeletor {
  *      /
  *     /
  *    * Camera position
+ * </pre>
  */
 class Player : public Character
 {
