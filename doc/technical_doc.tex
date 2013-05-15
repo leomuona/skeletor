@@ -36,6 +36,8 @@ COLLADA is an open standard XML schema for exchaning digital assets between vari
 
 The figure~\ref{animsubsys} shows the basic architecture of the animation subsystem. The figure represents the classes defined under src/animation/ directory. AnimationLibrary class is used to load skeleton from external files. It will call the load function from Parse class, which will call proper loader depending on file extension, though only COLLADA is supported.
 
+So, how is a single animation frame done? In the beginning of the frame, First the SkeletonPose classes transformations are interpolated to transformations between keyframes for each joint. These are saved in the SkeletonPoses map attribute m\_localPoses, where joint is the key, and transformation is the value. Now we know the transformations from the bind pose to the current pose. These transformations are only applied during the rendering, where each joint asks the transformations from the SkeletonPose. So this is that \begin{verbatim}(joint.getBindPoseMatrix() * skeletonPose.getTransform(&joint)\end{verbatim} line in rendering, which actually applies the pose to the scene.
+
 \section{Physics subsystem}
 
 Animation has it's uses and character death can be done with dramatic death animations. But after that, a game engine should handle dead bodies, as well as other objects, with certain realism. This is "easy" to obtain with implementing some physics API to the project, and in this case it is Bullet Physics. Bullet Physics engine is an open source 3D physics engine, that has support for collision detection, soft body dynamics and rigid body dynamics. It has been developed mainly by Erwin Coumans and is published under zlib licence.
