@@ -6,6 +6,12 @@
 namespace skeletor {
 namespace animation {
 
+/**
+ * KeyFrames are joint specific transformations at a given time.
+ *
+ * If every joint is transformed to keyframe at given time, it makes a pose
+ * that the given keyframe presents.
+ */
 class KeyFrame
 {
 private:
@@ -34,9 +40,29 @@ public:
 	 */
 	KeyFrame(float time, const math::Mat4x4f &transform);
 
+	/**
+	 * Get the time of the keyframe.
+	 * @param time (seconds)
+	 */
 	float getTime() const;
+
+	/**
+	 * Get the transformation of the keyframe.
+	 * This is copy of the transform matrix given at constructor.
+	 * @return transformation matrix
+	 */
 	math::Mat4x4f getTransform() const;
+
+	/**
+	 * Get translations of the keyframe.
+	 * @return translation vector
+	 */
 	math::Vec3f getTranslate() const;
+
+	/**
+	 * Get rotation of the keyframe.
+	 * @return rotate vector
+	 */
 	math::Vec3f getRotate() const;
 
 	/**

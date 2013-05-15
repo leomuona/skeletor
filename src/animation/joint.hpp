@@ -28,6 +28,16 @@ typedef struct ConstraintData {
         float swing2Angle;
 } ConstraintData; 
 
+/**
+ * Skeleton consists of joints.
+ *
+ * Joints forms a tree like structure, each joint knowing it signle parent and
+ * n amount of childs. If parent is NULL it means that the joint is root joint.
+ *
+ * Two joints make a bone.
+ *
+ * Each joint also holds all of its KeyFrames.
+ */
 class Joint
 {
 private:

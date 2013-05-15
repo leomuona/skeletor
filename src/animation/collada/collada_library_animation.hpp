@@ -205,7 +205,21 @@ void animationLibraryToKeyFrameAnimation(AnimationLibrary &anim, Skeleton &skele
  * @param sample in question.
  */
 std::vector<KeyFrame> rotateTransformation(const std::string &name, Sample &sample);
+
+/**
+ * Parses COLLADA transformation sequence/sample into transformation matrix.
+ *
+ * @param transformation name, e.g rotateX.ANGLE, translate, transform(0)(3)
+ * @param sample in question.
+ */
 std::vector<KeyFrame> transformTransformation(const std::string &name, Sample &sample);
+
+/**
+ * Parses COLLADA translate sequence/sample into transformation matrix.
+ *
+ * @param transformation name, e.g rotateX.ANGLE, translate, transform(0)(3)
+ * @param sample in question.
+ */
 std::vector<KeyFrame> translateTransformation(const std::string &name, Sample &sample);
 
 /**

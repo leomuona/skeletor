@@ -28,13 +28,24 @@ private:
 	std::map<const Joint *, math::Mat4x4f> m_localPoses;
 
 public:
+	/** Constructor */
 	SkeletonPose();
 
 	Skeleton &getSkeleton();
 	const Skeleton &getSkeleton() const;
 
+	/**
+	 * Gets the path of the skeleton file.
+	 *
+	 * @return skeleton file path.
+	 */
 	std::string getSkeletonSource() const;
 
+	/**
+	 * Set the skeleton that this pose should use.
+	 *
+	 * @param skeleton
+	 */
 	void setSkeleton(Skeleton *skeleton);
 
 	/**
