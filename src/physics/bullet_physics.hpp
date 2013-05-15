@@ -21,10 +21,13 @@ namespace animation {
 class SkeletonPose;
 }; // namespace animation
 namespace physics {
-
 class BulletOpenGLDebugDrawer;
 class BulletRagdoll;
 
+/**
+ * Bullet physics implementation from our physics interface.
+ * Used for physical calculations.
+ */
 class BulletPhysics : public PhysicsInterface
 {
 public:
@@ -43,6 +46,7 @@ public:
         /**
          * Create unique box with given values.
          * Use this only if there is only one box like this to be created.
+         *
          * @param location - where is the center of box
          * @param edge - edge length of box
          * @param mass - mass of box, with zero object is static.
@@ -51,17 +55,22 @@ public:
                              float edge, float mass);
 
         /**
-         * Create skeleton with given identifier.
+         * Create skeleton from a skeletonPose with given identifier.
          * 
          * @param id - identifier
-         * @param skeletonPose - skeleton pose that is created.
+         * @param skeletonPose - skeleton pose that is used.
          * @param transMat - transformation matrix for the skeleton.
          */
         void createSkeleton(unsigned int id,
                             animation::SkeletonPose *skeletonPose,
                             const math::Mat4x4f &transMat);
         
-
+        /**
+         * Return BulletRagdoll that is stored by physics engine.
+         *
+         * @param id - identifier of the skeleton/ragdoll
+         * @return BulletRagdoll* pointer to the ragdoll
+         */
         BulletRagdoll* getSkeletonRagdoll(unsigned int id);
 
         /**
@@ -83,9 +92,17 @@ public:
         void stepSimulation(float timeStep, int maxSubSteps = 1,
                             float fixedTimeStep = (1.f/60.f));
 
-
+        /**
+         * Initializes OpenGLDebugDrawer to be used with this physics
+         * implementation
+         *
+         * @param debugMode - 1 is for wireframe. Check additional modes from btIDebugDraw.h (Bullet physics library)
+         */
         void initOpenGLDebugDrawer(int debugMode);
 
+        /**
+         * Use debug drawer to draw physics world debug frame.
+         */
         void debugDrawWorld();
 private:
         /**
@@ -119,6 +136,9 @@ private:
          */
         std::vector<btCollisionShape*> m_collisionShapes;
 
+        /**
+         * Debug drawer.
+         */
         BulletOpenGLDebugDrawer *m_debugDrawer;
 
         /**

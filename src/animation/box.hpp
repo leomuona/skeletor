@@ -7,6 +7,9 @@
 namespace skeletor {
 namespace animation {
 
+/**
+ * Box class for animation. Made for simple usage.
+ */
 class Box {
 public:
         Box(unsigned int id, float mass);

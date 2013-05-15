@@ -8,6 +8,9 @@
 namespace skeletor {
 namespace graphics {
 
+/**
+ * Camera for looking around.
+ */
 class Camera {
 private:
         math::Vec3f m_position;
@@ -26,6 +29,12 @@ private:
 public:
         Camera();
 
+        /**
+         * Rotate position around the Y-axis.
+         *
+         * @param d - the amazing d.
+         * @param speed - speed of choice
+         */
 	void rotatePositionAroundYAxis(float d, float speed);
 
 	/**
