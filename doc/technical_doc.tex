@@ -25,7 +25,7 @@ In skeletor a Skeleton class presents a skeleton. Skeleton consists of joints. A
 
 SkeletonPose class reflects a single pose of the skeleton in some given time. SkeletonPose class includes a set of transformations for each joint of the skeleton, which are applied to skeletons bind pose to make the pose. This means that only SkeletonPose class is changes when making poses. SkeletonPose class also includes function for crossfading between different animations (poses). The only assumption here is that skeletons that are crossfaded are identical.
 
-COLLADA is an open standard XML schema for exchaning digital assets between various graphics software applications. Skeletor is able to read COLLADA-files with skeletons and animations. Actually only those datas are read as rest are ignored. 
+COLLADA is an open standard XML schema for exchaning digital assets between various graphics software applications. Skeletor is able to read COLLADA-files with skeletons and animations. Actually only those datas are read as rest are ignored. Collada file structure is outside the scope of this document, but excellent tutorial is available in \url{http://www.wazim.com/Collada_Tutorial_1.htm}
 
 \begin{figure}
   \centering
@@ -34,7 +34,7 @@ COLLADA is an open standard XML schema for exchaning digital assets between vari
   \label{animsubsys}
 \end{figure}
 
-The figure in ~\ref{animsubsys} shows the basic architecture of the animation subsystem. The figure represents the classes defined under src/animation/ directory. Collada file structure is outside the scope of this document, but excellent tutorial is available for example in \url{http://www.wazim.com/Collada_Tutorial_1.htm}
+The figure~\ref{animsubsys} shows the basic architecture of the animation subsystem. The figure represents the classes defined under src/animation/ directory. AnimationLibrary class is used to load skeleton from external files. It will call the load function from Parse class, which will call proper loader depending on file extension, though only COLLADA is supported.
 
 \section{Physics subsystem}
 
@@ -57,6 +57,7 @@ Here is the list of known bugs and limitations on the software.
   \item Animation crossfading only works with identical skeletons.
   \item KeyFrame animation assumes that interpolation is linear, no bezier is supported.
   \item Turning camera too far up or down distorts the scene, proper way of handling would be to put degrees of freedom to camera movement.
+  \item Physics system and animation system has no real interaction, there is no inverse kinematics!
 \end{itemize}
 
 \end{document}
