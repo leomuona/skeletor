@@ -46,8 +46,6 @@ Physics subsystem also supports boxes for couple reasons. Firsly, you can easily
 
 At current state the physics implementation is not working correctly with skeletons, thus it should serve as a basis for future development.
 
-TODO: add a figure of the physics system and write stuff about it.
-
 \section{Known bugs and limitations}
 
 Here is the list of known bugs and limitations on the software.
@@ -67,7 +65,11 @@ Here is the list of known bugs and limitations on the software.
   \item Physics system and animation system has no real interaction, there is no inverse kinematics!
   \item Physics
   \begin{itemize}
-    \item todo
+    \item Converting skeleton to ragdoll does not create bones/joints in correct locations.
+    \item Because of previous, converting from ragdoll to skeleton has not been implemented.
+    \item Ragdolls does not have gravity for time being. After conversion errors are fixed, gravity can be turned on.
+    \item Boxes can be created into gravity system only in upwards-position. (not tilted)
+    \item Joint conversion has to uses Skeletor's default joint angle values given in animation::Joint constructor.
   \end{itemize}
 \end{itemize}
 
