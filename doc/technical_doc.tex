@@ -44,6 +44,15 @@ In skeletor we use Bullet Physics engine to calculate skeleton's physics "after 
 
 Physics subsystem also supports boxes for couple reasons. Firsly, you can easily build a floor for the world with boxes. Secondly, physics engine is easy to get started with a few boxes, thus making sure the time simulation and basic settings are working correctly. Same rules apply for boxes that apply for skeletons. That is, boxes have to be converted from Bullet form to Skeletor form inside the main loop for correct rendering.
 
+\begin{figure}
+  \centering
+    \includegraphics[scale=0.7]{physics_subsystem.png}
+  \caption{physics subsystem architecture}
+  \label{physicssubsys}
+\end{figure}
+
+The figure~\ref{physicssubsys} shows how the Bullet Physics library is used with Skeletor's physics classes. The figure has only main functions (initialization \& debug functions are missing), thus the it's main function is to just visualize the previous texts. The bullet integration is developed in a way that it could "easily" be replace by other physics engine in the software.
+
 At current state the physics implementation is not working correctly with skeletons, thus it should serve as a basis for future development.
 
 \section{Known bugs and limitations}

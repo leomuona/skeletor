@@ -34,3 +34,7 @@ add_test("KeyFrame" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor animation keyframe
 add_test("PlayerMovement" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor player_movement)
 add_test("String" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor util string)
 add_test("BinarySearch" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor util search)
+add_test("BulletPhysics" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor physics
+        bullet_physics)
+add_test("BulletObjectsConverter" ${CMAKE_CURRENT_BINARY_DIR}/test_skeletor
+        physics bullet_objects_converter)
