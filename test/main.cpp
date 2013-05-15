@@ -5,6 +5,7 @@
 #include "test/animation/animation.hpp"
 #include "test/player.hpp"
 #include "test/util/util.hpp"
+#include "test/physics/physics.hpp"
 
 /**
  * Test framework main.
@@ -33,7 +34,9 @@ int main(int argc, char **argv)
 		return test::util::testUtil(argv[2]);
 	} else if (subsys == "player_movement") {
 		return test::testPlayerMovement();
-	} else {
+	} else if (subsys == "physics") {
+                return test::physics::testPhysics(argv[2]);
+        } else {
 		printf("invalid subsystem/test: %s\n", subsys.c_str());
 		return 1;
 	}
