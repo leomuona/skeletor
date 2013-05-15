@@ -1,0 +1,26 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[left=2cm,top=1cm,right=2cm,nohead,nofoot]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\begin{document}
+\author{Jesse Niemistö \and Leo Muona}
+\title{Game Engine Architecture: End-term project - Spring 2013 \\
+       Specification Document}
+
+\maketitle
+
+\section{Introduction}
+
+The aim of this project is to make a dynamic forward kinematics and inverse kinematics animation system with physics and ragdoll support.
+
+By dynamic is meant that animations should be easily changeable, which in turn means that animations should be loaded from external files. Forward kinematics refers to simple Keyframe animation system in which, character has a number of keyframes. The empty space between keyframes should be smoothly interpolated. Inverse kinematics is much harder, and with this is meant that character should be able to somehow react to its environment. e.g. character has its feet on the floor, not inside.
+
+The physics and ragdolls are extremely simple concepts to understand, and its meaning in games, but they are extremly complex systems that simulate these. This is the reason that a 3rd-party open-source physics simulation engine is used.
+
+\section{Requirements}
+
+The software should have at least some sort of freedom to test animation and physics system. Good concept would be to make a game like environment with camera being from the third person perspective. This way user is able to see the character animations and still feel like being in charge of things.
+
+\end{document}
