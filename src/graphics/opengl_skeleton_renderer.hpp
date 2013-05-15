@@ -19,26 +19,56 @@ class Joint;
 namespace graphics {
 class Camera;
 
+/**
+ * Skeleton renderer that uses OpenGL.
+ * Renders skeletons (and boxes) that are added into the renderer.
+ */
 class OpenGLSkeletonRenderer : public SkeletonRendererInterface
 {
 public:
         /** 
          * Initializes SDL, window and OpenGL.
          *
+         * @param dimension - window dimensions.
+         * @param bpp - color depth, usually 32.
+         * @param fs - fullscreen or not
+         * @param title - window title.
          * @throws RuntimeException if fails.
          */
         void initRenderer(
                 const math::Vec2i &dimension, int bpp, bool fs,
                 const std::string &title);
         
+        /**
+         * Add a box for rendering..
+         * 
+         * @param box - box to be added.
+         */
         void addBox(const animation::Box &box);
 
+        /**
+         * Resize window.
+         *
+         * @param resolution - resolution
+         */
         void onResize(const math::Vec2i &resolution);
         
+        /**
+         * Swap buffers.
+         */
         void swapBuffers();
 
+        /**
+         * Draw current frame.
+         *
+         * @param camera - camera
+         * @param player - player
+         */
         void drawFrame(const Camera &camera, const Player &player);
 
+        /**
+         * Clean up before deleting the renderer.
+         */
         void cleanUp();
 
 private:

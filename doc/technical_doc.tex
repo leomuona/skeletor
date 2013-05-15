@@ -13,7 +13,7 @@
 
 \section{Basic architecture}
 
-The software can be split into two distinct subsystems that have been implemented; animation and physics. Animation subsystem handles skeletal animaition (aka forward kinematics), while the physics subsystem is an interface for interacting with 3rd-party physics engine.
+The software can be split into two distinct subsystems that have been implemented; animation and physics. Animation subsystem handles skeletal animation (aka forward kinematics), while the physics subsystem is an interface for interacting with 3rd-party physics engine.
 
 Chapters below will take a more in-depth look at the subsystems.
 
@@ -38,8 +38,15 @@ The figure~\ref{animsubsys} shows the basic architecture of the animation subsys
 
 \section{Physics subsystem}
 
-Put your stuff in here Leorio~
+Animation has it's uses and character death can be done with dramatic death animations. But after that, a game engine should handle dead bodies, as well as other objects, with certain realism. This is "easy" to obtain with implementing some physics API to the project, and in this case it is Bullet Physics. Bullet Physics engine is an open source 3D physics engine, that has support for collision detection, soft body dynamics and rigid body dynamics. It has been developed mainly by Erwin Coumans and is published under zlib licence.
 
+In skeletor we use Bullet Physics engine to calculate skeleton's physics "after death". This is done by converting player's SkeletonPose into BulletRagdoll. Then the ragdoll is inserted into btDynamicsWorld and for each time the main loop is ran, physics world is also updated. In an optimal situation the ragdoll is converted back to Skeletor's SkeletonPose form before rendering frame.
+
+Physics subsystem also supports boxes for couple reasons. Firsly, you can easily build a floor for the world with boxes. Secondly, physics engine is easy to get started with a few boxes, thus making sure the time simulation and basic settings are working correctly. Same rules apply for boxes that apply for skeletons. That is, boxes have to be converted from Bullet form to Skeletor form inside the main loop for correct rendering.
+
+At current state the physics implementation is not working correctly with skeletons, thus it should serve as a basis for future development.
+
+TODO: add a figure of the physics system and write stuff about it.
 
 \section{Known bugs and limitations}
 
@@ -58,6 +65,10 @@ Here is the list of known bugs and limitations on the software.
   \item KeyFrame animation assumes that interpolation is linear, no bezier is supported.
   \item Turning camera too far up or down distorts the scene, proper way of handling would be to put degrees of freedom to camera movement.
   \item Physics system and animation system has no real interaction, there is no inverse kinematics!
+  \item Physics
+  \begin{itemize}
+    \item todo
+  \end{itemize}
 \end{itemize}
 
 \end{document}

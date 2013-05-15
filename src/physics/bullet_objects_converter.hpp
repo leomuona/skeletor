@@ -13,8 +13,17 @@ namespace physics {
 
 class BulletRagdoll;
 
+/**
+ * Class to convert bullet objects from/to skeletor objects.
+ */
 class BulletObjectsConverter {
 public:
+        /**
+         * Convert a box from bullet object to skeletor box.
+         *
+         * @param obj - from
+         * @param target - to
+         */
         static void convertBox(btCollisionObject *obj, animation::Box* target);
 
 };

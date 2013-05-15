@@ -15,6 +15,9 @@ class Box;
 namespace graphics {
 class Camera;
 
+/**
+ * Skeleton renderer interface. Use this with rendering API of your choice.
+ */
 class SkeletonRendererInterface
 {
 public:
@@ -27,17 +30,23 @@ public:
                 const math::Vec2i &dimension, int bpp, bool fs,
                 const std::string &title) = 0;
 
+        /**
+         * Resize function.
+         */
 	virtual void onResize(const math::Vec2i &resolution) = 0;
 
+        /**
+         * Swap buffers.
+         */
         virtual void swapBuffers() = 0;
 
         /**
-         * Add box for rendering.
+         * Add a box for rendering.
          */
         virtual void addBox(const animation::Box &box) = 0;
 
         /**
-         * Draw a frame.
+         * Draw current frame.
          */
         virtual void drawFrame(const Camera &camera, const Player &player) = 0;
 

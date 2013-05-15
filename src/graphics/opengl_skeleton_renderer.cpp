@@ -156,37 +156,37 @@ void OpenGLSkeletonRenderer::render(const animation::Box &box) const
         }
         glBegin(GL_QUADS);
                 // front: 0,1,3,2
-                glColor3f(0.0f, 0.0f, 1.0f); // color blue 
+                glColor3f(0.0f, 0.0f, 0.5f); // color blue 
                 glVertex3f(vs[0].x, vs[0].y, vs[0].z);
                 glVertex3f(vs[1].x, vs[1].y, vs[1].z);
                 glVertex3f(vs[3].x, vs[3].y, vs[3].z); 
                 glVertex3f(vs[2].x, vs[2].y, vs[2].z);
                 // back: 4,5,7,6
-                glColor3f(0.0f, 0.0f, 1.0f); // color blue 
+                glColor3f(0.0f, 0.0f, 0.5f); // color blue 
                 glVertex3f(vs[4].x, vs[4].y, vs[4].z);
                 glVertex3f(vs[5].x, vs[5].y, vs[5].z);
                 glVertex3f(vs[7].x, vs[7].y, vs[7].z); 
                 glVertex3f(vs[6].x, vs[6].y, vs[6].z); 
                 // right: 1,3,7,5
-                glColor3f(1.0f, 0.0f, 0.0f); // color red 
+                glColor3f(0.5f, 0.0f, 0.0f); // color red 
                 glVertex3f(vs[1].x, vs[1].y, vs[1].z);
                 glVertex3f(vs[3].x, vs[3].y, vs[3].z);
                 glVertex3f(vs[7].x, vs[7].y, vs[7].z); 
                 glVertex3f(vs[5].x, vs[5].y, vs[5].z); 
                 // left: 0,2,6,4
-                glColor3f(1.0f, 0.0f, 0.0f); // color red 
+                glColor3f(0.5f, 0.0f, 0.0f); // color red 
                 glVertex3f(vs[0].x, vs[0].y, vs[0].z);
                 glVertex3f(vs[2].x, vs[2].y, vs[2].z);
                 glVertex3f(vs[6].x, vs[6].y, vs[6].z); 
                 glVertex3f(vs[4].x, vs[4].y, vs[4].z); 
                 // top: 0,1,5,4
-                glColor3f(0.0f, 1.0f, 0.0f); // color green 
+                glColor3f(0.0f, 0.5f, 0.0f); // color grey 
                 glVertex3f(vs[0].x, vs[0].y, vs[0].z);
                 glVertex3f(vs[1].x, vs[1].y, vs[1].z);
                 glVertex3f(vs[5].x, vs[5].y, vs[5].z); 
                 glVertex3f(vs[4].x, vs[4].y, vs[4].z); 
                 // bottom: 2,3,7,6
-                glColor3f(0.0f, 1.0f, 0.0f); // color green 
+                glColor3f(0.0f, 0.5f, 0.0f); // color grey 
                 glVertex3f(vs[2].x, vs[2].y, vs[2].z);
                 glVertex3f(vs[3].x, vs[3].y, vs[3].z);
                 glVertex3f(vs[7].x, vs[7].y, vs[7].z); 
